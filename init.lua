@@ -1,8 +1,8 @@
-------------
--- CONFIG --
-------------
+-- ┎┈┄┄┈─────────┒
+-- ┃ MAIN CONFIG ┃
+-- ┖─────────┈┄┄┈┚
 
--- ALIASES -------------------------------------------------------
+-- ALIASES
 local fn = vim.fn
 local cmd = vim.cmd
 local g = vim.g
@@ -10,7 +10,7 @@ local o = vim.o
 local opt = vim.opt
 local map = vim.keymap.set
 
--- PLUGINS -------------------------------------------------------
+-- PLUGINS
 -- auto install paq-nvim
 local install_path = fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -66,7 +66,7 @@ require('paq')({
   'windwp/nvim-ts-autotag',
 })
 
--- OPTIONS -------------------------------------------------------
+-- OPTIONS
 o.termguicolors = true
 o.number = true
 o.relativenumber = true
@@ -113,7 +113,7 @@ opt.formatoptions = opt.formatoptions:append('lv')
 -- create autocmds
 require('autocmd')
 
--- VARIOUS -------------------------------------------------------
+-- VARIOUS
 -- color scheme
 cmd('colorscheme espresso')
 -- nvim as man pager
@@ -121,7 +121,7 @@ cmd('runtime ftplugin/man.vim')
 -- map leader
 g.mapleader = ','
 
--- MAPPINGS ------------------------------------------------------
+-- MAPPINGS
 -- c'est en forgeant que l'on devient forgeron
 map('', '<Up>', '<Nop>')
 map('', '<Down>', '<Nop>')
@@ -199,7 +199,7 @@ end)
 -- generate custom highlight groups
 require('hl').hl()
 
--- LOAD PLUGIN CONFIGS -------------------------------------------
+-- LOAD PLUGIN CONFIGS
 require('plugins.nvim-treesitter')
 require('plugins.ponton')
 require('plugins.nvim-tree')
