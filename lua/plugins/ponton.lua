@@ -15,6 +15,7 @@ local main_cdt = {
 local cdts = {
   main_cdt,
 }
+
 require('ponton').setup({
   line = {
     'void',
@@ -36,6 +37,7 @@ require('ponton').setup({
   winbar = {
     'buffer_name',
     'buffer_changed_winbar',
+    'close_window',
   },
   top_line_exclude = { 'NvimTree', 'Trouble', 'TelescopePrompt' },
   segments = {
@@ -66,10 +68,10 @@ require('ponton').setup({
       conditions = cdts,
     },
     buffer_name = {
-      empty = "▫▫▫",
+      empty = '⋯',
       style = {
         { '#BDAE9D', winbar_bg, 'bold' },
-        { '#BDAE9D', '#2A190E', 'bold' },
+        { '#BDAE9D', line_bg, 'bold' },
       },
       padding = { 1, 1 },
       conditions = { main_cdt },
@@ -78,11 +80,18 @@ require('ponton').setup({
       provider = 'buffer_changed',
       style = {
         { '#a3f307', winbar_bg, 'bold' },
-        { '#a3f307', '#2A190E', 'bold' },
+        { '#a3f307', line_bg, 'bold' },
       },
       value = '✶',
       padding = { nil, 1 },
       conditions = cdts,
+    },
+    close_window = {
+      style = {
+        { '#734C36', winbar_bg, 'bold' },
+        { '#734C36', line_bg, 'bold' },
+      },
+      padding = { nil, 1 },
     },
     read_only = {
       style = { '#C75450', line_bg, 'bold' },
