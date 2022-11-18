@@ -45,7 +45,7 @@ fn.sign_define(
 local signature_help_cfg = {
   bind = true,
   doc_lines = 2,
-  floating_window = true,
+  floating_window = false,
   hint_enable = true,
   hint_prefix = '→ ',
   hint_scheme = 'codeHint',
