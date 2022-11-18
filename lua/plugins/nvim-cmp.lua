@@ -83,6 +83,11 @@ cmp.setup({
     { name = 'path' },
     { name = 'buffer' },
   },
+  cmp.setup.filetype('suitui', {
+    sources = {
+      { name = 'path' },
+    },
+  }),
   window = {
     completion = { border = nil },
     documentation = { border = { '', '', '', ' ', '', '', '', ' ' } },
