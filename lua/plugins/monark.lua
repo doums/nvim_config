@@ -4,4 +4,4 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/. ]]
 
 -- Config for monark.nvim
 
-require('monark').setup()
+require('monark').setup({ timeout = 100 })

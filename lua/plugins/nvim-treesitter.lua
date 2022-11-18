@@ -30,7 +30,7 @@ require('nvim-treesitter.configs').setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'tn',
+      init_selection = 't',
       node_incremental = '<A-l>',
       scope_incremental = '<A-j>',
       node_decremental = '<A-h>',
@@ -39,5 +39,27 @@ require('nvim-treesitter.configs').setup({
   autotag = {
     enable = true,
     filetypes = { 'typescriptreact', 'tsx', 'markdown' },
+  },
+  -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ab'] = '@block.outer',
+        ['ib'] = '@block.inner',
+        ['al'] = '@loop.outer',
+        ['il'] = '@loop.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
+      selection_modes = {
+        ['@parameter.outer'] = 'v',
+        ['@function.outer'] = 'V',
+      },
+      include_surrounding_whitespace = true,
+    },
   },
 })

@@ -7,7 +7,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/. ]]
 local map = vim.keymap.set
 
 require('trouble').setup({
-  height = 8,
+  height = 5,
   indent_lines = false,
   padding = false,
   action_keys = {

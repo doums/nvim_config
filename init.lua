@@ -39,6 +39,7 @@ require('paq')({
   'doums/oterm.nvim',
   'doums/vassal.nvim',
   { 'nvim-treesitter/nvim-treesitter', run = update_ts_parsers },
+  'nvim-treesitter/nvim-treesitter-textobjects',
   'nvim-treesitter/playground',
   'neovim/nvim-lspconfig',
   'jose-elias-alvarez/null-ls.nvim',
@@ -58,11 +59,9 @@ require('paq')({
   'nvim-telescope/telescope-smart-history.nvim', -- dep of telescope.nvim
   'nvim-telescope/telescope.nvim',
   'lewis6991/gitsigns.nvim',
-  'pantharshit00/vim-prisma',
   'kyazdani42/nvim-tree.lua',
   'kyazdani42/nvim-web-devicons', -- dep of nvim-tree.lua
   'ggandor/leap.nvim',
-  'AckslD/nvim-neoclip.lua',
   'windwp/nvim-ts-autotag',
 })
 
@@ -97,7 +96,6 @@ o.cmdheight = 2
 o.mouse = 'a'
 o.statusline = ' ' -- hide the default statusline on the first frames
 o.laststatus = 3
-o.guifont = 'JetBrains Mono:h16'
 o.guicursor = 'a:block-Caret'
 o.spelllang = 'en_us'
 o.spelloptions = 'camel'
@@ -213,7 +211,6 @@ require('plugins.nvim-cmp')
 require('plugins.luasnip')
 require('plugins.gitsigns')
 require('plugins.leap')
-require('plugins.nvim-neoclip')
 require('plugins.suit')
 require('plugins.monark')
 require('lsp')
