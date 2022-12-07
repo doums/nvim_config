@@ -160,6 +160,7 @@ map('', '<C-Left>', ':tabp<CR>', { silent = true })
 map('', '<C-Up>', ':+tabmove<CR>', { silent = true })
 map('', '<C-Down>', ':-tabmove<CR>', { silent = true })
 -- windows
+map('n', '<A-x>', ':q<CR>', { silent = true })
 map('n', '<Leader>s', ':new<CR>', { silent = true })
 map('n', '<Leader>v', ':vnew<CR>', { silent = true })
 map('n', '<Leader><S-s>', ':split<CR>', { silent = true })

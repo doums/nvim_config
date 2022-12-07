@@ -24,11 +24,11 @@ require('ponton').setup({
     'read_only',
     'git_branch',
     'spacer',
-    'lsp_spinner',
     'lsp_error',
     'lsp_warning',
     'lsp_information',
     'lsp_hint',
+    'lsp_spinner',
     'line',
     'sep',
     'column',
@@ -106,23 +106,19 @@ require('ponton').setup({
     sep = {
       style = { line_fg, line_bg },
       text = '⏽',
-      conditions = cdts,
     },
     line_percent = {
       style = { line_fg, line_bg },
       padding = { nil, 1 },
-      conditions = cdts,
     },
     line = {
       style = { line_fg, line_bg },
       padding = { 1 },
-      conditions = cdts,
     },
     column = {
       style = { line_fg, line_bg },
       left_adjusted = true,
       padding = { nil, 1 },
-      conditions = cdts,
     },
     git_branch = {
       style = { '#C5656B', line_bg },
@@ -132,9 +128,8 @@ require('ponton').setup({
     lsp_spinner = {
       style = { '#C5656B', line_bg },
       fn = require('lsp_spinner').status,
-      padding = { nil, 2 },
+      padding = { 2, 1 },
       prefix = '󰣪 ',
-      conditions = cdts,
     },
     lsp_error = {
       style = { '#FF0000', line_bg, 'bold' },

@@ -23,6 +23,7 @@ local lsp_signature = require('lsp_signature')
 lsp_spinner.setup({
   spinner = { '▪', '■', '□', '▫' },
   interval = 80,
+  placeholder = ' ',
 })
 
 fn.sign_define(
