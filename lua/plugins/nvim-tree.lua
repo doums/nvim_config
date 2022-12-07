@@ -28,6 +28,7 @@ end
 
 require('nvim-tree').setup({
   hijack_cursor = true,
+  select_prompts = true,
   diagnostics = {
     enable = true,
     icons = {
@@ -82,6 +83,7 @@ require('nvim-tree').setup({
   },
   view = {
     width = 40,
+    preserve_window_proportions = true,
     mappings = {
       custom_only = true,
       list = {
