@@ -20,7 +20,6 @@ require('ponton').setup({
   line = {
     'void',
     'mode',
-    'buffer_changed',
     'read_only',
     'git_branch',
     'spacer',
@@ -36,8 +35,7 @@ require('ponton').setup({
   },
   winbar = {
     'buffer_name',
-    'buffer_changed_winbar',
-    'close_window',
+    'buffer_changed',
   },
   top_line_exclude = { 'NvimTree', 'Trouble', 'TelescopePrompt' },
   segments = {
@@ -61,37 +59,25 @@ require('ponton').setup({
     void = {
       length = '20%',
     },
-    buffer_changed = {
-      style = { '#a3f307', line_bg, 'bold' },
-      value = '✶',
-      padding = { nil, 1 },
-      conditions = cdts,
-    },
     buffer_name = {
-      empty = '⋯',
+      empty = '-',
       style = {
         { '#BDAE9D', winbar_bg, 'bold' },
         { '#BDAE9D', line_bg, 'bold' },
       },
-      padding = { 1, 1 },
+      padding = { 1, nil },
       conditions = { main_cdt },
     },
-    buffer_changed_winbar = {
-      provider = 'buffer_changed',
+    buffer_changed = {
       style = {
         { '#a3f307', winbar_bg, 'bold' },
         { '#a3f307', line_bg, 'bold' },
       },
       value = '✶',
       padding = { nil, 1 },
+      placeholder = ' ',
+      min_width = 2,
       conditions = cdts,
-    },
-    close_window = {
-      style = {
-        { '#734C36', winbar_bg, 'bold' },
-        { '#734C36', line_bg, 'bold' },
-      },
-      padding = { nil, 1 },
     },
     read_only = {
       style = { '#C75450', line_bg, 'bold' },
