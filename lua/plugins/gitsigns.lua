@@ -15,6 +15,7 @@ gs.setup({
     delete = { hl = 'GitDeleteSign', text = '▶' },
     topdelete = { hl = 'GitDeleteSign', text = '▶' },
     changedelete = { hl = 'GitChangeDeleteSign', text = '┃' },
+    untracked = { hl = 'GitAddSign', text = '╏' },
   },
   numhl = false,
   linehl = false,

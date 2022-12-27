@@ -12,11 +12,15 @@ local map = vim.keymap.set
 
 -- PLUGINS
 -- auto install paq-nvim
-local install_path = fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  cmd(
-    '!git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. install_path
-  )
+local paq_path = fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
+if not vim.loop.fs_stat(paq_path) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--depth=1',
+    'https://github.com/savq/paq-nvim.git',
+    paq_path,
+  })
 end
 
 cmd('packadd paq-nvim') -- Load package
