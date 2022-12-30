@@ -15,6 +15,7 @@ require('lsp.servers.c')
 require('lsp.servers.rust')
 require('lsp.servers.typescript')
 require('lsp.servers.null-ls')
+require('lsp.servers.ltex')
 
 local lsp_menu = require('plugins.lsp_menu')
 local lsp_spinner = require('lsp_spinner')
