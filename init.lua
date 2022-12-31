@@ -202,6 +202,9 @@ end)
 -- generate custom highlight groups
 require('hl').hl()
 
+-- load custom filetypes
+require('filetypes.dotenv')
+
 -- LOAD PLUGIN CONFIGS
 require('plugins.nvim-treesitter')
 require('plugins.ponton')

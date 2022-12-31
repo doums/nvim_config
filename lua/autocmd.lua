@@ -15,14 +15,6 @@ api.nvim_create_autocmd('CursorHold', {
     end
   end,
 })
--- disable diagnostics in .env file
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = group_id,
-  pattern = '.env',
-  callback = function(arg)
-    vim.diagnostic.disable(arg.buf)
-  end,
-})
 -- hide column numbers when viewing man pages
 api.nvim_create_autocmd('FileType', {
   group = group_id,
