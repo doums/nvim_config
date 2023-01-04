@@ -22,7 +22,7 @@ local function hl(name, fg, bg, style, sp)
 end
 
 local function li(target, source)
-  vim.cmd(string.format('hi! link %s %s', target, source))
+  vim.api.nvim_set_hl(0, target, { link = source })
 end
 
 local M = {
