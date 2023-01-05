@@ -4,11 +4,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/. ]]
 
 -- Helper functions
 
-function _G.dump(...)
-  local objects = vim.tbl_map(vim.inspect, { ... })
-  print(unpack(objects))
-end
-
 local function hl(name, fg, bg, style, sp)
   local hl_map = { fg = fg, bg = bg, sp = sp }
   if type(style) == 'string' then
