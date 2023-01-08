@@ -38,6 +38,7 @@ require('paq')({
   'doums/suit.nvim',
   'doums/espresso.nvim',
   'doums/monark.nvim',
+  'doums/dmap.nvim',
   'doums/sae',
   'doums/lsp_spinner.nvim',
   'doums/oterm.nvim',
@@ -221,4 +222,5 @@ require('plugins.gitsigns')
 require('plugins.leap')
 require('plugins.suit')
 require('plugins.monark')
+require('plugins.dmap')
 require('lsp')
