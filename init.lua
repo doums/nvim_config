@@ -205,6 +205,7 @@ require('hl').hl()
 
 -- load custom filetypes
 require('filetypes.dotenv')
+require('filetypes.pkgbuild')
 
 -- LOAD PLUGIN CONFIGS
 require('plugins.nvim-treesitter')
