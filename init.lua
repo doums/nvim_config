@@ -94,7 +94,8 @@ o.switchbuf = 'usetab'
 o.scrolloff = 1
 o.completeopt = 'menuone,noselect'
 o.pumheight = 10
-o.fillchars = 'diff: ,fold: ,eob: ,vert: ,horiz: ,lastline:•,fold: ,foldsep: ,foldopen:⌄,foldclose:›'
+o.fillchars =
+  'diff: ,fold: ,eob: ,vert: ,horiz: ,lastline:•,fold: ,foldsep: ,foldopen:⌄,foldclose:›'
 o.clipboard = 'unnamedplus'
 o.signcolumn = 'yes:2'
 o.cmdheight = 2

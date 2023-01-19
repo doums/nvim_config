@@ -52,6 +52,11 @@ require('nvim-tree').setup({
         chars = 'HLJKFQDS',
       },
     },
+    file_popup = {
+      open_win_config = {
+        border = 'none',
+      },
+    },
   },
   live_filter = {
     prefix = 'filter → ',
