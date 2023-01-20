@@ -86,6 +86,7 @@ function M.hl()
 
   -- lsp_signature.nvim
   hl('codeHint', '#CA7E03', nil, 'italic')
+  hl('inlayHint', '#604417', nil, 'italic')
 end
 
 return M

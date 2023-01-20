@@ -87,13 +87,23 @@ vim.diagnostic.config({
   },
 })
 
+local function on_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  if #options.items > 1 then
+    vim.cmd('botright copen 4')
+  end
+  vim.cmd('cfirst')
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = lsp.get_client_by_id(args.data.client_id)
     local bufopt = { buffer = args.buf }
     -- keybinds
     map({ 'n', 'v' }, '<A-CR>', lsp_menu, bufopt)
-    map('n', '<A-b>', lsp.buf.definition, bufopt)
+    map('n', '<A-b>', function()
+      lsp.buf.definition({ on_list = on_list })
+    end, bufopt)
     map(
       'n',
       '<A-a>',
@@ -107,9 +117,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       bufopt
     )
     map('n', '<A-d>', lsp.buf.hover, bufopt)
-    map('n', '<A-i>', function()
-      return require('rust-tools.inlay_hints').toggle_inlay_hints
-    end, bufopt)
     map('n', '<A-r>', lsp.buf.rename, bufopt)
     map({ 'n', 'v' }, '<A-e>', lsp.buf.format, bufopt)
     -- open a floating window with the diagnostics from the current cursor position
