@@ -2,6 +2,8 @@
 -- ┃ MAIN CONFIG ┃
 -- ┖─────────┈┄┄┈┚
 
+-- Pierre_D
+
 -- ALIASES
 local fn = vim.fn
 local cmd = vim.cmd
