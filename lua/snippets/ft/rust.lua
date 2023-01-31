@@ -1,6 +1,6 @@
---[[ This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at https://mozilla.org/MPL/2.0/. ]]
+-- This Source Code Form is subject to the terms of the Mozilla Public
+-- License, v. 2.0. If a copy of the MPL was not distributed with this
+-- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 -- Snippets for Rust
 
@@ -29,6 +29,64 @@ local M = {
   s('prt', fmt([[println!("{}");]], i(0))),
   s('prtd', fmta([[println!("{:#?}", <>);]], i(0))),
   s('fmt', fmta([[format!("{}", <>)]], i(0))),
+  s(
+    { trig = 'cs', name = 'closure' },
+    fmta([[|<>| {<>}]], {
+      i(1),
+      i(0),
+    }, {})
+  ),
+  s(
+    { trig = 'fn', name = 'function declaration' },
+    fmta(
+      [[
+    fn <>(<>) ->> <> {
+      <>
+    }
+		]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(0),
+      },
+      {}
+    )
+  ),
+  s(
+    { trig = 'fn', name = 'function declaration' },
+    fmta(
+      [[
+    fn <>(<>) ->> <> {
+        <>
+    }
+		]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(0),
+      },
+      {}
+    )
+  ),
+  s(
+    { trig = 'fnp', name = 'public function declaration' },
+    fmta(
+      [[
+    pub fn <>(<>) ->> <> {
+        <>
+    }
+		]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(0),
+      },
+      {}
+    )
+  ),
 }
 
 return M
