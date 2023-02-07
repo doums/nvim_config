@@ -35,7 +35,7 @@ require('nvim-tree').setup({
       hint = '',
       info = '',
       warning = '',
-      error = '✕',
+      error = '╸',
     },
   },
   git = {

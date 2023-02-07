@@ -28,11 +28,11 @@ lsp_spinner.setup({
 
 fn.sign_define(
   'DiagnosticSignError',
-  { text = '✗', texthl = 'DiagnosticSignError' }
+  { text = '╸', texthl = 'DiagnosticSignError' }
 )
 fn.sign_define(
   'DiagnosticSignWarn',
-  { text = '▲', texthl = 'DiagnosticSignWarn' }
+  { text = '╸', texthl = 'DiagnosticSignWarn' }
 )
 fn.sign_define(
   'DiagnosticSignInfo',
@@ -40,7 +40,7 @@ fn.sign_define(
 )
 fn.sign_define(
   'DiagnosticSignHint',
-  { text = '•', texthl = 'DiagnosticSignHint' }
+  { text = '╸', texthl = 'DiagnosticSignHint' }
 )
 
 local signature_help_cfg = {
