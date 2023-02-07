@@ -12,6 +12,6 @@ My personal Nvim configuration.
 - lua-language-server (Arch Linux package)
 - ESLint and Prettier (npm packages - eslint prettier)
 - cspell (npm package)
-- ltex-ls https://github.com/valentjn/ltex-ls/releases
+- LanguageTool-Rust (https://github.com/jeertmans/languagetool-rust)
 
 others: git, ripgrep, fzf, node, npm
