@@ -87,6 +87,24 @@ function M.hl()
   -- lsp_signature.nvim
   hl('codeHint', '#CA7E03', nil, 'italic')
   hl('inlayHint', '#604417', nil, 'italic')
+
+  -- dmap.nvim
+  vim.api.nvim_set_hl(
+    0,
+    'dmapError',
+    { fg = '#ff0000', nocombine = true, blend = 60 }
+  )
+  vim.api.nvim_set_hl(
+    0,
+    'dmapWarn',
+    { fg = '#ffff00', nocombine = true, blend = 60 }
+  )
+  vim.api.nvim_set_hl(
+    0,
+    'dmapInfo',
+    { fg = '#ffffff', nocombine = true, blend = 60 }
+  )
+  hl('dmapHint', '#CA7E03', nil)
 end
 
 return M

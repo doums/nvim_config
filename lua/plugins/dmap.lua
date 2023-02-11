@@ -4,4 +4,4 @@
 
 -- Config for dmap.nvim
 
-require('dmap').setup({ sources_ignored = { 'cspell' } })
+require('dmap').setup({ sources_ignored = { 'cspell' }, v_offset = 1 })
