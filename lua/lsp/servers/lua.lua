@@ -2,7 +2,8 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- sumneko_lua - Lua
+-- lua-ls
+-- https://github.com/LuaLS/lua-language-server
 
 local capabilities = require('lsp.common').capabilities
 
@@ -11,7 +12,7 @@ local runtime_path = vim.tbl_extend(
   vim.split(package.path, ';'),
   { '?/init.lua', '?.lua', 'lua/?.lua', 'lua/?/init.lua' }
 )
-require('lspconfig').sumneko_lua.setup({ -- Lua
+require('lspconfig').lua_ls.setup({ -- Lua
   on_attach = function(client)
     -- use null-ls to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false
