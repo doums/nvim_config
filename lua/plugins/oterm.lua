@@ -20,7 +20,7 @@ map('n', '<M-t>', open)
 map('n', '<M-y>', function()
   open({ layout = 'vsplit' })
 end)
-map('n', '<M-n>', function()
+map('n', '<F4>', function()
   open({
     name = 'nnn',
     layout = 'center',

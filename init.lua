@@ -183,13 +183,6 @@ map('n', '<A-Right>', ':vertical resize +4<CR>', { silent = true })
 map('n', '<A-Left>', ':vertical resize -4<CR>', { silent = true })
 -- terminal normal mode
 map('t', '<Leader>n', '<C-\\><C-N>')
--- toggle spell check
-map(
-  'n',
-  '<F4>',
-  [[:lua vim.opt.spell = not vim.opt.spell:get()<CR>]],
-  { silent = true }
-)
 -- reload nvim config
 map('n', '<F10>', function()
   vim.cmd([[
