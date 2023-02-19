@@ -41,8 +41,8 @@ function M.hl()
   -- nvim-cmp
   li('CmpItemAbbr', 'Pmenu')
   li('CmpItemAbbrDeprecated', 'Pmenu')
-  hl('CmpItemAbbrMatch', '#CA7E03', '#432717', 'bold')
-  hl('CmpItemAbbrMatchFuzzy', '#CA7E03', '#432717', 'bold')
+  hl('CmpItemAbbrMatch', '#CA7E03', '#212121', 'bold')
+  hl('CmpItemAbbrMatchFuzzy', '#CA7E03', '#212121', 'bold')
   li('CmpItemKind', 'Pmenu')
   li('CmpItemMenu', 'Pmenu')
 
