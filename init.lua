@@ -196,6 +196,8 @@ map('n', '<F10>', function()
     { title = 'nvim-config' }
   )
 end)
+-- `q` is used for leap.nvim backward motions
+map('n', '<C-q>', 'q')
 
 -- generate custom highlight groups
 require('hl').hl()

@@ -4,8 +4,6 @@
 
 -- Config for leap.nvim
 
-require('leap').set_default_keymaps()
-
 -- stylua: ignore start
 require('leap').setup({
   safe_labels = { 's', 'f', 'n', 'u', 't', 'b', 'g', 'F',
@@ -13,3 +11,7 @@ require('leap').setup({
   labels = { 's', 'f', 'n', 'g', 'h', 'v', 'b', 'w', 'y', 'd',
     'q', 'z', 'c', 'x', 't', 'u', 'r', 'i', 'a', 'o', 'e' },
 })
+-- stylua: ignore end
+
+vim.keymap.set({ 'n' }, 'q', '<Plug>(leap-backward-to)')
+require('leap').add_default_mappings()
