@@ -13,5 +13,5 @@ require('leap').setup({
 })
 -- stylua: ignore end
 
-vim.keymap.set({ 'n' }, 'q', '<Plug>(leap-backward-to)')
+vim.keymap.set({ 'n', 'x', 'o' }, 'q', '<Plug>(leap-backward-to)')
 require('leap').add_default_mappings()
