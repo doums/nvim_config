@@ -8,9 +8,6 @@ local map = vim.keymap.set
 local open = require('oterm').open
 
 require('oterm').setup({
-  terminal_hl = 'terminal',
-  split_hl = 'terminal',
-  border_hl = 'otermBorder',
   win_api = {
     border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
   },

@@ -21,7 +21,7 @@ end
 local tab_key = cmp.mapping(function(fallback)
   if cmp.visible() then
     cmp.select_next_item()
-  elseif ls.expand_or_jumpable() then
+  elseif ls.expand_or_locally_jumpable() then
     ls.expand_or_jump()
   elseif has_word_before() then
     cmp.complete()
@@ -30,9 +30,6 @@ local tab_key = cmp.mapping(function(fallback)
   end
 end, {
   'i',
-  -- fix cmdline autocplt, workaround
-  -- see https://github.com/hrsh7th/nvim-cmp/issues/875
-  c = cmp.config.disable,
   's',
 })
 
@@ -47,6 +44,7 @@ local stab_key = cmp.mapping(function(fallback)
 end, {
   'i',
   'c',
+  's',
 })
 
 cmp.setup({
@@ -92,7 +90,8 @@ cmp.setup({
     completion = { border = nil },
     documentation = {
       border = { '', '', '', ' ', '', '', '', ' ' },
-      winhighlight = 'FloatBorder:NormalFloat,Normal:NormalFloat',
+      -- fix highlight issues inside documentation window
+      winhighlight = 'FloatBorder:NormalFloat,Normal:NormalFloat,Error:Fg',
     },
   },
   formatting = {

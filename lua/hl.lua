@@ -26,8 +26,8 @@ function M.hl()
   hl('WinSeparator', '#332a25', '#332a25')
 
   -- oterm.nvim
-  hl('terminal', '#FFFFFF', '#212121')
-  hl('otermBorder', '#2A190E', '#212121')
+  hl('otermWin', '#FFFFFF', '#212121')
+  hl('otermBorder', '#FFFFFF', '#212121')
 
   -- leap.nvim
   hl('LeapMatch', '#aa4e00', nil, { 'underline', 'nocombine' })
