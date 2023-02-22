@@ -71,8 +71,6 @@ function M.hl()
 
   -- suit.nvim
   hl('suitPrompt', '#C7C7FF', '#3f3534', { 'bold', 'italic' })
-  hl('suitInput', '#BDAE9D', '#1d1916')
-  hl('suitSelectedItem', nil, '#3b2f27')
 
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')

@@ -7,17 +7,10 @@
 require('suit').setup({
   input = {
     default_prompt = '↓',
-    border = 'vgap',
-    hl_prompt = 'suitPrompt',
-    hl_input = 'suitInput',
-    hl_border = 'suitInput',
+    border = { '', '', '', ' ', '', '', '', ' ' },
   },
   select = {
     default_prompt = '≡',
-    border = 'vgap',
-    hl_prompt = 'suitPrompt',
-    hl_select = 'suitInput',
-    hl_border = 'suitInput',
-    hl_selected_item = 'suitSelectedItem',
+    border = { '', '', '', ' ', '', '', '', ' ' },
   },
 })

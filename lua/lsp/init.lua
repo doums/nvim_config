@@ -87,11 +87,11 @@ vim.diagnostic.config({
 })
 
 local function on_list(options)
-  vim.fn.setqflist({}, ' ', options)
+  vim.fn.setloclist(0, {}, ' ', options)
   if #options.items > 1 then
-    vim.cmd('botright copen 4')
+    vim.cmd('botright lopen 4')
   end
-  vim.cmd('cfirst')
+  vim.cmd('lopen')
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
