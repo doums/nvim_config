@@ -39,12 +39,12 @@ function M.hl()
   hl('Cursor', '#212121', '#df4a00', { 'nocombine', 'bold' })
 
   -- nvim-cmp
-  li('CmpItemAbbr', 'Pmenu')
-  li('CmpItemAbbrDeprecated', 'Pmenu')
-  hl('CmpItemAbbrMatch', '#CA7E03', '#212121', 'bold')
-  hl('CmpItemAbbrMatchFuzzy', '#CA7E03', '#212121', 'bold')
-  li('CmpItemKind', 'Pmenu')
-  li('CmpItemMenu', 'Pmenu')
+  li('CmpItemMenu', 'Fg')
+  li('CmpItemAbbr', 'Fg')
+  li('CmpItemKind', 'Fg')
+  hl('CmpItemAbbrDeprecated', nil, nil, { 'strikethrough' })
+  hl('CmpItemAbbrMatch', '#CA7E03', nil, 'bold')
+  li('CmpItemAbbrMatchFuzzy', 'CmpItemAbbrMatch')
 
   -- nvim-tree.lua
   li('NvimTreeRootFolder', 'Comment')
@@ -70,13 +70,13 @@ function M.hl()
   hl('StatusLine', '#734c36', '#332A25')
 
   -- suit.nvim
-  hl('suitPrompt', '#C7C7FF', '#1d1916', { 'bold', 'italic' })
+  hl('suitPrompt', '#C7C7FF', '#3f3534', { 'bold', 'italic' })
   hl('suitInput', '#BDAE9D', '#1d1916')
   hl('suitSelectedItem', nil, '#3b2f27')
 
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')
-  hl('TelescopeSelection', nil, '#3b2f27')
+  hl('TelescopeSelection', nil, '#544236')
 
   -- Trouble
   li('TroubleCount', 'Number')

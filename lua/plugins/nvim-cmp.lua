@@ -90,7 +90,10 @@ cmp.setup({
   }),
   window = {
     completion = { border = nil },
-    documentation = { border = { '', '', '', ' ', '', '', '', ' ' } },
+    documentation = {
+      border = { '', '', '', ' ', '', '', '', ' ' },
+      winhighlight = 'FloatBorder:NormalFloat,Normal:NormalFloat',
+    },
   },
   formatting = {
     format = function(entry, vim_item)
