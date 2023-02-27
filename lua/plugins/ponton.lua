@@ -5,6 +5,7 @@
 -- Config for ponton.nvim
 
 local winbar_bg = '#432717'
+local winbarnc_bg = '#42342c'
 local line_bg = '#332A25'
 local line_fg = '#734c36'
 local ponton_cdt = require('ponton.condition')
@@ -59,7 +60,7 @@ require('ponton').setup({
       empty = '-',
       style = {
         { '#BDAE9D', winbar_bg, 'bold' },
-        { '#BDAE9D', line_bg, 'bold' },
+        { '#BDAE9D', winbarnc_bg, 'bold' },
       },
       padding = { 1, nil },
       conditions = { main_cdt },
@@ -67,7 +68,7 @@ require('ponton').setup({
     buffer_changed = {
       style = {
         { '#a3f307', winbar_bg, 'bold' },
-        { '#a3f307', line_bg, 'bold' },
+        { '#a3f307', winbarnc_bg, 'bold' },
       },
       value = '✶',
       padding = { nil, 1 },

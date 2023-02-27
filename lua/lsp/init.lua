@@ -86,12 +86,20 @@ vim.diagnostic.config({
   },
 })
 
-local function on_list(options)
+local function on_qf_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  if #options.items > 1 then
+    vim.cmd('botright copen 5')
+  end
+  vim.cmd('cfirst')
+end
+
+local function on_ll_list(options)
   vim.fn.setloclist(0, {}, ' ', options)
   if #options.items > 1 then
-    vim.cmd('botright lopen 4')
+    vim.cmd('botright lopen 5')
   end
-  vim.cmd('lopen')
+  vim.cmd('lfirst')
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -99,9 +107,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = lsp.get_client_by_id(args.data.client_id)
     local bufopt = { buffer = args.buf }
     -- keybinds
+    -- open lsp menu
     map({ 'n', 'v' }, '<A-CR>', lsp_menu, bufopt)
+    -- goto definition
     map('n', '<A-b>', function()
-      lsp.buf.definition({ on_list = on_list })
+      lsp.buf.definition({ on_list = on_qf_list })
+    end, bufopt)
+    -- find usages
+    map('n', '<A-u>', function()
+      lsp.buf.references(nil, { on_list = on_qf_list })
+    end, bufopt)
+    -- current buffer diagnostics
+    map('n', '<A-q>', function()
+      local list = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf))
+      on_ll_list({ items = list, title = '~' })
+    end, bufopt)
+    -- all buffers diagnostics
+    map('n', '<A-S-q>', function()
+      local list = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
+      on_qf_list({ items = list, title = '≈' })
     end, bufopt)
     map(
       'n',
@@ -116,6 +140,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       bufopt
     )
     map('n', '<A-d>', lsp.buf.hover, bufopt)
+    -- refactor
     map('n', '<A-r>', lsp.buf.rename, bufopt)
     map({ 'n', 'v' }, '<A-e>', lsp.buf.format, bufopt)
     -- open a floating window with the diagnostics from the current cursor position

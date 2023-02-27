@@ -60,7 +60,6 @@ require('paq')({
   'hrsh7th/cmp-path',
   'saadparwaiz1/cmp_luasnip',
   'L3MON4D3/LuaSnip',
-  'folke/trouble.nvim',
   'nvim-lua/plenary.nvim', -- dep of telescope.nvim, gitsigns.nvim, null-ls.nvim
   'nvim-lua/popup.nvim', -- dep of telescope.nvim
   'kkharji/sqlite.lua', -- dep of telescope-smart-history.nvim
@@ -116,6 +115,8 @@ o.foldlevelstart = 99
 o.splitkeep = 'screen'
 opt.complete = opt.complete:append({ 'i' })
 opt.formatoptions = opt.formatoptions:append('lv')
+o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
+o.grepformat = '%f:%l:%c:%m'
 
 -- create autocmds
 require('autocmd')
@@ -215,7 +216,6 @@ require('plugins.comment')
 require('plugins.telescope')
 require('plugins.cobra')
 require('plugins.oterm')
-require('plugins.trouble')
 require('plugins.nvim-cmp')
 require('plugins.luasnip')
 require('plugins.gitsigns')
@@ -223,4 +223,6 @@ require('plugins.leap')
 require('plugins.suit')
 require('plugins.monark')
 require('plugins.dmap')
+require('plugins.quickfix')
+require('plugins.rg')
 require('lsp')

@@ -86,6 +86,11 @@ function M.hl()
   hl('codeHint', '#CA7E03', nil, 'italic')
   hl('inlayHint', '#604417', nil, 'italic')
 
+  -- quickfix & loclist
+  li('qfLineNr', 'NonText')
+  li('qfFileName', 'Debug')
+  hl('qfTitle', '#BDAE9D', '#432717', 'bold')
+
   -- dmap.nvim
   vim.api.nvim_set_hl(
     0,
