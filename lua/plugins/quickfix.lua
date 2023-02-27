@@ -2,7 +2,7 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- ⚡ enhanced quickfix/loclist
+-- ⚡ enhanced qflist/loclist
 
 local group_id = vim.api.nvim_create_augroup('CustomQuickfix', {})
 
