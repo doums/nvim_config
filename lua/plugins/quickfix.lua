@@ -13,7 +13,7 @@ local layout_map = {
 }
 
 local function go_to_item(data)
-  local row, col = unpack(vim.api.nvim_win_get_cursor(data.win))
+  local row = unpack(vim.api.nvim_win_get_cursor(data.win))
   local res
   if data.wintype == 'quickfix' then
     res = vim.fn.getqflist({ idx = row, items = true })
@@ -32,7 +32,7 @@ local function go_to_item(data)
   vim.api.nvim_feedkeys('zz', 'n', false)
 end
 
--- setup custom options, keymaps etc for quickfix and loclist windows
+-- setup custom options, keymaps etc for qflist and loclist windows
 vim.api.nvim_create_autocmd('BufWinEnter', {
   group = group_id,
   pattern = 'quickfix',
@@ -41,12 +41,12 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     local win = vim.fn.bufwinid(buf)
     local wintype = vim.fn.win_gettype(win)
     local qf
-    local is_qf = true
     if wintype == 'quickfix' then
       qf = vim.fn.getqflist({ title = true, size = true })
     elseif wintype == 'loclist' then
       qf = vim.fn.getloclist(win, { title = true, size = true })
-      local is_qf = false
+    else
+      return
     end
     vim.api.nvim_win_set_option(win, 'signcolumn', 'no')
     vim.api.nvim_win_set_option(win, 'relativenumber', false)
@@ -54,12 +54,12 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     vim.api.nvim_win_set_option(
       win,
       'winbar',
-      '%#qfTitle# ' .. qf.title .. ' ' .. qf.size .. ' %#WinBar#'
+      '%#qfTitle# ' .. qf.title .. ' ' .. qf.size .. '  %#WinBar#'
     )
     vim.keymap.set(
       'n',
       'q',
-      is_qf and '<cmd>ccl<cr>' or '<cmd>lcl<cr>',
+      wintype == 'quickfix' and '<cmd>ccl<cr>' or '<cmd>lcl<cr>',
       { silent = true, buffer = buf }
     )
     vim.keymap.set('n', '<C-s>', function()
