@@ -76,12 +76,6 @@ function M.hl()
   li('TelescopeNormal', 'Fg')
   hl('TelescopeSelection', nil, '#544236')
 
-  -- Trouble
-  li('TroubleCount', 'Number')
-  li('TroubleText', 'Fg')
-  li('TroubleLocation', 'NonText')
-  li('TroubleFoldIcon', 'Constant')
-
   -- lsp_signature.nvim
   hl('codeHint', '#CA7E03', nil, 'italic')
   hl('inlayHint', '#604417', nil, 'italic')

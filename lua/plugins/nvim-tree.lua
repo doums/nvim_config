@@ -46,7 +46,7 @@ require('nvim-tree').setup({
     open_file = {
       window_picker = {
         exclude = {
-          filetype = { 'Trouble', 'qf' },
+          filetype = { 'qf' },
           buftype = { 'nofile', 'terminal', 'help' },
         },
         chars = 'HLJKFQDS',

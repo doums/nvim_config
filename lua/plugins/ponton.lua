@@ -11,7 +11,7 @@ local line_fg = '#734c36'
 local ponton_cdt = require('ponton.condition')
 local main_cdt = {
   ponton_cdt.filetype_not,
-  { 'NvimTree', 'Trouble', 'TelescopePrompt' },
+  { 'NvimTree', 'TelescopePrompt' },
 }
 local cdts = {
   main_cdt,
@@ -34,7 +34,7 @@ require('ponton').setup({
     'buffer_name',
     'buffer_changed',
   },
-  top_line_exclude = { 'NvimTree', 'Trouble', 'TelescopePrompt' },
+  top_line_exclude = { 'NvimTree', 'TelescopePrompt' },
   segments = {
     mode = {
       map = {
