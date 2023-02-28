@@ -94,12 +94,14 @@ local function on_qf_list(options)
   vim.cmd('cfirst')
 end
 
-local function on_ll_list(options)
+local function on_ll_list(options, jump_on_first)
   vim.fn.setloclist(0, {}, ' ', options)
   if #options.items > 1 then
-    vim.cmd('botright lopen 5')
+    vim.cmd('lopen 5')
   end
-  vim.cmd('lfirst')
+  if jump_on_first then
+    vim.cmd('lfirst')
+  end
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -120,12 +122,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- current buffer diagnostics
     map('n', '<A-q>', function()
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf))
-      on_ll_list({ items = list, title = '~' })
+      on_ll_list({
+        items = list,
+        title = '~',
+        context = { buf_diagnostics = args.buf },
+      })
     end, bufopt)
     -- all buffers diagnostics
     map('n', '<A-S-q>', function()
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
-      on_qf_list({ items = list, title = '≈' })
+      on_qf_list({
+        items = list,
+        title = '≈',
+        context = { all_diagnostics = true },
+      })
     end, bufopt)
     map(
       'n',
@@ -167,5 +177,53 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     lsp_spinner.on_attach(client, args.buf)
     lsp_signature.on_attach(signature_help_cfg, args.buf)
+  end,
+})
+
+local diag_group = vim.api.nvim_create_augroup('lspDiagnosticLiveUpdate', {})
+
+-- live update all buffers diagnostics list in qflist
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  group = diag_group,
+  callback = function(args)
+    -- retrieve all normal windows
+    local qf = vim.fn.getqflist({ context = true })
+
+    -- if qflist is listing all diagnostics, do update
+    if qf.context.all_diagnostics then
+      local d = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
+      vim.fn.setqflist({}, 'r', { items = d })
+    end
+  end,
+})
+
+-- live update buffer diagnostics in loclists
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  group = diag_group,
+  callback = function(args)
+    -- retrieve all normal windows
+    local wins = vim.tbl_filter(function(win)
+      return win.quickfix == 0 and win.loclist == 0
+    end, vim.fn.getwininfo())
+
+    -- retrieve corresponding loclist windows for each windows
+    local loclists = vim.tbl_map(function(win)
+      return vim.fn.getloclist(
+        win.winid,
+        { context = true, winid = true, title = true }
+      )
+    end, wins)
+    -- only keep the ones with data
+    loclists = vim.tbl_filter(function(win)
+      return win and win.context.buf_diagnostics
+    end, loclists)
+
+    -- update diagnostic lists
+    for _, ll in ipairs(loclists) do
+      local d =
+        vim.diagnostic.toqflist(vim.diagnostic.get(ll.context.buf_diagnostics))
+
+      vim.fn.setloclist(ll.winid, {}, 'r', { items = d })
+    end
   end,
 })
