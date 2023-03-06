@@ -4,27 +4,11 @@
 
 -- Config for nvim-tree.lua
 
+local rgui = require('plugins.rg').rgui
 local map = vim.keymap.set
-local uv = vim.loop
 
 map('n', '<Tab>', '<cmd>NvimTreeToggle<CR>')
 map('n', '<S-Tab>', '<cmd>NvimTreeFindFile<CR>')
-
--- live grep using Telescope inside the current directory under
--- the cursor (or the parent directory of the current file)
-local function grep_in(node)
-  if not node then
-    return
-  end
-  local path = node.absolute_path or uv.cwd()
-  if node.type ~= 'directory' and node.parent then
-    path = node.parent.absolute_path
-  end
-  require('telescope.builtin').live_grep({
-    search_dirs = { path },
-    prompt_title = string.format('Grep in [%s]', vim.fs.basename(path)),
-  })
-end
 
 require('nvim-tree').setup({
   hijack_cursor = true,
@@ -122,7 +106,13 @@ require('nvim-tree').setup({
         { key = '<A-q>', action = 'close' },
         { key = '<A-d>', action = 'toggle_file_info' },
         { key = 'g?', action = 'toggle_help' },
-        { key = '<C-f>', action = '', action_cb = grep_in, mode = 'n' },
+        {
+          key = '<C-f>',
+          action = '',
+          action_cb = function(node)
+            rgui(node.absolute_path)
+          end,
+        },
       },
     },
   },
