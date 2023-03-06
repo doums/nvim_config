@@ -27,6 +27,27 @@ local M = {
       {}
     )
   ),
+  s(
+    {
+      trig = 'mod',
+      name = 'Lua module',
+      dscr = 'Declare a new Lua module',
+    },
+    fmta(
+      [[
+  -- This Source Code Form is subject to the terms of the Mozilla Public
+  -- License, v. 2.0. If a copy of the MPL was not distributed with this
+  -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+  local M = {}
+
+  <>
+
+  return M
+  ]],
+      { i(0) }
+    )
+  ),
   s('prt', fmt([[print({})]], i(0))),
   s('prty', fmt([[vim.pretty_print({})]], i(0))),
   s('fmt', fmt([[string.format('%s', {})]], i(0))),
@@ -58,6 +79,21 @@ local M = {
       {
         i(1),
         i(2),
+        i(0),
+      },
+      { dedent = true }
+    )
+  ),
+  s(
+    { trig = 'ifn', name = 'Inline function declaration' },
+    fmta(
+      [[
+    function (<>)
+      <>
+    end
+		]],
+      {
+        i(1),
         i(0),
       },
       { dedent = true }
