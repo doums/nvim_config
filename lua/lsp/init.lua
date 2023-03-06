@@ -86,6 +86,60 @@ vim.diagnostic.config({
   },
 })
 
+-- sort diagnostics list by severity and by line number
+local function qf_d_sort(d, sort_by_lnum)
+  table.sort(d, function(a, b)
+    if a.type == 'N' and b.type ~= 'N' then
+      return false
+    elseif a.type == 'E' and b.type ~= 'E' then
+      return true
+    elseif a.type == 'W' and b.type ~= 'E' and b.type ~= 'W' then
+      return true
+    elseif
+      a.type == 'I'
+      and b.type ~= 'E'
+      and b.type ~= 'W'
+      and b.type ~= 'I'
+    then
+      return true
+    elseif sort_by_lnum and a.lnum < b.lnum then
+      return true
+    else
+      return false
+    end
+  end)
+  return d
+end
+
+local qf_type_map = {
+  E = 'E',
+  W = 'W',
+  I = 'I',
+  N = 'H',
+}
+
+-- format diagnostics list displayed in a loclist
+local function ll_d_format(d)
+  local ll = vim.fn.getloclist(d.winid, { items = true })
+  return vim.tbl_map(function(i)
+    return string.format('%s %s L%s', qf_type_map[i.type], i.text, i.lnum)
+  end, ll.items)
+end
+
+-- format diagnostics list displayed in the qflist
+local function qf_d_format(_)
+  local qf = vim.fn.getqflist({ items = true })
+  return vim.tbl_map(function(i)
+    return string.format(
+      '%s %s %s L%s',
+      vim.fn.bufname(i.bufnr),
+      qf_type_map[i.type],
+      i.text,
+      i.lnum
+    )
+  end, qf.items)
+end
+
 local function on_qf_list(options)
   vim.fn.setqflist({}, ' ', options)
   if #options.items > 1 then
@@ -123,18 +177,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<A-q>', function()
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf))
       on_ll_list({
-        items = list,
+        items = qf_d_sort(list, true),
         title = '~',
         context = { buf_diagnostics = args.buf },
+        quickfixtextfunc = ll_d_format,
       })
     end, bufopt)
     -- all buffers diagnostics
     map('n', '<A-S-q>', function()
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
       on_qf_list({
-        items = list,
+        items = qf_d_sort(list),
         title = '≈',
         context = { all_diagnostics = true },
+        quickfixtextfunc = qf_d_format,
       })
     end, bufopt)
     map(
@@ -185,14 +241,14 @@ local diag_group = vim.api.nvim_create_augroup('lspDiagnosticLiveUpdate', {})
 -- live update all buffers diagnostics list in qflist
 vim.api.nvim_create_autocmd('DiagnosticChanged', {
   group = diag_group,
-  callback = function(args)
+  callback = function()
     -- retrieve all normal windows
     local qf = vim.fn.getqflist({ context = true })
 
     -- if qflist is listing all diagnostics, do update
     if qf.context.all_diagnostics then
       local d = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
-      vim.fn.setqflist({}, 'r', { items = d })
+      vim.fn.setqflist({}, 'r', { items = qf_d_sort(d) })
     end
   end,
 })
@@ -200,13 +256,13 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 -- live update buffer diagnostics in loclists
 vim.api.nvim_create_autocmd('DiagnosticChanged', {
   group = diag_group,
-  callback = function(args)
+  callback = function()
     -- retrieve all normal windows
     local wins = vim.tbl_filter(function(win)
       return win.quickfix == 0 and win.loclist == 0
     end, vim.fn.getwininfo())
 
-    -- retrieve corresponding loclist windows for each windows
+    -- retrieve corresponding loclist for each windows
     local loclists = vim.tbl_map(function(win)
       return vim.fn.getloclist(
         win.winid,
@@ -223,7 +279,7 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
       local d =
         vim.diagnostic.toqflist(vim.diagnostic.get(ll.context.buf_diagnostics))
 
-      vim.fn.setloclist(ll.winid, {}, 'r', { items = d })
+      vim.fn.setloclist(ll.winid, {}, 'r', { items = qf_d_sort(d, true) })
     end
   end,
 })
