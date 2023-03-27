@@ -4,6 +4,9 @@
 
 -- Pierre_D
 
+-- enables the experimental Lua module loader
+vim.loader.enable()
+
 -- ALIASES
 local fn = vim.fn
 local cmd = vim.cmd

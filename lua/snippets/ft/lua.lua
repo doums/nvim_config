@@ -49,7 +49,7 @@ local M = {
     )
   ),
   s('prt', fmt([[print({})]], i(0))),
-  s('prty', fmt([[vim.pretty_print({})]], i(0))),
+  s('prty', fmt([[vim.print({})]], i(0))),
   s('fmt', fmt([[string.format('%s', {})]], i(0))),
   s('re', fmt([[local {} = require('{}')]], { i(0), i(1) })),
   s(
