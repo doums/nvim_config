@@ -6,6 +6,7 @@
 
 local M = {}
 
+local qf = require('plugins.qf')
 local lvl = vim.log.levels
 local rg_root_cmd = 'rg --vimgrep'
 
@@ -60,11 +61,11 @@ local function on_event(id, data, event)
   if vim.tbl_isempty(data) then
     return
   end
-  vim.fn.setqflist(
-    {},
-    'r',
-    { title = 'rg ' .. table.concat(job.flags or {}, ''), lines = data }
-  )
+  vim.fn.setqflist({}, 'r', {
+    title = 'rg ' .. table.concat(job.flags or {}, ''),
+    lines = data,
+    -- quickfixtextfunc = qf.qf_format,
+  })
   vim.cmd('copen')
 end
 

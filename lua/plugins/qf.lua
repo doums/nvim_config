@@ -4,6 +4,8 @@
 
 -- ⚡ enhanced qflist/loclist
 
+local M = {}
+
 local group_id = vim.api.nvim_create_augroup('CustomQuickfix', {})
 
 local layout_map = {
@@ -32,7 +34,20 @@ local function go_to_item(data)
   vim.api.nvim_feedkeys('zz', 'n', false)
 end
 
--- setup custom options, keymaps etc for qflist and loclist windows
+-- default format for qflist or loclist
+function M.qf_format()
+  local qf = vim.fn.getqflist({ items = true })
+  return vim.tbl_map(function(i)
+    return string.format(
+      '%s %s L%s:%s',
+      vim.fn.bufname(i.bufnr),
+      i.text,
+      i.lnum,
+      i.col
+    )
+  end, qf.items)
+end
+
 vim.api.nvim_create_autocmd('BufWinEnter', {
   group = group_id,
   pattern = 'quickfix',
@@ -48,9 +63,11 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     else
       return
     end
-    vim.api.nvim_win_set_option(win, 'signcolumn', 'no')
+    vim.api.nvim_win_set_option(win, 'signcolumn', 'yes:1')
+    vim.api.nvim_win_set_option(win, 'number', false)
     vim.api.nvim_win_set_option(win, 'relativenumber', false)
     vim.api.nvim_win_set_option(win, 'colorcolumn', '')
+    vim.api.nvim_win_set_option(win, 'wrap', false)
     vim.api.nvim_win_set_option(
       win,
       'winbar',
@@ -73,3 +90,5 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     end, { silent = true, buffer = buf })
   end,
 })
+
+return M
