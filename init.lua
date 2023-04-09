@@ -131,6 +131,8 @@ cmd('colorscheme espresso')
 cmd('runtime ftplugin/man.vim')
 -- map leader
 g.mapleader = ','
+-- disable EditorConfig support
+g.editorconfig = false
 
 -- MAPPINGS
 -- c'est en forgeant que l'on devient forgeron
