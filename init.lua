@@ -2,7 +2,7 @@
 -- ┃ MAIN CONFIG ┃
 -- ┖─────────┈┄┄┈┚
 
--- Pierre_D
+-- pierreD
 
 -- enables the experimental Lua module loader
 vim.loader.enable()
@@ -101,3 +101,4 @@ vim.cmd('colorscheme espresso')
 
 -- LSP config
 require('lsp')
+
