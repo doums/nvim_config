@@ -11,7 +11,7 @@
   "dmap.nvim": { "branch": "main", "commit": "2efdb9f0a021687d6db9799eb6d6b0aa412619ab" },
   "espresso.nvim": { "branch": "main", "commit": "5becf2938c6ba48c8e2574fdfed4c8db44037a7d" },
   "gitsigns.nvim": { "branch": "main", "commit": "372d5cb485f2062ac74abc5b33054abac21d8b58" },
-  "lazy.nvim": { "branch": "main", "commit": "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
+  "lazy.nvim": { "branch": "main", "commit": "eddee830ede0f95ced9802ca9abd3f8f662e5cc5" },
   "leap.nvim": { "branch": "main", "commit": "98a72ad93c629c49bd7127d342960cc1b159b620" },
   "lsp_signature.nvim": { "branch": "master", "commit": "72b0d4ece23338fe2d03fc7b6fd8c8bace6bb441" },
   "lsp_spinner.nvim": { "branch": "main", "commit": "e8d295ba9ded246f10bef4aee0659c2be82eaea7" },
@@ -29,7 +29,7 @@
   "rust-tools.nvim": { "branch": "master", "commit": "71d2cf67b5ed120a0e31b2c8adb210dd2834242f" },
   "sae": { "branch": "master", "commit": "a11610164ec644269a16bab13abb0168ead80322" },
   "sqlite.lua": { "branch": "master", "commit": "376e4735c48e07dade3e6ff5f09a654a04f5d4ba" },
-  "suit.nvim": { "branch": "main", "commit": "99d191dbbe83b22d3b70d63f2d3206a95a2f61d1" },
+  "suit.nvim": { "branch": "main", "commit": "55f9d2a4648131c066091698388d33449c723bf0" },
   "telescope-smart-history.nvim": { "branch": "master", "commit": "81a4cceaa54d65d5f7c7c26178ee63b634d3e26d" },
   "telescope.nvim": { "branch": "master", "commit": "6258d50b09f9ae087317e392efe7c05a7323492d" },
   "vassal.nvim": { "branch": "main", "commit": "ad8ead98efb0020051bdad518a36417c81c4306d" }

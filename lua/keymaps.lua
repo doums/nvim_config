@@ -61,17 +61,5 @@ map('n', '<A-Right>', ':vertical resize +4<CR>', { silent = true })
 map('n', '<A-Left>', ':vertical resize -4<CR>', { silent = true })
 -- terminal normal mode
 map('t', '<Leader>n', '<C-\\><C-N>')
--- reload nvim config
-map('n', '<F10>', function()
-  vim.cmd([[
-      update $MYVIMRC
-      source $MYVIMRC
-    ]])
-  vim.notify(
-    'config reloaded ✓',
-    vim.log.levels.INFO,
-    { title = 'nvim-config' }
-  )
-end)
 -- `q` is used for leap.nvim backward motions
 map('n', '<C-q>', 'q')
