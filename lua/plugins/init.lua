@@ -2,8 +2,10 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- clangd - C/C++
+local M = {
+  { 'doums/espresso.nvim', lazy = true, priority = 1000 },
+  'doums/sae',
+  { import = 'plugins/lsp' },
+}
 
-require('lspconfig').clangd.setup({
-  capabilities = require('lsp.common').capabilities,
-})
+return M

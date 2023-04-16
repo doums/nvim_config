@@ -2,15 +2,19 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for coBra
+local P = { 'doums/coBra' }
 
-vim.g.coBraPairs = {
-  rust = {
-    { '<', '>' },
-    { '"', '"' },
-    { '{', '}' },
-    { '(', ')' },
-    { '[', ']' },
-  },
-}
-vim.g.coBraDisableCRMap = true
+P.init = function()
+  vim.g.coBraPairs = {
+    rust = {
+      { '<', '>' },
+      { '"', '"' },
+      { '{', '}' },
+      { '(', ')' },
+      { '[', ']' },
+    },
+  }
+  vim.g.coBraDisableCRMap = true
+end
+
+return P

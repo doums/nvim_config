@@ -2,8 +2,14 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- clangd - C/C++
+local P = {
+  'neovim/nvim-lspconfig',
+}
 
-require('lspconfig').clangd.setup({
-  capabilities = require('lsp.common').capabilities,
-})
+P.config = function()
+  require('lsp.servers.lua')
+  require('lsp.servers.c')
+  require('lsp.servers.typescript')
+end
+
+return P

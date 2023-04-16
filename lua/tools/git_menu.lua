@@ -4,6 +4,8 @@
 
 -- Custom menu for git operations
 
+local M = {}
+
 local gs = require('gitsigns')
 
 local git_static_actions = {
@@ -17,7 +19,6 @@ local git_static_actions = {
   end,
   ['Refresh'] = gs.refresh,
   ['Stage buffer'] = gs.stage_buffer,
-  ['Stash'] = require('telescope.builtin').git_stash,
   ['Rollback'] = function()
     vim.ui.select({ 'OK', 'Cancel' }, {
       prompt = 'Rollback:',
@@ -29,7 +30,7 @@ local git_static_actions = {
   end,
 }
 
-local function git_menu()
+function M.open()
   local git_actions =
     vim.tbl_extend('keep', gs.get_actions(), git_static_actions)
   local items = vim.tbl_keys(git_actions)
@@ -43,4 +44,4 @@ local function git_menu()
   end)
 end
 
-return git_menu
+return M

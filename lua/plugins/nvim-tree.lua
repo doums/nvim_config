@@ -2,15 +2,22 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for nvim-tree.lua
+local P = {
+  'nvim-tree/nvim-tree.lua',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
+  keys = {
+    { '<Tab>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle nvim-tree' },
+    {
+      '<S-Tab>',
+      '<cmd>NvimTreeFindFile<CR>',
+      desc = 'Select current file in tree',
+    },
+  },
+}
 
-local rgui = require('plugins.rg').rgui
-local map = vim.keymap.set
-
-map('n', '<Tab>', '<cmd>NvimTreeToggle<CR>')
-map('n', '<S-Tab>', '<cmd>NvimTreeFindFile<CR>')
-
-require('nvim-tree').setup({
+P.opts = {
   hijack_cursor = true,
   select_prompts = true,
   diagnostics = {
@@ -110,10 +117,12 @@ require('nvim-tree').setup({
           key = '<C-f>',
           action = '',
           action_cb = function(node)
-            rgui(node.absolute_path)
+            require('tools.rg').rgui(node.absolute_path)
           end,
         },
       },
     },
   },
-})
+}
+
+return P

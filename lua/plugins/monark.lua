@@ -2,6 +2,10 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for monark.nvim
+local P = { 'doums/monark.nvim' }
 
-require('monark').setup({ timeout = 100 })
+P.opts = {
+  timeout = 100,
+}
+
+return P

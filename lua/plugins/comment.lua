@@ -2,9 +2,15 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for Comment.nvim
+local P = {
+  'numToStr/comment.nvim',
+  keys = {
+    { '<leader>cc', nil, desc = 'Comment a line' },
+    { '<leader>bc', nil, desc = 'Comment a bloc' },
+  },
+}
 
-require('Comment').setup({
+P.opts = {
   ignore = '^$',
   toggler = {
     line = '<leader>cc',
@@ -19,4 +25,6 @@ require('Comment').setup({
     extra = false,
     extended = false,
   },
-})
+}
+
+return P

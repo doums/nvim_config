@@ -2,9 +2,26 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for nvim-treesitter
+local P = {
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  main = 'nvim-treesitter.configs',
+  dependencies = {
+    {
+      'windwp/nvim-ts-autotag',
+      ft = {
+        'javascriptreact',
+        'typescriptreact',
+        'jsx',
+        'tsx',
+        'markdown',
+        'html',
+      },
+    },
+  },
+}
 
-require('nvim-treesitter.configs').setup({
+P.opts = {
   ensure_installed = {
     'c',
     'cpp',
@@ -62,4 +79,6 @@ require('nvim-treesitter.configs').setup({
       include_surrounding_whitespace = true,
     },
   },
-})
+}
+
+return P
