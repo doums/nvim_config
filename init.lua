@@ -7,13 +7,10 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
--- ALIASES
-local cmd = vim.cmd
-local g = vim.g
+-- aliases
 local o = vim.o
 local opt = vim.opt
 
--- PLUGINS
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -29,7 +26,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- map leader
-g.mapleader = ','
+vim.g.mapleader = ','
 
 -- OPTIONS
 o.termguicolors = true
@@ -85,9 +82,9 @@ require('autocmds')
 
 -- VARIOUS
 -- nvim as man pager
-cmd('runtime ftplugin/man.vim')
+vim.cmd('runtime ftplugin/man.vim')
 -- disable EditorConfig support
-g.editorconfig = false
+vim.g.editorconfig = false
 
 -- generate custom highlight groups
 require('hl').hl()
@@ -100,7 +97,7 @@ require('filetypes.pkgbuild')
 require('lazy').setup('plugins')
 
 -- colorscheme
-cmd('colorscheme espresso')
+vim.cmd('colorscheme espresso')
 
 -- LSP config
 require('lsp')
