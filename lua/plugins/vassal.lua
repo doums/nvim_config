@@ -2,8 +2,15 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for vassal.nvim
+local P = {
+  'doums/vassal.nvim',
+  cmd = { 'Vassal', 'Vl' },
+}
 
-require('vassal').commands({
-  [[npm i -g typescript typescript-language-server eslint prettier cspell]],
-})
+P.config = function()
+  require('vassal').commands({
+    [[npm i -g typescript typescript-language-server eslint prettier cspell]],
+  })
+end
+
+return P

@@ -4,6 +4,8 @@
 
 -- Custom menu for LSP operations
 
+local M = {}
+
 local lsp = vim.lsp
 
 local lsp_actions = {
@@ -22,7 +24,7 @@ local lsp_range_actions = {
   ['Format'] = lsp.buf.format,
 }
 
-local function lsp_menu()
+function M.open()
   local mode = vim.api.nvim_get_mode().mode
   local is_visual = mode == 'v' or mode == 'V' or mode == '\22'
   local actions = lsp_actions
@@ -40,4 +42,4 @@ local function lsp_menu()
   end)
 end
 
-return lsp_menu
+return M

@@ -5,8 +5,6 @@
 -- lua-ls
 -- https://github.com/LuaLS/lua-language-server
 
-local capabilities = require('lsp.common').capabilities
-
 local runtime_path = vim.tbl_extend(
   'keep',
   vim.split(package.path, ';'),
@@ -18,7 +16,7 @@ require('lspconfig').lua_ls.setup({ -- Lua
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
-  capabilities = capabilities,
+  capabilities = require('lsp.common').capabilities,
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT', path = runtime_path },

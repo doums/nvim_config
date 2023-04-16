@@ -2,29 +2,12 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for LSP
+-- Config for LSP servers and diagnostics
 
 local lsp = vim.lsp
 local api = vim.api
 local map = vim.keymap.set
 local fn = vim.fn
-
--- Server configs
-require('lsp.servers.lua')
-require('lsp.servers.c')
-require('lsp.servers.rust')
-require('lsp.servers.typescript')
-require('lsp.servers.null-ls')
-
-local lsp_menu = require('plugins.lsp_menu')
-local lsp_spinner = require('lsp_spinner')
-local lsp_signature = require('lsp_signature')
-
-lsp_spinner.setup({
-  spinner = { '▪', '■', '□', '▫' },
-  interval = 80,
-  placeholder = ' ',
-})
 
 fn.sign_define(
   'DiagnosticSignError',
@@ -164,7 +147,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local bufopt = { buffer = args.buf }
     -- keybinds
     -- open lsp menu
-    map({ 'n', 'v' }, '<A-CR>', lsp_menu, bufopt)
+    map({ 'n', 'v' }, '<A-CR>', require('tools.lsp_menu').open, bufopt)
     -- goto definition
     map('n', '<A-b>', function()
       lsp.buf.definition({ on_list = on_qf_list })
@@ -231,8 +214,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         buffer = args.buf,
       })
     end
-    lsp_spinner.on_attach(client, args.buf)
-    lsp_signature.on_attach(signature_help_cfg, args.buf)
+    require('lsp_spinner').on_attach(client, args.buf)
+    require('lsp_signature').on_attach(signature_help_cfg, args.buf)
+
+    -- TODO disable semantic highlighting
+    client.server_capabilities.semanticTokensProvider = nil
   end,
 })
 

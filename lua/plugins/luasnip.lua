@@ -2,9 +2,16 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Config for LuaSnip
+local P = {
+  'L3MON4D3/LuaSnip',
+  ft = { 'typescript', 'typescriptreact', 'lua', 'rust' },
+}
 
-require('luasnip.loaders.from_lua').load({
-  paths = './lua/snippets/ft/',
-})
-require('luasnip').filetype_extend('typescriptreact', { 'typescript' })
+P.config = function()
+  require('luasnip.loaders.from_lua').load({
+    paths = './lua/snippets/ft/',
+  })
+  require('luasnip').filetype_extend('typescriptreact', { 'typescript' })
+end
+
+return P

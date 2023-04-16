@@ -2,78 +2,31 @@
 -- ┃ MAIN CONFIG ┃
 -- ┖─────────┈┄┄┈┚
 
--- Pierre_D
+-- pierreD
 
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
--- ALIASES
-local fn = vim.fn
-local cmd = vim.cmd
-local g = vim.g
+-- aliases
 local o = vim.o
 local opt = vim.opt
-local map = vim.keymap.set
 
--- PLUGINS
--- auto install paq-nvim
-local paq_path = fn.stdpath('data') .. '/site/pack/paqs/opt/paq-nvim'
-if not vim.loop.fs_stat(paq_path) then
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
-    '--depth=1',
-    'https://github.com/savq/paq-nvim.git',
-    paq_path,
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
   })
 end
+vim.opt.rtp:prepend(lazypath)
 
-cmd('packadd paq-nvim') -- Load package
-
--- update treesitter parsers
-local function update_ts_parsers()
-  cmd('TSUpdate')
-end
-
-require('paq')({
-  { 'savq/paq-nvim', opt = true }, -- Let Paq manage itself
-  'numToStr/comment.nvim',
-  'doums/coBra',
-  'doums/ponton.nvim',
-  'doums/suit.nvim',
-  'doums/espresso.nvim',
-  'doums/monark.nvim',
-  'doums/dmap.nvim',
-  'doums/sae',
-  'doums/lsp_spinner.nvim',
-  'doums/oterm.nvim',
-  'doums/vassal.nvim',
-  { 'nvim-treesitter/nvim-treesitter', run = update_ts_parsers },
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'nvim-treesitter/playground',
-  'neovim/nvim-lspconfig',
-  'jose-elias-alvarez/null-ls.nvim',
-  'ray-x/lsp_signature.nvim',
-  'simrat39/rust-tools.nvim',
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/cmp-nvim-lua',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-path',
-  'saadparwaiz1/cmp_luasnip',
-  'L3MON4D3/LuaSnip',
-  'nvim-lua/plenary.nvim', -- dep of telescope.nvim, gitsigns.nvim, null-ls.nvim
-  'nvim-lua/popup.nvim', -- dep of telescope.nvim
-  'kkharji/sqlite.lua', -- dep of telescope-smart-history.nvim
-  'nvim-telescope/telescope-smart-history.nvim', -- dep of telescope.nvim
-  'nvim-telescope/telescope.nvim',
-  'lewis6991/gitsigns.nvim',
-  'kyazdani42/nvim-tree.lua',
-  'kyazdani42/nvim-web-devicons', -- dep of nvim-tree.lua
-  'ggandor/leap.nvim',
-  'windwp/nvim-ts-autotag',
-})
+-- map leader
+vim.g.mapleader = ','
 
 -- OPTIONS
 o.termguicolors = true
@@ -121,89 +74,17 @@ opt.formatoptions = opt.formatoptions:append('lv')
 o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
 o.grepformat = '%f:%l:%c:%m'
 
--- create autocmds
-require('autocmd')
+-- load core keymaps
+require('keymaps')
+
+-- load autocmds
+require('autocmds')
 
 -- VARIOUS
--- color scheme
-cmd('colorscheme espresso')
 -- nvim as man pager
-cmd('runtime ftplugin/man.vim')
--- map leader
-g.mapleader = ','
+vim.cmd('runtime ftplugin/man.vim')
 -- disable EditorConfig support
-g.editorconfig = false
-
--- MAPPINGS
--- c'est en forgeant que l'on devient forgeron
-map('', '<Up>', '<Nop>')
-map('', '<Down>', '<Nop>')
-map('', '<Right>', '<Nop>')
-map('', '<Left>', '<Nop>')
--- move fast with Ctrl + hjkl
-map('', '<C-l>', '<Plug>SaeRight', { remap = true })
-map('', '<C-h>', '<Plug>SaeLeft', { remap = true })
-map('', '<C-j>', '<C-d>')
-map('', '<C-k>', '<C-u>')
--- move through wrapped line
-map('', 'j', 'gj', { silent = true })
-map('', 'k', 'gk', { silent = true })
--- goto start and end of line
-map('', '<space>l', '$')
-map('', '<space>h', '0')
--- insert mode
-map('i', '<A-BS>', '<C-w>')
-map('i', '<M-Left>', '<S-Left>')
-map('i', '<M-Right>', '<S-Right>')
--- command line
-map('c', '<A-Right>', '<C-Right>')
-map('c', '<A-Left>', '<C-Left>')
-map('c', '<A-BS>', '<C-w>')
--- work inner by default
-map('o', 'w', 'iw')
--- search and replace
-map('v', '<Leader>f', '<Esc>:%s/\\%V')
-map('n', '<Leader>f', ':%s/')
--- hide highlight after a search
-map('n', '<space>', ':nohlsearch<CR>', { silent = true })
--- show trailing whitespaces
-map('n', '<Leader><Space>', '/\\s\\+$<CR>')
--- tabs
-map('n', '<Leader>t', ':tabnew<CR>')
-map('', '<C-Right>', ':tabn<CR>', { silent = true })
-map('', '<C-Left>', ':tabp<CR>', { silent = true })
-map('', '<C-Up>', ':+tabmove<CR>', { silent = true })
-map('', '<C-Down>', ':-tabmove<CR>', { silent = true })
--- windows
-map('n', '<A-x>', ':q<CR>', { silent = true })
-map('n', '<Leader>s', ':new<CR>', { silent = true })
-map('n', '<Leader>v', ':vnew<CR>', { silent = true })
-map('n', '<Leader><S-s>', ':split<CR>', { silent = true })
-map('n', '<Leader><S-v>', ':vsplit<CR>', { silent = true })
-map('n', '<A-h>', '<C-w>h', { silent = true })
-map('n', '<A-l>', '<C-w>l', { silent = true })
-map('n', '<A-j>', '<C-w>j', { silent = true })
-map('n', '<A-k>', '<C-w>k', { silent = true })
-map('n', '<A-Up>', ':resize +4<CR>', { silent = true })
-map('n', '<A-Down>', ':resize -4<CR>', { silent = true })
-map('n', '<A-Right>', ':vertical resize +4<CR>', { silent = true })
-map('n', '<A-Left>', ':vertical resize -4<CR>', { silent = true })
--- terminal normal mode
-map('t', '<Leader>n', '<C-\\><C-N>')
--- reload nvim config
-map('n', '<F10>', function()
-  vim.cmd([[
-      update $MYVIMRC
-      source $MYVIMRC
-    ]])
-  vim.notify(
-    'config reloaded ✓',
-    vim.log.levels.INFO,
-    { title = 'nvim-config' }
-  )
-end)
--- `q` is used for leap.nvim backward motions
-map('n', '<C-q>', 'q')
+vim.g.editorconfig = false
 
 -- generate custom highlight groups
 require('hl').hl()
@@ -212,22 +93,12 @@ require('hl').hl()
 require('filetypes.dotenv')
 require('filetypes.pkgbuild')
 
--- LOAD PLUGIN CONFIGS
-require('plugins.nvim-treesitter')
-require('plugins.ponton')
-require('plugins.nvim-tree')
-require('plugins.vassal')
-require('plugins.comment')
-require('plugins.telescope')
-require('plugins.cobra')
-require('plugins.oterm')
-require('plugins.nvim-cmp')
-require('plugins.luasnip')
-require('plugins.gitsigns')
-require('plugins.leap')
-require('plugins.suit')
-require('plugins.monark')
-require('plugins.dmap')
-require('plugins.qf')
-require('plugins.rg')
+-- load plugins ⚡
+require('lazy').setup('plugins')
+
+-- colorscheme
+vim.cmd('colorscheme espresso')
+
+-- LSP config
 require('lsp')
+
