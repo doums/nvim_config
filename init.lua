@@ -94,11 +94,15 @@ require('filetypes.dotenv')
 require('filetypes.pkgbuild')
 
 -- load plugins ⚡
-require('lazy').setup('plugins')
+require('lazy').setup('plugins', {
+  dev = {
+    path = '~/.local/share/nvim/dev',
+    fallback = true, -- fallback to git when local plugin doesn't exist
+  },
+})
 
 -- colorscheme
 vim.cmd('colorscheme espresso')
 
 -- LSP config
 require('lsp')
-

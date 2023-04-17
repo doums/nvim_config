@@ -11,7 +11,7 @@ local P = {
     -- 'nvim-lua/popup.nvim',
   },
   keys = {
-    { '<A-f>', '<cmd>Telescope live_grep<cr>' },
+    { '<C-f>', '<cmd>Telescope live_grep<cr>' },
     { '<C-s>', nil }, -- defined in config
     { '<C-b>', nil }, -- defined in config
     { '<A-s>', '<cmd>Telescope lsp_document_symbols<cr>' },
