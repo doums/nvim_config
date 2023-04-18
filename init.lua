@@ -7,10 +7,6 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
--- aliases
-local o = vim.o
-local opt = vim.opt
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -29,6 +25,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ','
 
 -- OPTIONS
+local o = vim.o
+local opt = vim.opt
+
 o.termguicolors = true
 o.number = true
 o.relativenumber = true
@@ -80,7 +79,7 @@ require('keymaps')
 -- load autocmds
 require('autocmds')
 
--- VARIOUS
+-- Miscellaneous
 -- nvim as man pager
 vim.cmd('runtime ftplugin/man.vim')
 -- disable EditorConfig support

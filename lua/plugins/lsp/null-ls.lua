@@ -4,25 +4,7 @@
 
 local P = {
   'jose-elias-alvarez/null-ls.nvim',
-  ft = {
-    'text',
-    'markdown',
-    'markdown.mdx',
-    'javascript',
-    'javascriptreact',
-    'typescript',
-    'typescriptreact',
-    'sh',
-    'css',
-    'scss',
-    'less',
-    'html',
-    'json',
-    'jsonc',
-    'yaml',
-    'lua',
-    'luau',
-  },
+  event = 'FileType',
 }
 
 P.config = function()
