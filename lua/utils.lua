@@ -4,7 +4,9 @@
 
 -- Helper functions
 
-local function hl(name, fg, bg, style, sp)
+local M = {}
+
+function M.hl(name, fg, bg, style, sp)
   local hl_map = { fg = fg, bg = bg, sp = sp }
   if type(style) == 'string' then
     hl_map[style] = 1
@@ -16,12 +18,19 @@ local function hl(name, fg, bg, style, sp)
   vim.api.nvim_set_hl(0, name, hl_map)
 end
 
-local function li(target, source)
+function M.li(target, source)
   vim.api.nvim_set_hl(0, target, { link = source })
 end
 
-local M = {
-  hl = hl,
-  li = li,
-}
+function M.scroll(dir)
+  local c = math.ceil(vim.api.nvim_win_get_height(0) / 2.5)
+  local key
+  if dir == 'up' then
+    key = vim.api.nvim_replace_termcodes('<C-y>', true, false, true)
+  else
+    key = vim.api.nvim_replace_termcodes('<C-e>', true, false, true)
+  end
+  vim.api.nvim_feedkeys(c .. key, 'nt', false)
+end
+
 return M

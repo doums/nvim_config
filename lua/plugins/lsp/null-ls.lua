@@ -4,16 +4,43 @@
 
 local P = {
   'jose-elias-alvarez/null-ls.nvim',
-  event = 'LspAttach',
+  ft = {
+    'text',
+    'markdown',
+    'markdown.mdx',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'sh',
+    'css',
+    'scss',
+    'less',
+    'html',
+    'json',
+    'jsonc',
+    'yaml',
+    'lua',
+    'luau',
+  },
 }
 
 P.config = function()
   local nl = require('null-ls')
 
+  -- use a private server for LanguageTool-Rust
+  local ltrs_default_args = { 'check', '-m', '-r', '--text', '$TEXT' }
+  local ltrs_args = ltrs_default_args
+  if vim.env.LANGTOOL_HOST then
+    table.insert(ltrs_args, 1, '--hostname=' .. vim.env.LANGTOOL_HOST)
+  end
+
   require('null-ls').setup({
     sources = {
       nl.builtins.code_actions.eslint,
-      nl.builtins.code_actions.ltrs,
+      nl.builtins.code_actions.ltrs.with({
+        args = ltrs_args,
+      }),
       nl.builtins.diagnostics.eslint,
       nl.builtins.diagnostics.shellcheck,
       nl.builtins.diagnostics.cspell.with({
@@ -23,6 +50,7 @@ P.config = function()
         diagnostics_postprocess = function(diagnostic)
           diagnostic.severity = vim.diagnostic.severity.HINT
         end,
+        args = ltrs_args,
       }),
       nl.builtins.formatting.prettier,
       nl.builtins.formatting.stylua,

@@ -5,6 +5,7 @@
 -- CORE KEYMAPS
 
 local map = vim.keymap.set
+local scroll = require('utils').scroll
 
 -- c'est en forgeant que l'on devient forgeron
 map('', '<Up>', '<Nop>')
@@ -14,8 +15,14 @@ map('', '<Left>', '<Nop>')
 -- move fast with Ctrl + hjkl
 map('', '<C-l>', '<Plug>SaeRight', { remap = true })
 map('', '<C-h>', '<Plug>SaeLeft', { remap = true })
-map('', '<C-j>', '<C-d>')
-map('', '<C-k>', '<C-u>')
+map('', '<C-j>', function()
+  scroll('down')
+end)
+map('', '<C-k>', function()
+  scroll('up')
+end)
+map({'n', 'v'}, '<Up>', '<C-y>')
+map({'n', 'v'}, '<Down>', '<C-e>')
 -- move through wrapped line
 map('', 'j', 'gj', { silent = true })
 map('', 'k', 'gk', { silent = true })
