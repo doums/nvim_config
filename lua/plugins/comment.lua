@@ -5,8 +5,15 @@
 local P = {
   'numToStr/comment.nvim',
   keys = {
+    { '<leader>c', nil, desc = 'Comment a selection', mode = { 'o', 'v' } },
+    {
+      '<leader>b',
+      nil,
+      desc = 'Block comment a selection',
+      mode = { 'o', 'v' },
+    },
     { '<leader>cc', nil, desc = 'Comment a line' },
-    { '<leader>bc', nil, desc = 'Comment a bloc' },
+    { '<leader>bc', nil, desc = 'Block comment a line' },
   },
 }
 
