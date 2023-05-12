@@ -108,7 +108,7 @@ P.opts = {
         { key = 'gy', action = 'copy_absolute_path' },
         { key = '-', action = 'dir_up' },
         { key = 'o', action = 'system_open' },
-        { key = 'f', action = 'live_filter' },
+        { key = '<A-f>', action = 'live_filter' },
         { key = 'F', action = 'clear_live_filter' },
         { key = '<A-q>', action = 'close' },
         { key = '<A-d>', action = 'toggle_file_info' },

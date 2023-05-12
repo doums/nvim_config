@@ -86,6 +86,9 @@ function M.hl()
   hl('qfTitle', '#BDAE9D', '#432717', 'bold')
   hl('QuickFixLine', nil)
 
+  -- monark.nvim
+  hl('monarkLeap', '#df4a00', nil, 'bold')
+
   -- dmap.nvim
   vim.api.nvim_set_hl(
     0,

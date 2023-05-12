@@ -11,6 +11,7 @@ My personal Nvim configuration.
 - StyLua, Lua code formatter (Arch Linux package)
 - lua-language-server (Arch Linux package)
 - ESLint and Prettier (npm packages - eslint prettier)
+- Tailwind CSS (npm packages - tailwindcss)
 - cspell (npm package)
 - LanguageTool-Rust (https://github.com/jeertmans/languagetool-rust)
 

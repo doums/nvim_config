@@ -16,6 +16,7 @@ P.opts = {
 -- stylua: ignore end
 
 P.init = function()
+  vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward-to)')
   vim.keymap.set({ 'n', 'x', 'o' }, 'q', '<Plug>(leap-backward-to)')
   require('leap').add_default_mappings()
 end
