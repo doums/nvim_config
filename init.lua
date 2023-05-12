@@ -24,6 +24,10 @@ vim.opt.rtp:prepend(lazypath)
 -- map leader
 vim.g.mapleader = ','
 
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- OPTIONS
 local o = vim.o
 local opt = vim.opt
