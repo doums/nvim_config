@@ -32,7 +32,7 @@ local function on_attach(bufnr)
   end
 
   km.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
-  km.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
+  km.set('n', '<C-d>', api.node.show_info_popup, opts('Info'))
   km.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
   km.set('n', '<C-t>', api.node.open.tab, opts('Open: New Tab'))
   km.set('n', '<C-v>', api.node.open.vertical, opts('Open: Vertical Split'))
