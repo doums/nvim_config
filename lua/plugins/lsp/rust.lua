@@ -5,7 +5,7 @@
 -- LSP config for Rust - rust-analyzer
 local P = {
   'simrat39/rust-tools.nvim',
-  ft = { 'rust' },
+  -- ft = { 'rust' },
 }
 
 P.config = function()

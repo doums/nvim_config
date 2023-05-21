@@ -4,7 +4,6 @@
 
 -- server capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-require('lsp_spinner').init_capabilities(capabilities)
 require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local M = {

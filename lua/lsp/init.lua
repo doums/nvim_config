@@ -141,9 +141,25 @@ local function on_ll_list(options, jump_on_first)
   end
 end
 
+local notified_clients = {}
+
+vim.api.nvim_create_autocmd('LspDetach', {
+  callback = function(args)
+    local client = lsp.get_client_by_id(args.data.client_id)
+    vim.notify('⭘ ' .. client.name, vim.log.levels.INFO)
+    notified_clients[client.id] = nil
+  end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = lsp.get_client_by_id(args.data.client_id)
+
+    if not notified_clients[client.id] then
+      vim.notify('󰣪 ' .. client.name, vim.log.levels.INFO)
+      notified_clients[client.id] = 1
+    end
+
     local bufopt = { buffer = args.buf }
     -- keybinds
     -- open lsp menu
@@ -214,7 +230,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         buffer = args.buf,
       })
     end
-    require('lsp_spinner').on_attach(client, args.buf)
     require('lsp_signature').on_attach(signature_help_cfg, args.buf)
 
     -- TODO disable semantic highlighting

@@ -2,15 +2,10 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-local P = {
-  'doums/lsp_spinner.nvim',
-  event = 'LspAttach',
-}
+local P = { 'doums/lswip.nvim', dev = true }
 
 P.opts = {
-  spinner = { '▪', '■', '□', '▫' },
-  interval = 80,
-  placeholder = ' ',
+  redrawstatus = true,
 }
 
 return P
