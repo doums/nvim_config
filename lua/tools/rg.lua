@@ -161,7 +161,7 @@ vim.api.nvim_create_user_command('Rg', function(a)
   local last = table.remove(a.fargs)
   -- if last item is a valid fs path, then the pattern is the
   -- second item from the end of the args list
-  if vim.loop.fs_stat(last) and #a.fargs > 0 then
+  if vim.uv.fs_stat(last) and #a.fargs > 0 then
     path = last
     pattern = table.remove(a.fargs)
   else
