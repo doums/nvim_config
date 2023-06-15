@@ -33,7 +33,7 @@ P.opts = {
     'html',
     'css',
     'lua',
-    'comment',
+    -- 'comment', // TODO disable to save performances
     'markdown',
     'jsdoc',
     'tsx',
