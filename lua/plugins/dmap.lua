@@ -5,11 +5,12 @@
 local P = {
   'doums/dmap.nvim',
   event = { 'LspAttach', 'DiagnosticChanged' },
+  -- dev = true,
 }
 
 P.opts = {
   sources_ignored = { 'cspell' },
-  v_offset = 1,
+  -- v_offset = 1,
   severity = { min = vim.diagnostic.severity.INFO },
 }
 

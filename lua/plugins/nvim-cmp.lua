@@ -12,7 +12,7 @@ local P = {
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
   },
-  event = { 'InsertEnter', 'LspAttach' },
+  event = { 'InsertEnter', 'LspAttach', 'CmdlineEnter' },
 }
 
 local api = vim.api

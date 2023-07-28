@@ -7,43 +7,32 @@ local M = {}
 local hl = require('utils').hl
 local li = require('utils').li
 
--- after loading a colorscheme, re-generate hl groups
-vim.api.nvim_create_autocmd('ColorScheme', {
-  pattern = '*',
-  callback = function()
-    M.hl()
-    vim.notify(
-      'hl groups have been generated ✓',
-      vim.log.levels.INFO,
-      { title = 'nvim-config' }
-    )
-  end,
-})
-
 function M.hl()
+  local p = require('cooper').p
+
   -- highlight group for guicursor
-  hl('Caret', '#2A211C', '#889AFF', 'bold')
-  hl('WinSeparator', '#332a25', '#332a25')
+  hl('Caret', p.bg, p.cursor, 'bold')
 
   -- oterm.nvim
-  hl('otermWin', '#FFFFFF', '#212121')
-  hl('otermBorder', '#FFFFFF', '#212121')
+  hl('otermWin', '#FFFFFF', '#1C1C1C')
+  hl('otermBorder', '#FFFFFF', '#1C1C1C')
 
   -- leap.nvim
-  hl('LeapMatch', '#aa4e00', nil, { 'underline', 'nocombine' })
-  hl('LeapLabelPrimary', '#212121', '#f49810', 'nocombine')
-  hl('LeapLabelSecondary', '#212121', '#8c5845', 'nocombine')
-  hl('LeapLabelSelected', '#ddddff', nil, { 'bold', 'nocombine' })
-  -- hl('LeapBackdrop', '#80807f', nil, 'nocombine')
+  local reverse_fg = '#212121'
+  hl('LeapMatch', '#AA4E00', nil, { 'underline', 'nocombine' })
+  hl('LeapLabelPrimary', reverse_fg, '#F49810', 'nocombine')
+  hl('LeapLabelSecondary', reverse_fg, '#8C5845', 'nocombine')
+  hl('LeapLabelSelected', '#DDDDFF', nil, { 'bold', 'nocombine' })
+  -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
   -- leap use Cursor hl group, customize it
-  hl('Cursor', '#212121', '#df4a00', { 'nocombine', 'bold' })
+  hl('Cursor', reverse_fg, '#DF4A00', { 'nocombine', 'bold' })
 
   -- nvim-cmp
   li('CmpItemMenu', 'Fg')
   li('CmpItemAbbr', 'Fg')
   li('CmpItemKind', 'Fg')
   hl('CmpItemAbbrDeprecated', nil, nil, { 'strikethrough' })
-  hl('CmpItemAbbrMatch', '#CA7E03', nil, 'bold')
+  hl('CmpItemAbbrMatch', p.menu_hl, nil, 'bold')
   li('CmpItemAbbrMatchFuzzy', 'CmpItemAbbrMatch')
 
   -- nvim-tree.lua
@@ -53,57 +42,57 @@ function M.hl()
   li('NvimTreeFolderIcon', 'Constant')
   li('NvimTreeImageFile', 'Normal')
   li('NvimTreeGitIgnored', 'Debug')
-  hl('NvimTreeGitNew', '#42905b', nil, 'italic')
-  hl('NvimTreeGitStaged', '#39c064', nil, 'italic')
-  hl('NvimTreeGitRenamed', '#507eae', nil, 'italic')
-  hl('NvimTreeGitDeleted', '#bd5b5b', nil, 'italic')
+  hl('NvimTreeGitNew', '#42905B')
+  hl('NvimTreeGitStaged', '#39C064')
+  hl('NvimTreeGitRenamed', '#507EAE')
+  hl('NvimTreeGitDeleted', '#BD5B5B')
   li('NvimTreeGitDirty', 'NvimTreeGitDeleted')
-  hl('NvimTreeWindowPicker', '#BDAE9D', '#2A190E', 'bold')
-  hl('NvimTreeLspDiagnosticsError', '#EF5350', nil, 'bold')
+  hl('NvimTreeWindowPicker', '#FFFFFF', p.ui_frame_bg, 'bold')
+  hl('NvimTreeLspDiagnosticsError', p.error_stripe, nil, 'bold')
   li('NvimTreeWinSeparator', 'WinSeparator')
   li('NvimTreeLiveFilterPrefix', 'CurSearch')
   li('NvimTreeLiveFilterValue', 'Search')
 
   -- ponton.nvim
-  hl('WinBar', '#2A211C', '#2A211C')
-  hl('WinBarNC', '#2A211C', '#2A211C')
-  hl('StatusLine', '#734c36', '#332A25')
+  hl('StatusLine', p.ui_frame_bg, p.ui_frame_bg)
+  hl('WinBar', p.ui_frame_fg)
+  li('WinSeparator', 'StatusLine')
 
   -- suit.nvim
-  hl('suitPrompt', '#C7C7FF', '#3f3534', { 'bold', 'italic' })
+  hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })
 
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')
-  hl('TelescopeSelection', nil, '#544236')
+  li('TelescopeSelection', 'Visual')
 
   -- lsp_signature.nvim
-  hl('codeHint', '#CA7E03', nil, 'italic')
+  hl('codeHint', p.code_lens, nil, 'italic')
   hl('inlayHint', '#604417', nil, 'italic')
 
   -- qflist & loclist
   li('qfLineNr', 'NonText')
   li('qfFileName', 'Debug')
-  hl('qfTitle', '#BDAE9D', '#432717', 'bold')
+  hl('qfTitle', p.fg, '#432717', 'bold')
   hl('QuickFixLine', nil)
 
   -- monark.nvim
-  hl('monarkLeap', '#df4a00', nil, 'bold')
+  hl('monarkLeap', '#FF5500', nil, 'bold')
 
   -- dmap.nvim
   vim.api.nvim_set_hl(
     0,
     'dmapError',
-    { fg = '#ff0000', nocombine = true, blend = 60 }
+    { fg = '#FF0000', nocombine = true, blend = 60 }
   )
   vim.api.nvim_set_hl(
     0,
     'dmapWarn',
-    { fg = '#ffff00', nocombine = true, blend = 60 }
+    { fg = '#FFFF00', nocombine = true, blend = 60 }
   )
   vim.api.nvim_set_hl(
     0,
     'dmapInfo',
-    { fg = '#ffffff', nocombine = true, blend = 60 }
+    { fg = '#FFFFFF', nocombine = true, blend = 60 }
   )
   hl('dmapHint', '#CA7E03', nil)
 end

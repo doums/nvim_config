@@ -11,6 +11,7 @@ local P = {
     { '<F3>', nil, desc = 'Open tig' },
     { '<F4>', nil, desc = 'Open nnn' },
   },
+  -- dev = true,
 }
 
 P.config = function()

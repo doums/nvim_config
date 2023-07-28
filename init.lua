@@ -61,9 +61,8 @@ o.clipboard = 'unnamedplus'
 o.signcolumn = 'yes:2'
 o.cmdheight = 2
 o.mouse = 'a'
-o.statusline = ' ' -- hide the default statusline on the first frames
 o.laststatus = 3
-o.guicursor = 'a:block-Caret'
+o.guicursor = 'a:block-inverse'
 o.spelllang = 'en_us'
 o.spelloptions = 'camel'
 o.colorcolumn = '66'
@@ -89,9 +88,6 @@ vim.cmd('runtime ftplugin/man.vim')
 -- disable EditorConfig support
 vim.g.editorconfig = false
 
--- generate custom highlight groups
-require('hl').hl()
-
 -- load custom filetypes
 require('filetypes.dotenv')
 require('filetypes.pkgbuild')
@@ -105,7 +101,7 @@ require('lazy').setup('plugins', {
 })
 
 -- colorscheme
-vim.cmd('colorscheme espresso')
+vim.cmd('colorscheme cooper')
 
 -- LSP config
 require('lsp')

@@ -5,13 +5,16 @@
 local P = {
   'doums/ponton.nvim',
   priority = 999,
+  -- dev = true,
 }
 
 P.config = function()
-  local winbar_bg = '#432717'
-  local winbarnc_bg = '#42342c'
-  local line_bg = '#332A25'
-  local line_fg = '#734c36'
+  local p = require('cooper').p
+  local fg = p.fg
+  local winbar_bg = p.ui_frame_bg
+  local winbarnc_bg = p.ui_frame_bg
+  local line_bg = p.ui_frame_bg
+  local line_fg = p.ui_frame_fg
   local ponton_cdt = require('ponton.condition')
   local main_cdt = {
     ponton_cdt.filetype_not,
@@ -49,10 +52,10 @@ P.config = function()
           v_line = { '━', { '#43A8ED', line_bg, 'bold' } },
           v_block = { '■', { '#43A8ED', line_bg, 'bold' } },
           select = { '■', { '#3592C4', line_bg, 'bold' } },
-          command = { '▼', { '#BDAE9D', line_bg, 'bold' } },
+          command = { '▼', { fg, line_bg, 'bold' } },
           shell_ex = { '▶', { '#93896C', line_bg, 'bold' } },
           terminal = { '❯', { '#049B0A', line_bg, 'bold' } },
-          prompt = { '▼', { '#BDAE9D', line_bg, 'bold' } },
+          prompt = { '▼', { fg, line_bg, 'bold' } },
           inactive = { ' ' },
         },
         margin = { 1, 1 },
@@ -63,8 +66,8 @@ P.config = function()
       buffer_name = {
         empty = '-',
         style = {
-          { '#BDAE9D', winbar_bg, 'bold' },
-          { '#BDAE9D', winbarnc_bg, 'bold' },
+          { fg, winbar_bg, 'bold' },
+          { fg, winbarnc_bg, 'bold' },
         },
         padding = { 1, nil },
         conditions = { main_cdt },

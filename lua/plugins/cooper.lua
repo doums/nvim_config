@@ -2,9 +2,11 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-local M = {
-  'doums/sae',
-  { import = 'plugins/lsp' },
+local P = {
+  'doums/cooper.nvim',
+  lazy = true,
+  priority = 1000,
+  dev = true
 }
 
-return M
+return P

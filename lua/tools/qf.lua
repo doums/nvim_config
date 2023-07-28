@@ -63,15 +63,15 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     else
       return
     end
-    vim.api.nvim_win_set_option(win, 'signcolumn', 'yes:1')
-    vim.api.nvim_win_set_option(win, 'number', false)
-    vim.api.nvim_win_set_option(win, 'relativenumber', false)
-    vim.api.nvim_win_set_option(win, 'colorcolumn', '')
-    vim.api.nvim_win_set_option(win, 'wrap', false)
-    vim.api.nvim_win_set_option(
-      win,
+    vim.api.nvim_set_option_value('signcolumn', 'yes:1', { win = win })
+    vim.api.nvim_set_option_value('number', false, { win = win })
+    vim.api.nvim_set_option_value('relativenumber', false, { win = win })
+    vim.api.nvim_set_option_value('colorcolumn', '', { win = win })
+    vim.api.nvim_set_option_value('wrap', false, { win = win })
+    vim.api.nvim_set_option_value(
       'winbar',
-      '%#qfTitle# ' .. qf.title .. ' ' .. qf.size .. '  %#WinBar#'
+      '%#qfTitle# ' .. qf.title .. ' ' .. qf.size .. '  %#WinBar#',
+      { win = win }
     )
     vim.keymap.set(
       'n',

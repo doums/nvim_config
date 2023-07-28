@@ -4,6 +4,7 @@
 
 local P = {
   'doums/suit.nvim',
+  -- dev = true,
 }
 
 P.opts = {

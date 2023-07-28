@@ -5,6 +5,20 @@
 local api = vim.api
 
 local group_id = api.nvim_create_augroup('InitLua', {})
+
+-- after loading a colorscheme, re-generate hl groups
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = function()
+    require('hl').hl()
+    vim.notify(
+      '✓ hl groups generated',
+      vim.log.levels.INFO,
+      { title = 'nvim-config' }
+    )
+  end,
+})
+
 -- retrieve any external changes and refresh the buffer
 api.nvim_create_autocmd('CursorHold', {
   group = group_id,
@@ -15,12 +29,14 @@ api.nvim_create_autocmd('CursorHold', {
     end
   end,
 })
+
 -- hide column numbers when viewing man pages
 api.nvim_create_autocmd('FileType', {
   group = group_id,
   pattern = 'man',
   command = 'set nonumber',
 })
+
 -- highlight the selection when yanking
 api.nvim_create_autocmd('TextYankPost', {
   group = group_id,
