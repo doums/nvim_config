@@ -86,7 +86,6 @@ P.config = function()
         ls.lsp_expand(args.body)
       end,
     },
-    completion = { completeopt = 'menu,menuone,noinsert' },
     sources = {
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
@@ -131,7 +130,7 @@ P.config = function()
     }),
   })
   -- command line `/`
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' },

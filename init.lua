@@ -53,7 +53,7 @@ o.cursorline = true
 o.cursorlineopt = 'number,screenline'
 o.switchbuf = 'usetab'
 o.scrolloff = 1
-o.completeopt = 'menuone,noselect'
+o.completeopt = 'menu,menuone,noinsert'
 o.pumheight = 10
 o.fillchars =
   'diff: ,fold: ,eob: ,vert: ,horiz: ,lastline:•,fold: ,foldsep: ,foldopen:⌄,foldclose:›'
