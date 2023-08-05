@@ -18,14 +18,15 @@ function M.hl()
   hl('otermBorder', '#FFFFFF', '#1C1C1C')
 
   -- leap.nvim
-  local reverse_fg = '#212121'
-  hl('LeapMatch', '#AA4E00', nil, { 'underline', 'nocombine' })
+  local reverse_fg = _G.terminal_bg
+  local leap_cursor = '#E4F7FF'
+  hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })
   hl('LeapLabelPrimary', reverse_fg, '#F49810', 'nocombine')
   hl('LeapLabelSecondary', reverse_fg, '#8C5845', 'nocombine')
   hl('LeapLabelSelected', '#DDDDFF', nil, { 'bold', 'nocombine' })
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
   -- leap use Cursor hl group, customize it
-  hl('Cursor', reverse_fg, '#DF4A00', { 'nocombine', 'bold' })
+  hl('Cursor', reverse_fg, leap_cursor, { 'nocombine', 'bold' })
 
   -- nvim-cmp
   li('CmpItemMenu', 'Fg')
@@ -70,31 +71,13 @@ function M.hl()
   hl('inlayHint', '#604417', nil, 'italic')
 
   -- qflist & loclist
-  li('qfLineNr', 'NonText')
+  li('qfLineNr', 'Number')
   li('qfFileName', 'Debug')
-  hl('qfTitle', p.fg, '#432717', 'bold')
+  hl('qfTitle', p.fg, p.ui_frame_bg, 'bold')
   hl('QuickFixLine', nil)
 
   -- monark.nvim
-  hl('monarkLeap', '#FF5500', nil, 'bold')
-
-  -- dmap.nvim
-  vim.api.nvim_set_hl(
-    0,
-    'dmapError',
-    { fg = '#FF0000', nocombine = true, blend = 60 }
-  )
-  vim.api.nvim_set_hl(
-    0,
-    'dmapWarn',
-    { fg = '#FFFF00', nocombine = true, blend = 60 }
-  )
-  vim.api.nvim_set_hl(
-    0,
-    'dmapInfo',
-    { fg = '#FFFFFF', nocombine = true, blend = 60 }
-  )
-  hl('dmapHint', '#CA7E03', nil)
+  hl('monarkLeap', leap_cursor, nil, 'bold')
 end
 
 return M

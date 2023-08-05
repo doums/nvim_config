@@ -7,6 +7,8 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
+_G.terminal_bg = '#212121'
+
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
