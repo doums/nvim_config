@@ -33,4 +33,8 @@ function M.scroll(dir)
   vim.api.nvim_feedkeys(c .. key, 'nt', false)
 end
 
+vim.api.nvim_create_user_command('GetHl', function()
+  vim.print(vim.treesitter.get_captures_at_cursor(0))
+end, {})
+
 return M

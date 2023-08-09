@@ -3,7 +3,7 @@
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 local P = {
-  'doums/cooper.nvim',
+  'doums/dark.nvim',
   lazy = true,
   priority = 1000,
   dev = true

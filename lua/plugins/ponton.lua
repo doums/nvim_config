@@ -5,11 +5,11 @@
 local P = {
   'doums/ponton.nvim',
   priority = 999,
-  -- dev = true,
+  dev = true,
 }
 
 P.config = function()
-  local p = require('cooper').p
+  local p = require('dark').p
   local fg = p.fg
   local winbar_bg = p.ui_frame_bg
   local winbarnc_bg = p.ui_frame_bg

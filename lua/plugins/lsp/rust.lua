@@ -16,7 +16,7 @@ P.config = function()
         auto = true,
         parameter_hints_prefix = '← ',
         other_hints_prefix = '→ ',
-        highlight = 'inlayHint',
+        highlight = 'LspInlayHint',
       },
       hover_actions = { border = 'none' },
     },

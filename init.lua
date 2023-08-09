@@ -7,7 +7,7 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
-_G.terminal_bg = '#212121'
+_G.terminal_bg = '#1E1F22'
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -103,7 +103,7 @@ require('lazy').setup('plugins', {
 })
 
 -- colorscheme
-vim.cmd('colorscheme cooper')
+vim.cmd('colorscheme dark')
 
 -- LSP config
 require('lsp')

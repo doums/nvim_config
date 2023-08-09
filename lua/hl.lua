@@ -8,7 +8,7 @@ local hl = require('utils').hl
 local li = require('utils').li
 
 function M.hl()
-  local p = require('cooper').p
+  local p = require('dark').p
 
   -- highlight group for guicursor
   hl('Caret', p.bg, p.cursor, 'bold')
@@ -19,7 +19,7 @@ function M.hl()
 
   -- leap.nvim
   local reverse_fg = _G.terminal_bg
-  local leap_cursor = '#E4F7FF'
+  local leap_cursor = '#00FFCD'
   hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })
   hl('LeapLabelPrimary', reverse_fg, '#F49810', 'nocombine')
   hl('LeapLabelSecondary', reverse_fg, '#8C5845', 'nocombine')
@@ -39,8 +39,8 @@ function M.hl()
   -- nvim-tree.lua
   li('NvimTreeRootFolder', 'Comment')
   li('NvimTreeExecFile', 'Todo')
-  li('NvimTreeSpecialFile', 'Function')
-  li('NvimTreeFolderIcon', 'Constant')
+  li('NvimTreeSpecialFile', 'Keyword')
+  li('NvimTreeFolderIcon', 'Comment')
   li('NvimTreeImageFile', 'Normal')
   li('NvimTreeGitIgnored', 'Debug')
   hl('NvimTreeGitNew', '#42905B')
@@ -66,10 +66,6 @@ function M.hl()
   li('TelescopeNormal', 'Fg')
   li('TelescopeSelection', 'Visual')
 
-  -- lsp_signature.nvim
-  hl('codeHint', p.code_lens, nil, 'italic')
-  hl('inlayHint', '#604417', nil, 'italic')
-
   -- qflist & loclist
   li('qfLineNr', 'Number')
   li('qfFileName', 'Debug')
@@ -78,6 +74,9 @@ function M.hl()
 
   -- monark.nvim
   hl('monarkLeap', leap_cursor, nil, 'bold')
+
+  -- dmap.nvim
+  hl('dmapWin', nil, _G.terminal_bg)
 end
 
 return M
