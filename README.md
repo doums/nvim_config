@@ -1,6 +1,6 @@
-## Nvim config
+## nvim distro
 
-My personal Nvim configuration.
+My personal [neovim](https://neovim.io/) distribution
 
 #### Externals dependencies
 
