@@ -3,15 +3,13 @@
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 local P = {
-  'neovim/nvim-lspconfig',
+  'doums/rg.nvim',
+  cmd = { 'Rg', 'Rgf', 'Rgp', 'Rgfp' },
+  dev = true,
 }
 
-P.config = function()
-  require('lsp.servers.lua')
-  require('lsp.servers.rust')
-  require('lsp.servers.c')
-  require('lsp.servers.typescript')
-  require('lsp.servers.tailwind')
-end
+P.opts = {
+  qf_format = require('tools.qf').qf_format,
+}
 
 return P

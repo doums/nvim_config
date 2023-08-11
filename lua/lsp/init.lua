@@ -154,13 +154,13 @@ vim.api.nvim_create_autocmd('LspDetach', {
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = lsp.get_client_by_id(args.data.client_id)
+    local bufopt = { buffer = args.buf }
 
     if not notified_clients[client.id] then
       vim.notify('󰣪 ' .. client.name, vim.log.levels.INFO)
       notified_clients[client.id] = 1
     end
 
-    local bufopt = { buffer = args.buf }
     -- keybinds
     -- open lsp menu
     map({ 'n', 'v' }, '<A-CR>', require('tools.lsp_menu').open, bufopt)
@@ -230,6 +230,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
         buffer = args.buf,
       })
     end
+
+    -- inlay hints support
+    if client.supports_method('textDocument/inlayHint') then
+      vim.lsp.inlay_hint(args.buf, true)
+
+      map('n', '<A-i>', function()
+        vim.lsp.inlay_hint(args.buf)
+      end, bufopt)
+    end
+
     require('lsp_signature').on_attach(signature_help_cfg, args.buf)
 
     -- TODO disable semantic highlighting

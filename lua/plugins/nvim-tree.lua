@@ -6,6 +6,7 @@ local P = {
   'nvim-tree/nvim-tree.lua',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
+    'doums/rg.nvim',
   },
   keys = {
     { '<Tab>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle nvim-tree' },
@@ -19,6 +20,7 @@ local P = {
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
+  local rgui = require('rg').rgui
   local km = vim.keymap
 
   local function opts(desc)
@@ -64,7 +66,7 @@ local function on_attach(bufnr)
 
   km.set('n', '<C-f>', function()
     local node = api.tree.get_node_under_cursor()
-    require('tools.rg').rgui(node.absolute_path)
+    rgui(node.absolute_path)
   end, opts(''))
 end
 

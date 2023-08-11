@@ -108,6 +108,3 @@ vim.cmd('colorscheme dark')
 -- LSP config
 require('lsp')
 
--- Load rg util
-require('tools.rg')
-
