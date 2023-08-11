@@ -7,6 +7,7 @@ local P = {
 }
 
 P.config = function()
+  require('lsp')
   require('lsp.servers.lua')
   require('lsp.servers.rust')
   require('lsp.servers.c')

@@ -105,6 +105,3 @@ require('lazy').setup('plugins', {
 -- colorscheme
 vim.cmd('colorscheme dark')
 
--- LSP config
-require('lsp')
-
