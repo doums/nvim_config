@@ -4,7 +4,7 @@
 
 local P = {
   'doums/lswip.nvim',
-  -- dev = true
+  dev = true,
 }
 
 P.opts = {

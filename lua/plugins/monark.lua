@@ -4,6 +4,7 @@
 
 local P = {
   'doums/monark.nvim',
+  event = 'VeryLazy',
   -- dev = true
 }
 

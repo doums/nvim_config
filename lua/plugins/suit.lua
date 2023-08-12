@@ -4,6 +4,7 @@
 
 local P = {
   'doums/suit.nvim',
+  event = 'VeryLazy',
   -- dev = true,
 }
 

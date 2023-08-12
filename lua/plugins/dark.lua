@@ -4,7 +4,7 @@
 
 local P = {
   'doums/dark.nvim',
-  lazy = true,
+  lazy = false,
   priority = 1000,
   dev = true
 }

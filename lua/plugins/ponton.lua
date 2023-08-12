@@ -111,7 +111,7 @@ P.config = function()
         padding = { nil, 1 },
       },
       git_branch = {
-        style = { '#C5656B', line_bg },
+        style = { line_fg, line_bg },
         padding = { 1, 1 },
         prefix = ' ',
       },
