@@ -55,7 +55,16 @@ P.opts = {
   },
   autotag = {
     enable = true,
-    filetypes = { 'typescriptreact', 'tsx', 'markdown' },
+    filetypes = {
+      'html',
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
+      'jsx',
+      'tsx',
+      'markdown',
+    },
   },
   -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {

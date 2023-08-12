@@ -20,6 +20,7 @@ local api = vim.api
 P.config = function()
   local cmp = require('cmp')
   local ls = require('luasnip')
+  local ap = require('nvim-autopairs.completion.cmp')
 
   local function has_word_before()
     local line, col = unpack(api.nvim_win_get_cursor(0))
@@ -59,6 +60,9 @@ P.config = function()
     'c',
     's',
   })
+
+  -- insert `(` after select function or method item
+  cmp.event:on('confirm_done', ap.on_confirm_done())
 
   cmp.setup({
     mapping = {
