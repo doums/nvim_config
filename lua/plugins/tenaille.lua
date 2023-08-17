@@ -4,10 +4,8 @@
 
 local P = {
   'doums/tenaille.nvim',
+  config = true,
   dev = true,
 }
-
--- use default setup
-P.config = true
 
 return P
