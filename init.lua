@@ -86,7 +86,7 @@ require('autocmds')
 
 -- Miscellaneous
 -- nvim as man pager
-vim.cmd('runtime ftplugin/man.vim')
+vim.cmd.runtime('ftplugin/man.vim')
 -- disable EditorConfig support
 vim.g.editorconfig = false
 
@@ -103,5 +103,4 @@ require('lazy').setup('plugins', {
 })
 
 -- colorscheme
-vim.cmd('colorscheme dark')
-
+vim.cmd.colorscheme('dark')

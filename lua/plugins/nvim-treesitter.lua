@@ -28,12 +28,13 @@ P.opts = {
     'rust',
     'yaml',
     'bash',
+    'fish',
     'typescript',
     'javascript',
     'html',
     'css',
     'lua',
-    -- 'comment', // TODO disable to save performances
+    'comment',
     'markdown',
     'jsdoc',
     'tsx',
@@ -42,7 +43,7 @@ P.opts = {
     'graphql',
     'jsonc',
   },
-  highlight = { enable = true, custom_captures = { todo = 'Todo' } },
+  highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
     enable = true,
