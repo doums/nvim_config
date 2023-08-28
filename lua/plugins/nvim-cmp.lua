@@ -91,7 +91,31 @@ P.config = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<cr>'] = cmp.mapping.confirm({ select = true }),
+      -- Safely select entries
+      -- if nothing is selected (including preselections) add a newline as usual
+      -- if something has explicitly been selected by the user, select it
+      -- see https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
+      ['<CR>'] = cmp.mapping({
+        i = function(fallback)
+          if cmp.visible() and cmp.get_active_entry() then
+            cmp.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = false,
+            })
+          else
+            fallback()
+          end
+        end,
+        s = cmp.mapping.confirm({ select = true }),
+      }),
+      -- toggle documentation window
+      ['<M-d>'] = function()
+        if cmp.visible_docs() then
+          cmp.close_docs()
+        else
+          cmp.open_docs()
+        end
+      end,
     },
     snippet = {
       expand = function(args)
