@@ -4,15 +4,16 @@ My personal [neovim](https://neovim.io/) distribution
 
 #### Externals dependencies
 
-- clangd, language server for C/C++ (Arch Linux package)
-- TypeScript Language Server (npm package - typescript-language-server)
+- efm (AUR efm-langserver)
 - rust-analyzer (https://rust-analyzer.github.io/manual.html#rustup)
 - shellcheck, shell script static analysis tool (AUR shellcheck-bin)
-- StyLua, Lua code formatter (Arch Linux package)
-- lua-language-server (Arch Linux package)
+- TypeScript Language Server (npm package - typescript-language-server)
+- lua-language-server (Arch package)
+- StyLua, code formatter for Lua (Arch package)
 - ESLint and Prettier (npm packages - eslint prettier)
-- Tailwind CSS (npm packages - tailwindcss)
+- clangd, language server for C/C++ (Arch package)
+- Tailwind CSS (npm package - tailwindcss)
+- ltex-ls (from releases https://github.com/valentjn/ltex-ls/releases)
 - cspell (npm package)
-- LanguageTool-Rust (https://github.com/jeertmans/languagetool-rust)
 
 others: git, ripgrep, fzf, node, npm

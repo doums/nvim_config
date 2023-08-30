@@ -4,7 +4,6 @@
 
 local M = {
   'doums/sae',
-  { import = 'plugins/lsp' },
 }
 
 return M

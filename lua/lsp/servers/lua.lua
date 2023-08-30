@@ -12,7 +12,7 @@ local runtime_path = vim.tbl_extend(
 )
 require('lspconfig').lua_ls.setup({ -- Lua
   on_attach = function(client)
-    -- use null-ls to handle formatting (stylua)
+    -- use guard.nvim to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,

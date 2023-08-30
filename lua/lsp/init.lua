@@ -207,7 +207,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<A-d>', lsp.buf.hover, bufopt)
     -- refactor
     map('n', '<A-r>', lsp.buf.rename, bufopt)
-    map({ 'n', 'v' }, '<A-e>', lsp.buf.format, bufopt)
+    map({ 'n', 'v' }, '<A-e>', vim.lsp.buf.format, bufopt)
     -- open a floating window with the diagnostics from the current cursor position
     api.nvim_create_autocmd('CursorHold', {
       callback = function()

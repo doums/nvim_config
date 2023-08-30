@@ -6,7 +6,7 @@
 
 require('lspconfig').tsserver.setup({ -- TypeScript
   on_attach = function(client)
-    -- use null-ls to handle formatting (Prettier)
+    -- use guard.nvim to handle formatting (Prettier)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
