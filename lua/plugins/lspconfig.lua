@@ -20,6 +20,7 @@ P.config = function()
   require('lsp.servers.rust')
   require('lsp.servers.c')
   require('lsp.servers.typescript')
+  require('lsp.servers.go')
   require('lsp.servers.tailwind')
   require('lsp.servers.ltex_ls')
 end
