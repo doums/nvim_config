@@ -130,6 +130,7 @@ P.config = function()
       { name = 'nvim_lua' },
       { name = 'path' },
       { name = 'buffer' },
+      { name = 'crates' },
     },
     cmp.setup.filetype('suitui', {
       sources = {
@@ -152,6 +153,7 @@ P.config = function()
           luasnip = '⌈snip⌋',
           nvim_lua = '⌈lua⌋',
           path = '⌈path⌋',
+          crates = '⌈crates⌋',
         })[entry.source.name]
         return vim_item
       end,
