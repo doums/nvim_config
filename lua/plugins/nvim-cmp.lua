@@ -72,7 +72,11 @@ P.config = function()
   --   vim.b.copilot_suggestion_hidden = false
   -- end)
 
+  ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
+    -- ⚠ this is required to automatically select the first item
+    -- in suggestion list
+    completion = { completeopt = 'menu,menuone,noinsert' },
     mapping = {
       ['<tab>'] = tab_key,
       ['<S-tab>'] = stab_key,
@@ -91,16 +95,14 @@ P.config = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      -- Safely select entries
-      -- if nothing is selected (including preselections) add a newline as usual
-      -- if something has explicitly been selected by the user, select it
-      -- see https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
       ['<CR>'] = cmp.mapping({
         i = function(fallback)
-          if cmp.visible() and cmp.get_active_entry() then
+          -- if cmp menu is visible insert the selected item or
+          -- the first item if no item is selected
+          if cmp.visible() then
             cmp.confirm({
               behavior = cmp.ConfirmBehavior.Replace,
-              select = false,
+              select = true,
             })
           else
             fallback()

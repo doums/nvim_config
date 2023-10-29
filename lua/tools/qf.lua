@@ -91,4 +91,77 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   end,
 })
 
+-- TODO need to be fixed!
+-- sort diagnostics list by severity and by line number
+function M.qf_d_sort(d, sort_by_lnum)
+  table.sort(d, function(a, b)
+    if a.type == 'N' and b.type ~= 'N' then
+      return false
+    elseif a.type == 'E' and b.type ~= 'E' then
+      return true
+    elseif a.type == 'W' and b.type ~= 'E' and b.type ~= 'W' then
+      return true
+    elseif
+      a.type == 'I'
+      and b.type ~= 'E'
+      and b.type ~= 'W'
+      and b.type ~= 'I'
+    then
+      return true
+    elseif sort_by_lnum and a.lnum < b.lnum then
+      return true
+    else
+      return false
+    end
+  end)
+  return d
+end
+
+local qf_type_map = {
+  E = 'E',
+  W = 'W',
+  I = 'I',
+  N = 'H',
+}
+
+-- format diagnostics list displayed in a loclist
+function M.ll_d_format(d)
+  local ll = vim.fn.getloclist(d.winid, { items = true })
+  return vim.tbl_map(function(i)
+    return string.format('%s %s L%s', qf_type_map[i.type], i.text, i.lnum)
+  end, ll.items)
+end
+
+-- format diagnostics list displayed in the qflist
+function M.qf_d_format(_)
+  local qf = vim.fn.getqflist({ items = true })
+  return vim.tbl_map(function(i)
+    return string.format(
+      '%s %s %s L%s',
+      vim.fn.bufname(i.bufnr),
+      qf_type_map[i.type],
+      i.text,
+      i.lnum
+    )
+  end, qf.items)
+end
+
+function M.on_qf_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  if #options.items > 1 then
+    vim.cmd('botright copen 5')
+  end
+  vim.cmd('cfirst')
+end
+
+function M.on_ll_list(options, jump_on_first)
+  vim.fn.setloclist(0, {}, ' ', options)
+  if #options.items > 1 then
+    vim.cmd('lopen 5')
+  end
+  if jump_on_first then
+    vim.cmd('lfirst')
+  end
+end
+
 return M

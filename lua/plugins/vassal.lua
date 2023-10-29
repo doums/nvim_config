@@ -9,7 +9,7 @@ local P = {
 
 P.config = function()
   require('vassal').commands({
-    [[npm i -g typescript typescript-language-server eslint prettier cspell tailwindcss]],
+    [[npm i -g typescript typescript-language-server eslint prettier cspell tailwindcss tailwindcss-language-server]],
   })
 end
 
