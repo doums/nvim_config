@@ -48,12 +48,6 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = d_sign,
       [vim.diagnostic.severity.HINT] = d_sign,
     },
-    numhl = {
-      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
-      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
-      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
-      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
-    },
   },
   float = {
     header = false,
