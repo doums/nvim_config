@@ -6,23 +6,6 @@
 
 local qf = require('tools.qf')
 
-vim.fn.sign_define(
-  'DiagnosticSignError',
-  { text = '╸', texthl = 'DiagnosticSignError' }
-)
-vim.fn.sign_define(
-  'DiagnosticSignWarn',
-  { text = '╸', texthl = 'DiagnosticSignWarn' }
-)
-vim.fn.sign_define(
-  'DiagnosticSignInfo',
-  { text = '╸', texthl = 'DiagnosticSignInfo' }
-)
-vim.fn.sign_define(
-  'DiagnosticSignHint',
-  { text = '╸', texthl = 'DiagnosticSignHint' }
-)
-
 local signature_help_cfg = {
   bind = true,
   doc_lines = 2,
@@ -53,11 +36,24 @@ local function prefix_diagnostic(diagnostic)
 end
 
 -- vim.diagnostic config
+local d_sign = '╸'
 vim.diagnostic.config({
   virtual_text = false,
   severity_sort = true,
   signs = {
     severity = { min = vim.diagnostic.severity.INFO },
+    text = {
+      [vim.diagnostic.severity.ERROR] = d_sign,
+      [vim.diagnostic.severity.WARN] = d_sign,
+      [vim.diagnostic.severity.INFO] = d_sign,
+      [vim.diagnostic.severity.HINT] = d_sign,
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+    },
   },
   float = {
     header = false,
