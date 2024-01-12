@@ -149,10 +149,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- inlay hints support
     if client.supports_method('textDocument/inlayHint') then
-      vim.lsp.inlay_hint(args.buf, true)
+      vim.lsp.inlay_hint.enable(args.buf, true)
 
       vim.keymap.set('n', '<A-i>', function()
-        vim.lsp.inlay_hint(args.buf)
+        if vim.lsp.inlay_hint.is_enabled() then
+          vim.lsp.inlay_hint.enable(args.buf, false)
+        else
+          vim.lsp.inlay_hint.enable(args.buf, true)
+        end
       end, bufopt)
     end
 
