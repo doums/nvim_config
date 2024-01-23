@@ -10,6 +10,10 @@ local li = require('utils').li
 function M.hl()
   local p = require('dark').p
 
+  hl('Normal', p.fg, nil)
+  hl('CursorLine', p.fg, '#01347c')
+  hl('MatchParen', nil, '#0144a2')
+
   -- highlight group for guicursor
   hl('Caret', p.bg, p.cursor, 'bold')
 
@@ -55,9 +59,10 @@ function M.hl()
   li('NvimTreeLiveFilterValue', 'Search')
 
   -- ponton.nvim
-  hl('StatusLine', p.ui_frame_bg, p.ui_frame_bg)
+  hl('StatusLine', '#f9fafb', '#01347c')
   hl('WinBar', p.ui_frame_fg)
-  li('WinSeparator', 'StatusLine')
+  hl('WinSeparator', '#01347c', '#01347c')
+  hl('ColorColumn', nil, '#092b5c')
 
   -- suit.nvim
   hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })

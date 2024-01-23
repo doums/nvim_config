@@ -10,11 +10,11 @@ local P = {
 
 P.config = function()
   local p = require('dark').p
-  local fg = p.fg
-  local winbar_bg = p.ui_frame_bg
-  local winbarnc_bg = p.ui_frame_bg
-  local line_bg = p.ui_frame_bg
-  local line_fg = p.ui_frame_fg
+  local fg = '#f9fafb'
+  local winbar_bg = '#01347c'
+  local winbarnc_bg = '#01347c'
+  local line_bg = '#01347c'
+  local line_fg = '#f9fafb'
   local ponton_cdt = require('ponton.condition')
   local main_cdt = {
     ponton_cdt.filetype_not,
@@ -45,7 +45,7 @@ P.config = function()
     segments = {
       mode = {
         map = {
-          normal = { ' ' },
+          normal = { ' ', { nil, line_bg } },
           insert = { '❱', { '#69ff00', line_bg, 'bold' } },
           replace = { '❰', { '#ff0050', line_bg, 'bold' } },
           visual = { '◆', { '#43A8ED', line_bg, 'bold' } },
@@ -56,7 +56,7 @@ P.config = function()
           shell_ex = { '▶', { '#93896C', line_bg, 'bold' } },
           terminal = { '❯', { '#049B0A', line_bg, 'bold' } },
           prompt = { '▼', { fg, line_bg, 'bold' } },
-          inactive = { ' ' },
+          inactive = { ' ', { nil, line_bg } },
         },
         margin = { 1, 1 },
       },
