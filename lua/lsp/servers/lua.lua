@@ -8,9 +8,10 @@
 local runtime_path = vim.tbl_extend(
   'keep',
   vim.split(package.path, ';'),
-  { '?/init.lua', '?.lua', 'lua/?.lua', 'lua/?/init.lua' }
+  { '?\\init.lua', '?.lua', 'lua\\?.lua', 'lua\\?\\init.lua' }
 )
 require('lspconfig').lua_ls.setup({ -- Lua
+  cmd = { "lua-language-server.exe" },
   on_attach = function(client)
     -- use guard.nvim to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false

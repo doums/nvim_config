@@ -7,7 +7,7 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
-_G.terminal_bg = '#1E1F22'
+_G.terminal_bg = '#012456'
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -98,7 +98,8 @@ require('filetypes.pkgbuild')
 -- load plugins ⚡
 require('lazy').setup('plugins', {
   dev = {
-    path = '~/.local/share/nvim/dev',
+    -- C:\Users\pierre\AppData\Local\nvim-data\dev
+    path = vim.fn.stdpath('data') .. '\\dev',
     fallback = true, -- fallback to git when local plugin doesn't exist
   },
 })

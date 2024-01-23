@@ -10,9 +10,21 @@ local li = require('utils').li
 function M.hl()
   local p = require('dark').p
 
+  -- theme colors override
+  local focused_ui = '#01347c'
+  local menu = '#041c3e'
+  local menu_hl = '#589DF6'
+  local menu_sel = focused_ui
+  local menu_thumb = '#0154c8'
+
   hl('Normal', p.fg, nil)
-  hl('CursorLine', p.fg, '#01347c')
-  hl('MatchParen', nil, '#0144a2')
+  hl('CursorLine', nil, focused_ui)
+  hl('MatchParen', nil, '#071b39')
+  hl('Pmenu', p.fg, menu)
+  hl('PmenuSel', nil, menu_sel)
+  hl('PmenuSbar', menu, menu)
+  hl('PmenuThumb', menu_thumb, menu_thumb)
+  hl('FloatBorder', p.fg, menu)
 
   -- highlight group for guicursor
   hl('Caret', p.bg, p.cursor, 'bold')
@@ -59,13 +71,13 @@ function M.hl()
   li('NvimTreeLiveFilterValue', 'Search')
 
   -- ponton.nvim
-  hl('StatusLine', '#f9fafb', '#01347c')
+  hl('StatusLine', '#f9fafb', focused_ui)
   hl('WinBar', p.ui_frame_fg)
-  hl('WinSeparator', '#01347c', '#01347c')
+  hl('WinSeparator', focused_ui, focused_ui)
   hl('ColorColumn', nil, '#092b5c')
 
   -- suit.nvim
-  hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })
+  hl('suitPrompt', p.todo, menu, { 'bold', 'italic' })
 
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')

@@ -6,8 +6,8 @@ local P = {
   'nvim-telescope/telescope.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-smart-history.nvim',
-    'kkharji/sqlite.lua',
+    -- 'nvim-telescope/telescope-smart-history.nvim',
+    -- 'kkharji/sqlite.lua',
     -- 'nvim-lua/popup.nvim',
   },
   keys = {
@@ -49,13 +49,13 @@ P.config = function()
       selection_caret = '❱ ',
       multi_icon = '❯ ',
       borderchars = { '━', '┃', '━', '┃', '┏', '┓', '┛', '┗' },
-      history = {
-        path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
-        limit = 100,
-      },
+      -- history = {
+      --   path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+      --   limit = 100,
+      -- },
     },
   })
-  require('telescope').load_extension('smart_history')
+  -- require('telescope').load_extension('smart_history')
 
   local dropdown_theme = require('telescope.themes').get_dropdown({
     layout_config = { width = { 0.8, max = 80 }, height = 15 },
