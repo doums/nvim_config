@@ -42,6 +42,7 @@ P.opts = {
     'json',
     'graphql',
     'jsonc',
+    'vimdoc'
   },
   highlight = { enable = true },
   indent = { enable = true },
