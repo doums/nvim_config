@@ -15,6 +15,7 @@ My personal [neovim](https://neovim.io/) distribution
 - Tailwind CSS (npm package - tailwindcss)
 - ltex-ls (from releases https://github.com/valentjn/ltex-ls/releases)
 - cspell (npm package)
+- shfmt (Arch package)
 - gopls (Arch package)
 
 others: git, ripgrep, fzf, node, npm

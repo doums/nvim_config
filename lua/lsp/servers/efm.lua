@@ -9,15 +9,18 @@
 -- configs
 -- https://github.com/creativenull/efmls-configs-nvim
 
+-- use custom config for cspell to override the default severity
+-- to HINT
 local cspell = require('linters.cspell')
 local shellcheck = require('linters.shellcheck')
 local eslint = require('efmls-configs.linters.eslint')
 local prettier = require('efmls-configs.formatters.prettier')
 local stylua = require('efmls-configs.formatters.stylua')
+local shfmt = require('efmls-configs.formatters.shfmt')
 
 local languages = {
   lua = { stylua },
-  sh = { shellcheck },
+  sh = { shellcheck, shfmt },
   typescript = { eslint, prettier },
   typescriptreact = { eslint, prettier },
   javascript = { eslint, prettier },
