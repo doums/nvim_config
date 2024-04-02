@@ -7,10 +7,14 @@ local M = {}
 local hl = require('utils').hl
 local li = require('utils').li
 
+-- terminal cursor color
+local cursor = '#CA7911'
+
 function M.hl()
   local p = require('dark').p
 
   -- highlight group for guicursor
+  hl('Cursor', '#111111', cursor, { 'bold' })
   hl('Caret', p.bg, p.cursor, 'bold')
 
   -- oterm.nvim
@@ -18,15 +22,11 @@ function M.hl()
   hl('otermBorder', '#FFFFFF', '#1C1C1C')
 
   -- leap.nvim
-  local reverse_fg = _G.terminal_bg
-  local leap_cursor = '#00FFCD'
+  local leap_primary = '#fde047'
   hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })
-  hl('LeapLabelPrimary', reverse_fg, '#F49810', 'nocombine')
-  hl('LeapLabelSecondary', reverse_fg, '#8C5845', 'nocombine')
-  hl('LeapLabelSelected', '#DDDDFF', nil, { 'bold', 'nocombine' })
+  hl('LeapLabelPrimary', '#000000', leap_primary, { 'bold', 'nocombine' })
+  hl('LeapLabelSecondary', '#000000', '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
-  -- leap use Cursor hl group, customize it
-  hl('Cursor', reverse_fg, leap_cursor, { 'nocombine', 'bold' })
 
   -- nvim-cmp
   li('CmpItemMenu', 'Fg')
@@ -73,7 +73,7 @@ function M.hl()
   hl('QuickFixLine', nil)
 
   -- monark.nvim
-  hl('monarkLeap', leap_cursor, nil, 'bold')
+  hl('monarkLeap', leap_primary, nil, 'bold')
 
   -- dmap.nvim
   hl('dmapWin', nil, _G.terminal_bg)

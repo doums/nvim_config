@@ -7,8 +7,6 @@
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
-_G.terminal_bg = '#1E1F22'
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
@@ -64,7 +62,7 @@ o.signcolumn = 'yes:2'
 o.cmdheight = 2
 o.mouse = 'a'
 o.laststatus = 3
-o.guicursor = 'a:block-inverse'
+o.guicursor = 'a:block-Cursor,c:hor20-Cursor'
 o.spelllang = 'en_us'
 o.spelloptions = 'camel'
 o.colorcolumn = '66'
@@ -94,6 +92,9 @@ vim.g.editorconfig = false
 -- load custom filetypes
 require('filetypes.dotenv')
 require('filetypes.pkgbuild')
+
+-- bg color used for terminal windows
+_G.terminal_bg = '#1E1F22'
 
 -- load plugins ⚡
 require('lazy').setup('plugins', {
