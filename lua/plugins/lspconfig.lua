@@ -5,7 +5,6 @@
 local P = {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'creativenull/efmls-configs-nvim',
     {
       'ray-x/lsp_signature.nvim',
       event = 'LspAttach',
@@ -15,7 +14,6 @@ local P = {
 
 P.config = function()
   require('lsp')
-  require('lsp.servers.efm')
   require('lsp.servers.lua')
   require('lsp.servers.rust')
   -- require('lsp.servers.c')
