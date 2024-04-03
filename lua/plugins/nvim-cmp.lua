@@ -43,10 +43,7 @@ P.config = function()
     else
       fallback()
     end
-  end, {
-    'i',
-    's',
-  })
+  end, { 'i', 's' })
 
   local stab_key = cmp.mapping(function(fallback)
     if cmp.visible() then
@@ -56,11 +53,34 @@ P.config = function()
     else
       fallback()
     end
-  end, {
-    'i',
-    'c',
-    's',
-  })
+  end, { 'i', 's' })
+
+  local return_key = function(fallback)
+    -- if cmp menu is visible insert the selected item or
+    -- the first item if no item is selected
+    if cmp.visible() then
+      cmp.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      })
+    else
+      fallback()
+    end
+  end
+
+  local cmd_confirm = function()
+    if cmp.visible() then
+      -- insert the selected item or the first item if no item
+      -- is selected
+      cmp.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      })
+    else
+      -- show completion menu
+      cmp.complete()
+    end
+  end
 
   -- insert `(` after select function or method item
   cmp.event:on('confirm_done', ap.on_confirm_done())
@@ -83,34 +103,27 @@ P.config = function()
       ['<S-tab>'] = stab_key,
       ['<Down>'] = cmp.mapping(
         cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        { 'i' }
+        { 'i', 'c' }
       ),
       ['<Up>'] = cmp.mapping(
         cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        { 'i' }
+        { 'i', 'c' }
       ),
       ['<M-p>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<M-o>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-space>'] = cmp.mapping({
+        i = cmp.mapping.complete(),
+        c = cmd_confirm,
+      }),
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping({
-        i = function(fallback)
-          -- if cmp menu is visible insert the selected item or
-          -- the first item if no item is selected
-          if cmp.visible() then
-            cmp.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
-            })
-          else
-            fallback()
-          end
-        end,
+        i = return_key,
         s = cmp.mapping.confirm({ select = true }),
       }),
+      ['<C-CR>'] = cmp.mapping(cmd_confirm, { 'c' }),
       -- toggle documentation window
       ['<M-d>'] = function()
         if cmp.visible_docs() then

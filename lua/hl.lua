@@ -28,6 +28,10 @@ function M.hl()
   hl('LeapLabelSecondary', '#000000', '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
 
+  -- copilot.lua
+  hl('CopilotSuggestion', '#42a595', nil, 'italic')
+  li('CopilotAnnotation', 'CopilotSuggestion')
+
   -- nvim-cmp
   li('CmpItemMenu', 'Fg')
   li('CmpItemAbbr', 'Fg')
