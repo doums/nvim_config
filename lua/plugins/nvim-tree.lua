@@ -73,18 +73,18 @@ end
 P.opts = {
   on_attach = on_attach,
   hijack_cursor = true,
-  disable_netrw = false,
+  disable_netrw = true,
   hijack_netrw = true,
   select_prompts = true,
   diagnostics = {
     enable = true,
     severity = {
-      min = vim.diagnostic.severity.Error,
+      min = vim.diagnostic.severity.ERROR,
     },
     icons = {
-      hint = '',
-      info = '',
-      warning = '',
+      hint = ' ',
+      info = ' ',
+      warning = ' ',
       error = '╸',
     },
   },
@@ -99,11 +99,8 @@ P.opts = {
   },
   actions = {
     open_file = {
+      resize_window = false,
       window_picker = {
-        exclude = {
-          filetype = { 'qf' },
-          buftype = { 'nofile', 'terminal', 'help' },
-        },
         chars = 'HLJKFQDS',
       },
     },
@@ -114,34 +111,41 @@ P.opts = {
     },
   },
   live_filter = {
-    prefix = 'filter → ',
+    prefix = '󰈲 ',
     always_show_folders = true,
   },
   renderer = {
+    highlight_git = 'name',
+    highlight_diagnostics = 'none',
+    highlight_modified = 'none',
+    highlight_clipboard = 'name',
     icons = {
+      symlink_arrow = ' → ',
+      diagnostics_placement = "after",
       show = {
         git = false,
         folder = true,
         file = true,
         folder_arrow = false,
         modified = true,
+        diagnostics = true,
       },
       glyphs = {
+        default = '󰧮',
         symlink = '󰌹',
-        modified = '✶',
+        modified = '󰷉',
         folder = {
-          arrow_open = '▼',
           arrow_closed = '▶',
+          arrow_open = '▼',
           default = '▶',
           open = '▼',
           empty = '▷',
           empty_open = '▽',
-          symlink = '󰌹 ▶',
-          symlink_open = '󰌹 ▼',
+          symlink = '󰌹 ',
+          symlink_open = '󰌹 ',
         },
       },
     },
-    highlight_git = true,
   },
   view = {
     width = 40,
