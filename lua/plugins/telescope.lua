@@ -8,6 +8,7 @@ local P = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-smart-history.nvim',
     'kkharji/sqlite.lua',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     -- 'nvim-lua/popup.nvim',
   },
   keys = {
@@ -55,6 +56,9 @@ P.config = function()
       },
     },
   })
+
+  -- extensions
+  require('telescope').load_extension('fzf')
   require('telescope').load_extension('smart_history')
 
   local dropdown_theme = require('telescope.themes').get_dropdown({

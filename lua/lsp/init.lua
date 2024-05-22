@@ -50,7 +50,7 @@ vim.diagnostic.config({
     },
   },
   float = {
-    header = false,
+    header = '',
     format = format_diagnostic,
     prefix = prefix_diagnostic,
   },
@@ -113,9 +113,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<A-d>', vim.lsp.buf.hover, bufopt)
     -- refactor
     vim.keymap.set('n', '<A-r>', vim.lsp.buf.rename, bufopt)
-    vim.keymap.set({ 'n', 'v' }, '<A-e>', function()
-      vim.lsp.buf.format({ async = true, bufnr = args.buf })
-    end, bufopt)
     -- open a floating window with the diagnostics from the current cursor position
     vim.api.nvim_create_autocmd('CursorHold', {
       callback = function()
@@ -141,14 +138,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- inlay hints support
     if client.supports_method('textDocument/inlayHint') then
-      vim.lsp.inlay_hint.enable(args.buf, true)
+      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 
       vim.keymap.set('n', '<A-i>', function()
-        if vim.lsp.inlay_hint.is_enabled() then
-          vim.lsp.inlay_hint.enable(args.buf, false)
-        else
-          vim.lsp.inlay_hint.enable(args.buf, true)
-        end
+        local is_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf })
+        vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = args.buf })
       end, bufopt)
     end
 

@@ -4,7 +4,6 @@ My personal [neovim](https://neovim.io/) distribution
 
 #### Externals dependencies
 
-- efm (AUR efm-langserver)
 - rust-analyzer (https://rust-analyzer.github.io/manual.html#rustup)
 - shellcheck, shell script static analysis tool (AUR shellcheck-bin)
 - TypeScript Language Server (npm package - typescript-language-server)

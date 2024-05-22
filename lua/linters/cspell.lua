@@ -1,17 +1,42 @@
--- This Source Code Form is subject to the terms of the Mozilla Public
--- License, v. 2.0. If a copy of the MPL was not distributed with this
--- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+-- cspell nvim-lint config
+-- https://github.com/mfussenegger/nvim-lint/blob/master/lua/lint/linters/cspell.lua
+-- severity is overriden to HINT
 
--- config for cspell
--- https://github.com/streetsidesoftware/cspell
-
-local M = {
-  lintSource = 'cspell',
-  lintCommand = 'cspell --no-color --no-progress --no-summary ${INPUT}',
-  lintIgnoreExitCode = false,
-  lintStdin = false,
-  lintFormats = { '%f:%l:%c - %m', '%f:%l:%c %m' },
-  lintSeverity = 4, -- HINT
+local efm = '%f:%l:%c - %m'
+return {
+  cmd = 'cspell',
+  ignore_exitcode = true,
+  args = {
+    'lint',
+    '--no-color',
+    '--no-progress',
+    '--no-summary',
+  },
+  stream = 'stdout',
+  parser = function(output)
+    local lines = vim.split(output, '\n')
+    local qflist = vim.fn.getqflist({ efm = efm, lines = lines })
+    local result = {}
+    for _, item in pairs(qflist.items) do
+      if item.valid == 1 then
+        local message = item.text:match('^%s*(.-)%s*$')
+        local word = message:match('%(.*%)')
+        local lnum = math.max(0, item.lnum - 1)
+        local col = math.max(0, item.col - 1)
+        local end_lnum = item.end_lnum > 0 and (item.end_lnum - 1) or lnum
+        local end_col = col + word:len() - 2 or col
+        local diagnostic = {
+          lnum = lnum,
+          col = col,
+          end_lnum = end_lnum,
+          end_col = end_col,
+          message = message,
+          source = 'cspell',
+          severity = vim.diagnostic.severity.HINT
+        }
+        table.insert(result, diagnostic)
+      end
+    end
+    return result
+  end
 }
-
-return M
