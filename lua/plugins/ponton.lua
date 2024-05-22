@@ -74,13 +74,13 @@ P.config = function()
       },
       buffer_changed = {
         style = {
-          { '#a3f307', winbar_bg, 'bold' },
-          { '#a3f307', winbarnc_bg, 'bold' },
+          { '#fde047', winbar_bg },
+          { '#fde047', winbarnc_bg },
         },
-        value = '✶',
-        padding = { nil, 1 },
-        placeholder = ' ',
-        min_width = 2,
+        value = '󰷉',
+        padding = { 1, 1 },
+        placeholder = '',
+        min_width = 1,
         conditions = cdts,
       },
       read_only = {
