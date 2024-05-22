@@ -52,9 +52,13 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function(args)
     -- current buffer diagnostics
     vim.keymap.set('n', '<A-q>', function()
+      -- TODO vim.diagnostic.setloclist() should be used here
+      -- but it's not sorting diagnostics by severity
+      -- so we have to do it manually
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf))
+      local sorted = qf.qf_d_sort(list, { lnum = true })
       qf.on_ll_list({
-        items = qf.qf_d_sort(list, true),
+        items = sorted,
         title = '~',
         context = { buf_diagnostics = args.buf },
         quickfixtextfunc = qf.ll_d_format,
@@ -63,9 +67,13 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 
     -- all buffers diagnostics
     vim.keymap.set('n', '<A-S-q>', function()
+      -- TODO vim.diagnostic.setqflist() should be used here
+      -- but it's not sorting diagnostics by severity
+      -- so we have to do it manually
       local list = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
+      local sorted = qf.qf_d_sort(list, { bufnr = true, lnum = true })
       qf.on_qf_list({
-        items = qf.qf_d_sort(list),
+        items = sorted,
         title = '≈',
         context = { all_diagnostics = true },
         quickfixtextfunc = qf.qf_d_format,
@@ -86,7 +94,8 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
     -- if qflist is listing all diagnostics, do update
     if qflist.context.all_diagnostics then
       local d = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
-      vim.fn.setqflist({}, 'r', { items = qf.qf_d_sort(d) })
+      local items = qf.qf_d_sort(d, { bufnr = true, lnum = true })
+      vim.fn.setqflist({}, 'r', { items = items })
     end
   end,
 })
@@ -117,8 +126,12 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
       local d =
         vim.diagnostic.toqflist(vim.diagnostic.get(ll.context.buf_diagnostics))
 
-      vim.fn.setloclist(ll.winid, {}, 'r', { items = qf.qf_d_sort(d, true) })
+      vim.fn.setloclist(
+        ll.winid,
+        {},
+        'r',
+        { items = qf.qf_d_sort(d, { lnum = true }) }
+      )
     end
   end,
 })
-

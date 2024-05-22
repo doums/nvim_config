@@ -91,28 +91,37 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   end,
 })
 
--- TODO need to be fixed!
--- sort diagnostics list by severity and by line number
-function M.qf_d_sort(d, sort_by_lnum)
+local qf_type_to_severity = {
+  E = 1,
+  W = 2,
+  I = 3,
+  H = 4,
+  N = 4,
+}
+
+function M.qf_d_sort(d, opts)
   table.sort(d, function(a, b)
-    if a.type == 'N' and b.type ~= 'N' then
-      return false
-    elseif a.type == 'E' and b.type ~= 'E' then
+    local a_severity = qf_type_to_severity[a.type] or 1
+    local b_severity = qf_type_to_severity[b.type] or 1
+    -- try sorting by severity
+    if a_severity < b_severity then
       return true
-    elseif a.type == 'W' and b.type ~= 'E' and b.type ~= 'W' then
-      return true
-    elseif
-      a.type == 'I'
-      and b.type ~= 'E'
-      and b.type ~= 'W'
-      and b.type ~= 'I'
-    then
-      return true
-    elseif sort_by_lnum and a.lnum < b.lnum then
-      return true
-    else
+    elseif a_severity > b_severity then
       return false
     end
+    -- try sorting by buffer
+    if opts.bufnr then
+      if a.bufnr < b.bufnr then
+        return true
+      elseif a.bufnr > b.bufnr then
+        return false
+      end
+    end
+    -- try sorting by line number
+    if opts.lnum and a.lnum < b.lnum then
+      return true
+    end
+    return false
   end)
   return d
 end
@@ -138,8 +147,8 @@ function M.qf_d_format(_)
   return vim.tbl_map(function(i)
     return string.format(
       '%s %s %s L%s',
-      vim.fn.bufname(i.bufnr),
       qf_type_map[i.type],
+      vim.fn.bufname(i.bufnr),
       i.text,
       i.lnum
     )

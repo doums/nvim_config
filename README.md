@@ -12,7 +12,7 @@ My personal [neovim](https://neovim.io/) distribution
 - ESLint and Prettier (npm packages - eslint prettier)
 - clangd, language server for C/C++ (Arch package)
 - Tailwind CSS (npm package - tailwindcss)
-- ltex-ls (from releases https://github.com/valentjn/ltex-ls/releases)
+- ltex-ls (from releases https://github.com/valentjn/ltex-ls/releases, requires JVM → openJDK)
 - cspell (npm package)
 - shfmt (Arch package)
 - gopls (Arch package)

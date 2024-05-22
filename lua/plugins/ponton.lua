@@ -5,7 +5,7 @@
 local P = {
   'doums/ponton.nvim',
   priority = 999,
-  dev = true,
+  -- dev = true,
 }
 
 P.config = function()

@@ -5,7 +5,7 @@
 local P = {
   'doums/rg.nvim',
   cmd = { 'Rg', 'Rgf', 'Rgp', 'Rgfp' },
-  dev = true,
+  -- dev = true,
 }
 
 P.opts = {

@@ -116,7 +116,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- open a floating window with the diagnostics from the current cursor position
     vim.api.nvim_create_autocmd('CursorHold', {
       callback = function()
-        vim.diagnostic.open_float({ focusable = false, scope = 'cursor' })
+        vim.diagnostic.open_float({
+          scope = 'cursor',
+          severity = { min = vim.diagnostic.severity.INFO },
+        })
       end,
       buffer = args.buf,
     })
