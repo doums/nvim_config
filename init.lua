@@ -96,6 +96,9 @@ require('filetypes.pkgbuild')
 -- bg color used for terminal windows
 _G.terminal_bg = '#1E1F22'
 
+-- init directories
+require('fs').fs_init()
+
 -- load plugins ⚡
 require('lazy').setup('plugins', {
   dev = {

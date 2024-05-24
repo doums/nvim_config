@@ -10,7 +10,7 @@ function M.hl(name, fg, bg, style, sp)
   local hl_map = { fg = fg, bg = bg, sp = sp }
   if type(style) == 'string' then
     hl_map[style] = 1
-  elseif type(style) == 'table' then
+  elseif vim.islist(style) then
     for _, v in ipairs(style) do
       hl_map[v] = 1
     end

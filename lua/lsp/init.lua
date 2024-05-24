@@ -117,6 +117,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.api.nvim_create_autocmd('CursorHold', {
       callback = function()
         vim.diagnostic.open_float({
+          focusable = false,
           scope = 'cursor',
           severity = { min = vim.diagnostic.severity.INFO },
         })

@@ -51,7 +51,7 @@ P.config = function()
       multi_icon = '❯ ',
       borderchars = { '━', '┃', '━', '┃', '┏', '┓', '┛', '┗' },
       history = {
-        path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+        path = vim.fn.stdpath('data') .. '/db/telescope_history.sqlite3',
         limit = 100,
       },
     },

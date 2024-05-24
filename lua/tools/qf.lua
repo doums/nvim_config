@@ -100,29 +100,39 @@ local qf_type_to_severity = {
 }
 
 function M.qf_d_sort(d, opts)
-  table.sort(d, function(a, b)
-    local a_severity = qf_type_to_severity[a.type] or 1
-    local b_severity = qf_type_to_severity[b.type] or 1
-    -- try sorting by severity
-    if a_severity < b_severity then
-      return true
-    elseif a_severity > b_severity then
-      return false
-    end
-    -- try sorting by buffer
-    if opts.bufnr then
-      if a.bufnr < b.bufnr then
+  -- table.sort is tricky, wrap it in a pcall to be safe
+  local success, _ = pcall(function()
+    table.sort(d, function(a, b)
+      local a_severity = qf_type_to_severity[a.type] or 1
+      local b_severity = qf_type_to_severity[b.type] or 1
+      -- try sorting by severity
+      if a_severity < b_severity then
         return true
-      elseif a.bufnr > b.bufnr then
+      elseif a_severity > b_severity then
         return false
       end
-    end
-    -- try sorting by line number
-    if opts.lnum and a.lnum < b.lnum then
-      return true
-    end
-    return false
+      -- try sorting by buffer
+      if opts.bufnr then
+        if a.bufnr < b.bufnr then
+          return true
+        elseif a.bufnr > b.bufnr then
+          return false
+        end
+      end
+      -- try sorting by line number
+      if opts.lnum and a.lnum < b.lnum then
+        return true
+      end
+      return false
+    end)
   end)
+  if not success then
+    vim.notify(
+      '⚠ sorting diagnostics list failed',
+      vim.log.levels.WARN,
+      { title = 'qf_d_sort' }
+    )
+  end
   return d
 end
 

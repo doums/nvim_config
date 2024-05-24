@@ -5,23 +5,21 @@
 local P = {
   'doums/ponton.nvim',
   priority = 999,
-  -- dev = true,
+  dev = true,
 }
 
 P.config = function()
   local p = require('dark').p
   local fg = p.fg
+  local fg_nc = '#97999e'
   local winbar_bg = p.ui_frame_bg
-  local winbarnc_bg = p.ui_frame_bg
+  local focused_hl = '#3574f0'
   local line_bg = p.ui_frame_bg
   local line_fg = p.ui_frame_fg
   local ponton_cdt = require('ponton.condition')
   local main_cdt = {
     ponton_cdt.filetype_not,
     { 'NvimTree', 'TelescopePrompt' },
-  }
-  local cdts = {
-    main_cdt,
   }
 
   require('ponton').setup({
@@ -66,22 +64,25 @@ P.config = function()
       buffer_name = {
         empty = '-',
         style = {
-          { fg, winbar_bg, 'bold' },
-          { fg, winbarnc_bg, 'bold' },
+          { fg, winbar_bg, { 'bold', 'underline' }, focused_hl },
+          { fg_nc, winbar_bg, 'bold' },
         },
-        padding = { 1, nil },
+        padding = { 1, 1 },
         conditions = { main_cdt },
       },
       buffer_changed = {
         style = {
+          { '#fde047', winbar_bg, 'underline', focused_hl },
           { '#fde047', winbar_bg },
-          { '#fde047', winbarnc_bg },
         },
         value = '󰷉',
-        padding = { 1, 1 },
+        padding = { nil, 1 },
         placeholder = '',
-        min_width = 1,
-        conditions = cdts,
+        min_width = 0,
+        conditions = {
+          main_cdt,
+          ponton_cdt.is_normal_buf,
+        },
       },
       read_only = {
         style = { '#C75450', line_bg, 'bold' },
