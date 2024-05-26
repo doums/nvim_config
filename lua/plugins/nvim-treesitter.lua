@@ -5,7 +5,6 @@
 local P = {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  main = 'nvim-treesitter.configs',
   dependencies = {
     {
       'windwp/nvim-ts-autotag',
@@ -21,75 +20,87 @@ local P = {
   },
 }
 
-P.opts = {
-  ensure_installed = {
-    'c',
-    'cpp',
-    'rust',
-    'yaml',
-    'bash',
-    'fish',
-    'typescript',
-    'javascript',
-    'html',
-    'css',
-    'lua',
-    'comment',
-    'markdown',
-    'jsdoc',
-    'tsx',
-    'toml',
-    'json',
-    'graphql',
-    'jsonc',
-    'vimdoc'
-  },
-  highlight = { enable = true },
-  indent = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 't',
-      node_incremental = '<A-l>',
-      scope_incremental = '<A-j>',
-      node_decremental = '<A-h>',
-    },
-  },
-  autotag = {
-    enable = true,
-    filetypes = {
-      'html',
-      'javascript',
+P.config = function()
+  local install = require('nvim-treesitter.install')
+  local setup = require('nvim-treesitter.configs').setup
+
+  if _G.os_name == 'windows' then
+    -- see https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support
+    install.compilers = { 'zig' }
+    install.prefer_git = false
+  end
+
+  setup({
+    ensure_installed = {
+      'c',
+      'cpp',
+      'rust',
+      'yaml',
+      'bash',
+      'fish',
       'typescript',
-      'javascriptreact',
-      'typescriptreact',
-      'jsx',
-      'tsx',
+      'javascript',
+      'html',
+      'css',
+      'lua',
+      'comment',
       'markdown',
+      'jsdoc',
+      'tsx',
+      'toml',
+      'json',
+      'jsonc',
+      'vimdoc',
     },
-  },
-  -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  textobjects = {
-    select = {
+    -- TODO on Windows async install is not working for some reason
+    sync_install = _G.os_name == 'windows',
+    highlight = { enable = true },
+    indent = { enable = true },
+    incremental_selection = {
       enable = true,
-      lookahead = true,
       keymaps = {
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ab'] = '@block.outer',
-        ['ib'] = '@block.inner',
-        ['al'] = '@loop.outer',
-        ['il'] = '@loop.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+        init_selection = 't',
+        node_incremental = '<A-l>',
+        scope_incremental = '<A-j>',
+        node_decremental = '<A-h>',
       },
-      selection_modes = {
-        ['@parameter.outer'] = 'v',
-        ['@function.outer'] = 'V',
-      },
-      include_surrounding_whitespace = true,
     },
-  },
-}
+    autotag = {
+      enable = true,
+      filetypes = {
+        'html',
+        'javascript',
+        'typescript',
+        'javascriptreact',
+        'typescriptreact',
+        'jsx',
+        'tsx',
+        'markdown',
+      },
+    },
+    -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ab'] = '@block.outer',
+          ['ib'] = '@block.inner',
+          ['al'] = '@loop.outer',
+          ['il'] = '@loop.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        },
+        selection_modes = {
+          ['@parameter.outer'] = 'v',
+          ['@function.outer'] = 'V',
+        },
+        include_surrounding_whitespace = true,
+      },
+    },
+  })
+end
 
 return P

@@ -17,4 +17,4 @@ My personal [neovim](https://neovim.io/) distribution
 - shfmt (Arch package)
 - gopls (Arch package)
 
-others: git, ripgrep, fzf, node, npm
+others: git, CMake, zig, ripgrep, fzf, node, npm

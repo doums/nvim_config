@@ -4,6 +4,8 @@
 
 -- pierreD
 
+_G.os_name = jit.os:lower()
+
 -- enables the experimental Lua module loader
 vim.loader.enable()
 
@@ -102,7 +104,7 @@ require('fs').fs_init()
 -- load plugins ⚡
 require('lazy').setup('plugins', {
   dev = {
-    path = '~/.local/share/nvim/dev',
+    path = vim.fn.stdpath('data') .. '/dev',
     fallback = true, -- fallback to git when local plugin doesn't exist
   },
 })
