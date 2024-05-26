@@ -6,8 +6,9 @@ local P = {
   'nvim-telescope/telescope.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-smart-history.nvim',
-    'kkharji/sqlite.lua',
+    -- TODO disable smart-history for now as sqlite.lua is failing
+    -- 'nvim-telescope/telescope-smart-history.nvim',
+    -- 'kkharji/sqlite.lua',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
@@ -62,7 +63,7 @@ P.config = function()
 
   -- extensions
   require('telescope').load_extension('fzf')
-  require('telescope').load_extension('smart_history')
+  -- require('telescope').load_extension('smart_history')
 
   local dropdown_theme = require('telescope.themes').get_dropdown({
     layout_config = { width = { 0.8, max = 80 }, height = 15 },

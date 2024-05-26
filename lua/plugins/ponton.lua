@@ -9,13 +9,11 @@ local P = {
 }
 
 P.config = function()
-  local p = require('dark').p
-  local fg = p.fg
+  local fg = '#f9fafb'
   local fg_nc = '#97999e'
-  local winbar_bg = p.ui_frame_bg
-  local focused_hl = '#3574f0'
-  local line_bg = p.ui_frame_bg
-  local line_fg = p.ui_frame_fg
+  local winbar_bg = '#01347c'
+  local line_bg = '#01347c'
+  local line_fg = '#f9fafb'
   local ponton_cdt = require('ponton.condition')
   local main_cdt = {
     ponton_cdt.filetype_not,
@@ -64,7 +62,7 @@ P.config = function()
       buffer_name = {
         empty = '-',
         style = {
-          { fg, winbar_bg, { 'bold', 'underline' }, focused_hl },
+          { fg, winbar_bg, { 'bold' } },
           { fg_nc, winbar_bg, 'bold' },
         },
         padding = { 1, 1 },
@@ -72,7 +70,7 @@ P.config = function()
       },
       buffer_changed = {
         style = {
-          { '#fde047', winbar_bg, 'underline', focused_hl },
+          { '#fde047', winbar_bg },
           { '#fde047', winbar_bg },
         },
         value = '󰷉',

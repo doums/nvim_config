@@ -101,6 +101,8 @@ _G.terminal_bg = '#1E1F22'
 -- init directories
 require('fs').fs_init()
 
+vim.g.sqlite_clip = vim.fn.stdpath('data') .. '/sqlite/sqlite3.dll'
+
 -- load plugins ⚡
 require('lazy').setup('plugins', {
   dev = {

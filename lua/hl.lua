@@ -13,13 +13,29 @@ local cursor = '#CA7911'
 function M.hl()
   local p = require('dark').p
 
+  -- [[ Windows theme colors override
+  local focused_ui = '#01347c'
+  local menu = '#041c3e'
+  local menu_sel = focused_ui
+  local menu_thumb = '#0154c8'
+
+  hl('Normal', p.fg, nil)
+  hl('CursorLine', nil, focused_ui)
+  hl('MatchParen', nil, '#071b39')
+  hl('Pmenu', p.fg, menu)
+  hl('PmenuSel', nil, menu_sel)
+  hl('PmenuSbar', menu, menu)
+  hl('PmenuThumb', menu_thumb, menu_thumb)
+  hl('FloatBorder', p.fg, menu)
+  -- Windows ]]
+
   -- highlight group for guicursor
   hl('Cursor', '#111111', cursor, { 'bold' })
   hl('Caret', p.bg, p.cursor, 'bold')
 
   -- oterm.nvim
-  hl('otermWin', '#FFFFFF', '#1C1C1C')
-  hl('otermBorder', '#FFFFFF', '#1C1C1C')
+  hl('otermWin', '#FFFFFF', '#000e23')
+  hl('otermBorder', '#FFFFFF', '#000e23')
 
   -- leap.nvim
   local leap_primary = '#fde047'
@@ -64,12 +80,13 @@ function M.hl()
   hl('NvimTreeCopiedHL', nil, nil, { 'underline' }, '#2563eb')
 
   -- ponton.nvim
-  hl('StatusLine', p.ui_frame_bg, p.ui_frame_bg)
+  hl('StatusLine', '#f9fafb', focused_ui)
   hl('WinBar', p.ui_frame_fg)
-  li('WinSeparator', 'StatusLine')
+  hl('WinSeparator', focused_ui, focused_ui)
+  hl('ColorColumn', nil, '#092b5c')
 
   -- suit.nvim
-  hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })
+  hl('suitPrompt', p.todo, menu, { 'bold', 'italic' })
 
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')
@@ -85,7 +102,7 @@ function M.hl()
   hl('monarkLeap', leap_primary, nil, 'bold')
 
   -- dmap.nvim
-  hl('dmapWin', nil, _G.terminal_bg)
+  hl('dmapWin', nil, '#012456')
 end
 
 return M
