@@ -8,13 +8,14 @@ local P = {
 
 P.opts = {
   signs = {
-    add = { hl = 'GitAddSign', text = '┃' },
-    change = { hl = 'GitChangeSign', text = '┃' },
-    delete = { hl = 'GitDeleteSign', text = '▶' },
-    topdelete = { hl = 'GitDeleteSign', text = '▶' },
-    changedelete = { hl = 'GitChangeDeleteSign', text = '┃' },
-    untracked = { hl = 'GitAddSign', text = '╏' },
+    add = { text = '┃' },
+    change = { text = '┃' },
+    delete = { text = '▶' },
+    topdelete = { text = '▶' },
+    changedelete = { text = '┃' },
+    untracked = { text = '╏' },
   },
+  signs_staged_enable = false,
   numhl = false,
   linehl = false,
   current_line_blame_formatter = '<author>, <author_time:%d-%m-%Y> - <summary>',

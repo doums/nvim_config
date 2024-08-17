@@ -63,6 +63,14 @@ function M.hl()
   li('NvimTreeCutHL', 'ErrorUnderline')
   hl('NvimTreeCopiedHL', nil, nil, { 'underline' }, '#2563eb')
 
+  -- gitsigns.nvim
+  li('GitSignsAdd', 'GitAddSign')
+  li('GitSignsChange', 'GitChangeSign')
+  li('GitSignsDelete', 'GitDeleteSign')
+  li('GitSignsTopdelete', 'GitDeleteSign')
+  li('GitSignsChangedelete', 'GitChangeDeleteSign')
+  li('GitSignsUntracked', 'GitAddSign')
+
   -- ponton.nvim
   hl('StatusLine', p.ui_frame_bg, p.ui_frame_bg)
   hl('WinBar', p.ui_frame_fg)

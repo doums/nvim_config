@@ -78,6 +78,7 @@ opt.formatoptions = opt.formatoptions:append('lv')
 o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
 o.grepformat = '%f:%l:%c:%m'
 o.mousemodel = 'extend'
+o.conceallevel = 0
 
 -- load core keymaps
 require('keymaps')
