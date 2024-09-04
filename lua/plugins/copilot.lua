@@ -46,6 +46,9 @@ P.opts = {
       dismiss = '<M-u>',
     },
   },
+  filetypes = {
+    markdown = true,
+  },
 }
 
 return P

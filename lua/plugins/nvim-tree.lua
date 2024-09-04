@@ -4,17 +4,12 @@
 
 local P = {
   'nvim-tree/nvim-tree.lua',
+  -- do not lazy load as recommended
+  -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Installation#lazy-loading
+  lazy = false,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     'doums/rg.nvim',
-  },
-  keys = {
-    { '<Tab>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle nvim-tree' },
-    {
-      '<S-Tab>',
-      '<cmd>NvimTreeFindFile<CR>',
-      desc = 'Select current file in tree',
-    },
   },
 }
 
@@ -70,87 +65,94 @@ local function on_attach(bufnr)
   end, opts(''))
 end
 
-P.opts = {
-  on_attach = on_attach,
-  hijack_cursor = true,
-  disable_netrw = true,
-  hijack_netrw = true,
-  select_prompts = true,
-  diagnostics = {
-    enable = true,
-    severity = {
-      min = vim.diagnostic.severity.ERROR,
-    },
-    icons = {
-      hint = ' ',
-      info = ' ',
-      warning = ' ',
-      error = '╸',
-    },
-  },
-  git = {
-    enable = true,
-    ignore = false,
-  },
-  modified = {
-    enable = true,
-    show_on_dirs = true,
-    show_on_open_dirs = false,
-  },
-  actions = {
-    open_file = {
-      resize_window = false,
-      window_picker = {
-        chars = 'HLJKFQDS',
+P.config = function()
+  vim.keymap.set('n', '<Tab>', '<cmd>NvimTreeToggle<CR>', { silent = true })
+  vim.keymap.set('n', '<S-Tab>', '<cmd>NvimTreeFindFile<CR>', { silent = true })
+
+  require('nvim-tree').setup({
+    on_attach = on_attach,
+    hijack_cursor = true,
+    disable_netrw = true,
+    hijack_netrw = true,
+    select_prompts = true,
+    diagnostics = {
+      enable = true,
+      severity = {
+        min = vim.diagnostic.severity.ERROR,
+      },
+      icons = {
+        hint = ' ',
+        info = ' ',
+        warning = ' ',
+        error = '╸',
       },
     },
-    file_popup = {
-      open_win_config = {
-        border = 'none',
-      },
+    git = {
+      enable = true,
     },
-  },
-  live_filter = {
-    prefix = '󰈲 ',
-    always_show_folders = true,
-  },
-  renderer = {
-    highlight_git = 'name',
-    highlight_diagnostics = 'none',
-    highlight_modified = 'none',
-    highlight_clipboard = 'name',
-    icons = {
-      symlink_arrow = ' → ',
-      diagnostics_placement = "after",
-      show = {
-        git = false,
-        folder = true,
-        file = true,
-        folder_arrow = false,
-        modified = true,
-        diagnostics = true,
+    filters = {
+      git_ignored = false,
+    },
+    modified = {
+      enable = true,
+      show_on_dirs = true,
+      show_on_open_dirs = false,
+    },
+    actions = {
+      open_file = {
+        resize_window = false,
+        window_picker = {
+          chars = 'HLJKFQDS',
+        },
       },
-      glyphs = {
-        default = '󰧮',
-        symlink = '󰌹',
-        modified = '󰷉',
-        folder = {
-          arrow_closed = '▶',
-          arrow_open = '▼',
-          default = '▶',
-          open = '▼',
-          empty = '▷',
-          empty_open = '▽',
-          symlink = '󰌹 ',
-          symlink_open = '󰌹 ',
+      file_popup = {
+        open_win_config = {
+          border = 'none',
         },
       },
     },
-  },
-  view = {
-    width = 40,
-    preserve_window_proportions = true,
-  },
-}
+    live_filter = {
+      prefix = '󰈲 ',
+      always_show_folders = true,
+    },
+    renderer = {
+      highlight_git = 'name',
+      highlight_diagnostics = 'none',
+      highlight_modified = 'none',
+      highlight_clipboard = 'name',
+      icons = {
+        symlink_arrow = ' → ',
+        diagnostics_placement = 'after',
+        show = {
+          git = false,
+          folder = true,
+          file = true,
+          folder_arrow = false,
+          modified = true,
+          diagnostics = true,
+        },
+        glyphs = {
+          default = '󰧮',
+          symlink = '󰌹',
+          modified = '󰷉',
+          folder = {
+            arrow_closed = '▶',
+            arrow_open = '▼',
+            default = '▶',
+            open = '▼',
+            empty = '▷',
+            empty_open = '▽',
+            symlink = '󰌹 ',
+            symlink_open = '󰌹 ',
+          },
+        },
+      },
+    },
+    view = {
+      width = 40,
+      preserve_window_proportions = true,
+    },
+  })
+end
 
 return P
