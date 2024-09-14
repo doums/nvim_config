@@ -4,7 +4,7 @@
 
 -- tsserver - TypeScript
 
-require('lspconfig').tsserver.setup({ -- TypeScript
+require('lspconfig').ts_ls.setup({ -- TypeScript
   on_attach = function(client)
     -- use conform to handle formatting (Prettier)
     client.server_capabilities.documentFormattingProvider = false

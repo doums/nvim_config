@@ -101,13 +101,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set(
       'n',
       '<A-a>',
-      '<cmd>lua vim.diagnostic.goto_prev({float=false})<CR>',
+      '<cmd>lua vim.diagnostic.jump({count=-1,float=false})<CR>',
       bufopt
     )
     vim.keymap.set(
       'n',
       '<A-z>',
-      '<cmd>lua vim.diagnostic.goto_next({float=false})<CR>',
+      '<cmd>lua vim.diagnostic.jump({count=1,float=false})<CR>',
       bufopt
     )
     vim.keymap.set('n', '<A-d>', vim.lsp.buf.hover, bufopt)
