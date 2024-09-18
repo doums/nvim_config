@@ -82,6 +82,9 @@ function M.hl()
   -- telescope.nvim
   li('TelescopeNormal', 'Fg')
   li('TelescopeSelection', 'Visual')
+  li('TelescopePromptPrefix', 'Todo')
+  li('TelescopeSelectionCaret', 'Todo')
+  li('TelescopeMultiSelection', 'Todo')
 
   -- qflist & loclist
   li('qfLineNr', 'Number')
