@@ -37,6 +37,15 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'set nonumber',
 })
 
+-- show concealed characters in help files
+vim.api.nvim_create_autocmd('FileType', {
+  group = group_id,
+  pattern = 'help',
+  callback = function()
+    vim.o.conceallevel = 1
+  end,
+})
+
 -- highlight the selection when yanking
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = group_id,

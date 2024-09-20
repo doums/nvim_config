@@ -32,7 +32,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- OPTIONS
 local o = vim.o
-local opt = vim.opt
 
 o.termguicolors = true
 o.number = true
@@ -73,12 +72,13 @@ o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldlevelstart = 99
 o.splitkeep = 'screen'
-opt.complete = opt.complete:append({ 'i' })
-opt.formatoptions = opt.formatoptions:append('lv')
 o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
 o.grepformat = '%f:%l:%c:%m'
 o.mousemodel = 'extend'
 o.conceallevel = 0
+vim.opt.complete:append({ 'i' })
+vim.opt.formatoptions:append('lv')
+vim.opt.listchars:append({ conceal = '•' })
 
 -- load core keymaps
 require('keymaps')
