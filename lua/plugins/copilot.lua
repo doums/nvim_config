@@ -8,7 +8,7 @@ local P = {
   event = 'InsertEnter',
   keys = {
     {
-      '<M-o>',
+      '<M-p>',
       function()
         require('copilot.panel').open()
       end,
@@ -26,7 +26,7 @@ P.opts = {
       jump_next = '<C-j>',
       accept = '<CR>',
       refresh = '<M-r>',
-      open = '<M-o>',
+      open = "<M-CR>"
     },
     layout = {
       position = 'bottom',

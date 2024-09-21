@@ -63,6 +63,18 @@ function M.hl()
   li('NvimTreeCutHL', 'ErrorUnderline')
   hl('NvimTreeCopiedHL', nil, nil, { 'underline' }, '#2563eb')
 
+  -- oil.nvim
+  li('OilDir', 'Function')
+  li('OilDirIcon', 'Fg')
+  hl('OilCreate', p.ansi_green, nil, { 'bold', 'italic' })
+  hl('OilDelete', p.error, nil, { 'bold', 'italic' })
+  hl('OilMove', p.warning, nil, { 'bold', 'italic' })
+  hl('OilCopy', p.info_effect, nil, { 'bold', 'italic' })
+  li('OilChange', 'OilMove')
+  li('OilRestore', 'OilCopy')
+  hl('OilFloat', p.fg, '#161616')
+  hl('OilFloatTitle', p.todo, '#161616', { 'bold', 'italic' })
+
   -- gitsigns.nvim
   li('GitSignsAdd', 'GitAddSign')
   li('GitSignsChange', 'GitChangeSign')

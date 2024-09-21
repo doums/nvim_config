@@ -39,7 +39,6 @@ P.config = function()
       'buffer_name',
       'buffer_changed',
     },
-    top_line_exclude = { 'NvimTree', 'TelescopePrompt' },
     segments = {
       mode = {
         map = {
