@@ -144,3 +144,18 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
     end
   end,
 })
+
+-- mute cursor when nvim lost focus
+local _cursor = vim.o.guicursor
+vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+  group = group_id,
+  callback = function()
+    vim.o.guicursor = 'a:nocursor'
+  end,
+})
+vim.api.nvim_create_autocmd({ 'FocusGained' }, {
+  group = group_id,
+  callback = function()
+    vim.o.guicursor = _cursor
+  end,
+})
