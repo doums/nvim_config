@@ -9,23 +9,25 @@ local M = {}
 local _fd_cmd = { 'fd', '-t', 'f', '--strip-cwd-prefix' }
 local fd_flags = {
   H = '--hidden',
+  h = '--hidden', -- alias for '--hidden' and globs excluded files
   I = '--no-ignore',
   u = '--unrestricted', -- alias for '--hidden --no-ignore'
   s = '--case-sensitive',
   i = '--ignore-case',
-  E = '', -- add excluded glob files
+  e = '', -- add globs excluded files
 }
 local rg_flags = {
   H = '--hidden',
+  h = '--hidden',
   I = '--no-ignore',
   u = { '--hidden', '--no-ignore' },
   S = '--smart-case',
   s = '--case-sensitive',
   i = '--ignore-case',
-  E = '',
+  e = '',
 }
 local cfg = {
-  flag_list = { fd = 'HIusiE', rg = 'HIuSsiE' },
+  flag_list = { fd = 'HhIusie', rg = 'HhIuSsie' },
   flag_map = { fd = fd_flags, rg = rg_flags },
   excluded_files = {
     rg = {
@@ -72,12 +74,15 @@ local function parse_flags(flags, flag_map, cmd)
         error(flag, 0)
         return nil
       end
-      if flag == 'E' then
+      if flag == 'h' then
+        return { flag_map[flag], get_excluded_flags(cmd) }
+      end
+      if flag == 'e' then
         return get_excluded_flags(cmd)
       end
       return flag_map[flag]
     end)
-    :flatten()
+    :flatten(2)
     :totable()
 end
 
