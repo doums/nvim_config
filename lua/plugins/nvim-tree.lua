@@ -42,6 +42,7 @@ local function on_attach(bufnr)
   km.set('n', 'a', api.fs.create, opts('Create'))
   km.set('n', 'c', api.fs.copy.node, opts('Copy'))
   km.set('n', 'd', api.fs.remove, opts('Delete'))
+  km.set('n', 'D', api.fs.trash, opts('Trash'))
   km.set('n', '<A-f>', api.live_filter.start, opts('Filter'))
   km.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
   km.set('n', 'g?', api.tree.toggle_help, opts('Help'))
@@ -75,6 +76,9 @@ P.config = function()
     disable_netrw = true,
     hijack_netrw = true,
     select_prompts = true,
+    trash = {
+      cmd = 'trash',
+    },
     diagnostics = {
       enable = true,
       severity = {

@@ -100,7 +100,7 @@ require('filetypes.pkgbuild')
 _G.terminal_bg = '#1E1F22'
 
 -- init directories
-require('fs').fs_init()
+require('fs').init()
 
 -- load plugins ⚡
 require('lazy').setup('plugins', {

@@ -6,7 +6,7 @@
 
 local M = {}
 
-function M.fs_init()
+function M.init()
   -- ~/.local/share/nvim/db
   local db_path = vim.fn.stdpath('data') .. '/db'
 

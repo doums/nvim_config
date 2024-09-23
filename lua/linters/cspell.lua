@@ -24,7 +24,7 @@ return {
         local lnum = math.max(0, item.lnum - 1)
         local col = math.max(0, item.col - 1)
         local end_lnum = item.end_lnum > 0 and (item.end_lnum - 1) or lnum
-        local end_col = col + word:len() - 2 or col
+        local end_col = col + vim.fn.strdisplaywidth(word) - 2 or col
         local diagnostic = {
           lnum = lnum,
           col = col,
@@ -32,11 +32,11 @@ return {
           end_col = end_col,
           message = message,
           source = 'cspell',
-          severity = vim.diagnostic.severity.HINT
+          severity = vim.diagnostic.severity.HINT,
         }
         table.insert(result, diagnostic)
       end
     end
     return result
-  end
+  end,
 }

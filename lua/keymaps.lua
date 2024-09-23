@@ -5,7 +5,7 @@
 -- CORE KEYMAPS
 
 local map = vim.keymap.set
-local scroll = require('utils').scroll
+local scroll = require('util').scroll
 
 -- c'est en forgeant que l'on devient forgeron
 map('', '<Up>', '<Nop>')

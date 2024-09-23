@@ -10,8 +10,8 @@ local fmt = require('luasnip.extras.fmt').fmt
 local fmta = require('luasnip.extras.fmt').fmta
 local f = ls.function_node
 local i = ls.insert_node
-local filename = require('snippets.utils').filename
-local copy = require('snippets.utils').copy
+local filename = require('snippets.util').filename
+local copy = require('snippets.util').copy
 
 local M = {
   s(

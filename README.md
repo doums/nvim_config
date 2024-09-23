@@ -2,7 +2,11 @@
 
 My personal [neovim](https://neovim.io/) distribution
 
-#### Externals dependencies
+#### System dependencies
+
+git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm
+
+#### LSP
 
 - rust-analyzer (https://rust-analyzer.github.io/manual.html#rustup)
 - shellcheck, shell script static analysis tool (AUR shellcheck-bin)
@@ -16,5 +20,3 @@ My personal [neovim](https://neovim.io/) distribution
 - cspell (npm package)
 - shfmt (Arch package)
 - gopls (Arch package)
-
-others: git, CMake, zig, ripgrep, fzf, node, npm

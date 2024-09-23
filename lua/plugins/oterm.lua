@@ -8,7 +8,6 @@ local P = {
     { '<M-t>', nil, desc = 'Open a terminal' },
     { '<M-y>', nil, desc = 'Open a terminal in a vertical split' },
     { '<F2>', nil, desc = 'Open gitui' },
-    { '<F3>', nil, desc = 'Open tig' },
     { '<F4>', nil, desc = 'Open nnn' },
   },
   -- dev = true,
@@ -44,15 +43,6 @@ P.config = function()
       height = 0.8,
       width = 0.8,
       command = 'gitui',
-    })
-  end)
-  map('n', '<F3>', function()
-    open({
-      name = 'tig',
-      layout = 'center',
-      height = 0.8,
-      width = 0.7,
-      command = 'tig',
     })
   end)
 end

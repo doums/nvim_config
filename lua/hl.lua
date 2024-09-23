@@ -4,8 +4,8 @@
 
 local M = {}
 
-local hl = require('utils').hl
-local li = require('utils').li
+local hl = require('util').hl
+local li = require('util').li
 
 -- terminal cursor color
 local cursor = '#CA7911'
