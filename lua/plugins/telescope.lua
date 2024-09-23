@@ -20,8 +20,6 @@ local P = {
     { '<C-s>', nil },
     { '<C-M-s>', nil },
     { '<C-b>', nil },
-    { '<A-s>', '<cmd>Telescope lsp_document_symbols<cr>' },
-    { '<A-w>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>' },
   },
 }
 

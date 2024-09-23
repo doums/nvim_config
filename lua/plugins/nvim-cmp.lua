@@ -7,17 +7,13 @@ local P = {
   dependencies = {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    'saadparwaiz1/cmp_luasnip',
   },
-  event = { 'InsertEnter', 'LspAttach', 'CmdlineEnter' },
+  event = { 'InsertEnter', 'CmdlineEnter' },
 }
 
 P.config = function()
   local cmp = require('cmp')
-  local ls = require('luasnip')
   local ap = require('nvim-autopairs.completion.cmp')
 
   local function has_word_before()
@@ -31,14 +27,8 @@ P.config = function()
   end
 
   local tab_key = cmp.mapping(function(fallback)
-    local co = _G.copilot == 'ON' and require('copilot.suggestion')
-
-    if co and co.is_visible() then
-      co.accept()
-    elseif cmp.visible() then
+    if cmp.visible() then
       cmp.select_next_item()
-    elseif ls.expand_or_locally_jumpable() then
-      ls.expand_or_jump()
     elseif has_word_before() then
       cmp.complete()
     else
@@ -49,8 +39,6 @@ P.config = function()
   local stab_key = cmp.mapping(function(fallback)
     if cmp.visible() then
       cmp.select_prev_item()
-    elseif ls.jumpable(-1) then
-      ls.jump(-1)
     else
       fallback()
     end
@@ -85,14 +73,6 @@ P.config = function()
 
   -- insert `(` after select function or method item
   cmp.event:on('confirm_done', ap.on_confirm_done())
-
-  -- hide copilot suggestions when completion menu is open
-  -- cmp.event:on('menu_opened', function()
-  --   vim.b.copilot_suggestion_hidden = true
-  -- end)
-  -- cmp.event:on('menu_closed', function()
-  --   vim.b.copilot_suggestion_hidden = false
-  -- end)
 
   ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
@@ -134,18 +114,9 @@ P.config = function()
         end
       end,
     },
-    snippet = {
-      expand = function(args)
-        ls.lsp_expand(args.body)
-      end,
-    },
     sources = {
-      { name = 'luasnip' },
-      { name = 'nvim_lsp' },
-      { name = 'nvim_lua' },
       { name = 'path' },
       { name = 'buffer' },
-      { name = 'crates' },
     },
     cmp.setup.filetype('suitui', {
       sources = {
@@ -164,11 +135,7 @@ P.config = function()
       format = function(entry, vim_item)
         vim_item.menu = ({
           buffer = '⌈buf⌋',
-          nvim_lsp = '⌈lsp⌋',
-          luasnip = '⌈snip⌋',
-          nvim_lua = '⌈lua⌋',
           path = '⌈path⌋',
-          crates = '⌈crates⌋',
         })[entry.source.name]
         return vim_item
       end,
