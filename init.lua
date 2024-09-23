@@ -86,6 +86,8 @@ require('keymaps')
 -- load autocmds
 require('autocmds')
 
+require('clipboard').init()
+
 -- Miscellaneous
 -- nvim as man pager
 vim.cmd.runtime('ftplugin/man.vim')

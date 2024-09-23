@@ -5,19 +5,6 @@
 local P = {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  dependencies = {
-    {
-      'windwp/nvim-ts-autotag',
-      ft = {
-        'javascriptreact',
-        'typescriptreact',
-        'jsx',
-        'tsx',
-        'markdown',
-        'html',
-      },
-    },
-  },
 }
 
 P.config = function()
@@ -63,19 +50,6 @@ P.config = function()
         node_incremental = '<A-l>',
         scope_incremental = '<A-j>',
         node_decremental = '<A-h>',
-      },
-    },
-    autotag = {
-      enable = true,
-      filetypes = {
-        'html',
-        'javascript',
-        'typescript',
-        'javascriptreact',
-        'typescriptreact',
-        'jsx',
-        'tsx',
-        'markdown',
       },
     },
     -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects

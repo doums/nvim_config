@@ -28,10 +28,6 @@ function M.hl()
   hl('LeapLabelSecondary', '#000000', '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
 
-  -- copilot.lua
-  hl('CopilotSuggestion', '#42a595', nil, 'italic')
-  li('CopilotAnnotation', 'CopilotSuggestion')
-
   -- nvim-cmp
   li('CmpItemMenu', 'Fg')
   li('CmpItemAbbr', 'Fg')
@@ -106,9 +102,6 @@ function M.hl()
 
   -- monark.nvim
   hl('monarkLeap', leap_primary, nil, 'bold')
-
-  -- dmap.nvim
-  hl('dmapWin', nil, _G.terminal_bg)
 end
 
 return M

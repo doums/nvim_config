@@ -29,7 +29,6 @@ P.config = function()
       'read_only',
       'git_branch',
       'spacer',
-      'lsp_wip',
       'line',
       'sep',
       'column',
@@ -114,11 +113,6 @@ P.config = function()
         style = { line_fg, line_bg },
         padding = { 1, 1 },
         prefix = ' ',
-      },
-      lsp_wip = {
-        style = { line_fg, line_bg },
-        fn = require('lswip').get,
-        padding = { 1, 1 },
       },
     },
   })
