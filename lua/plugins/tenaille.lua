@@ -5,7 +5,6 @@
 local P = {
   'doums/tenaille.nvim',
   config = true,
-  dev = true,
 }
 
 return P
