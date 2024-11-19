@@ -90,7 +90,7 @@ P.config = function()
         winhighlight = 'NormalFloat:OilFloat,FloatBorder:OilFloat,FloatTitle:OilFloatTitle',
       },
     },
-    preview = {
+    preview_win = {
       max_width = { 66, 0.8 },
       min_width = { 20, 0.1 },
       max_height = 20,
