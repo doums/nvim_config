@@ -23,8 +23,12 @@ P.opts = {
     local gs = require('gitsigns')
     local opts = { buffer = bufnr }
     vim.keymap.set('n', '<A-g>', require('tools.git_menu').open, opts)
-    vim.keymap.set('n', '<leader>n', gs.next_hunk, opts)
-    vim.keymap.set('n', '<leader>N', gs.prev_hunk, opts)
+    vim.keymap.set('n', '<leader>n', function()
+      gs.nav_hunk('next')
+    end, opts)
+    vim.keymap.set('n', '<leader>N', function()
+      gs.nav_hunk('prev')
+    end, opts)
   end,
   preview_config = { border = { '', '', '', ' ', '', '', '', ' ' } },
 }

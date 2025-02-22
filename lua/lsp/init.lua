@@ -152,6 +152,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     require('lsp_signature').on_attach(signature_help_cfg, args.buf)
 
+    -- use LSP for folding
+    if client:supports_method('textDocument/foldingRange') then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
+
     -- TODO disable semantic highlighting
     client.server_capabilities.semanticTokensProvider = nil
   end,

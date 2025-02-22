@@ -30,6 +30,7 @@ P.config = function()
     install.prefer_git = false
   end
 
+---@diagnostic disable-next-line: missing-fields
   setup({
     ensure_installed = {
       'c',
@@ -52,6 +53,7 @@ P.config = function()
       'jsonc',
       'vimdoc',
     },
+    auto_install = false,
     -- TODO on Windows async install is not working for some reason
     sync_install = _G.os_name == 'windows',
     highlight = { enable = true },

@@ -5,6 +5,8 @@
 local P = {
   'doums/dmap.nvim',
   event = { 'LspAttach', 'DiagnosticChanged' },
+  dev = true,
+  enabled = false,
 }
 
 P.opts = {
