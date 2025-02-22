@@ -19,7 +19,6 @@ P.config = function()
   local cmp = require('cmp')
   local ls = require('luasnip')
   local ap = require('nvim-autopairs.completion.cmp')
-  local co = require('copilot.suggestion')
 
   local function has_word_before()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -32,7 +31,9 @@ P.config = function()
   end
 
   local tab_key = cmp.mapping(function(fallback)
-    if co.is_visible() then
+    local co = _G.copilot == 'ON' and require('copilot.suggestion')
+
+    if co and co.is_visible() then
       co.accept()
     elseif cmp.visible() then
       cmp.select_next_item()

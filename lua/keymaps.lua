@@ -29,6 +29,8 @@ map('', 'k', 'gk', { silent = true })
 -- goto start and end of line
 map('', '<space>l', '$')
 map('', '<space>h', '0')
+-- past prev register
+map({'n', 'v'}, '<C-p>', '"0p')
 -- insert mode
 map('i', '<A-BS>', '<C-w>')
 map('i', '<M-Left>', '<S-Left>')

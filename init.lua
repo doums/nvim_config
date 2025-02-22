@@ -5,6 +5,7 @@
 -- pierreD
 
 _G.os_name = jit.os:lower()
+_G.copilot = 'OFF'
 
 -- enables the experimental Lua module loader
 vim.loader.enable()
