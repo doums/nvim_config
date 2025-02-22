@@ -8,9 +8,9 @@ local P = {
     { '<M-t>', nil, desc = 'Open a terminal' },
     { '<M-y>', nil, desc = 'Open a terminal in a vertical split' },
     { '<F2>', nil, desc = 'Open gitui' },
-    { '<F4>', nil, desc = 'Open nnn' },
+    { '<F5>', nil, desc = 'Open nnn' },
   },
-  -- dev = true,
+  dev = true,
 }
 
 P.config = function()
@@ -27,7 +27,7 @@ P.config = function()
   map('n', '<M-y>', function()
     open({ layout = 'vsplit' })
   end)
-  map('n', '<F4>', function()
+  map('n', '<F5>', function()
     open({
       name = 'nnn',
       layout = 'center',

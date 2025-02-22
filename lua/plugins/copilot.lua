@@ -5,7 +5,6 @@
 local P = {
   'zbirenbaum/copilot.lua',
   cmd = 'Copilot',
-  event = 'InsertEnter',
   keys = {
     {
       '<M-p>',
@@ -13,6 +12,30 @@ local P = {
         require('copilot.panel').open()
       end,
       desc = 'Open Copilot panel',
+    },
+    {
+      '<F3>',
+      '<cmd>Copilot enable<CR>',
+      desc = 'Enable Copilot',
+    },
+    {
+      '<F4>',
+      function()
+        -- TODO `:Copilot disable` throws an error
+        -- see https://github.com/zbirenbaum/copilot.lua/issues/355
+        local function disable()
+          vim.cmd('Copilot disable')
+        end
+        pcall(disable)
+        vim.cmd('Copilot status')
+      end,
+      -- '<cmd>Copilot disable<CR>',
+      desc = 'Disable Copilot',
+    },
+    {
+      '<F6>',
+      '<cmd>Copilot status<CR>',
+      desc = 'Get Copilot state',
     },
   },
 }
@@ -26,7 +49,7 @@ P.opts = {
       jump_next = '<C-j>',
       accept = '<CR>',
       refresh = '<M-r>',
-      open = "<M-CR>"
+      open = '<M-CR>',
     },
     layout = {
       position = 'bottom',
@@ -48,6 +71,15 @@ P.opts = {
   },
   filetypes = {
     markdown = true,
+    sh = function()
+      if
+        string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*')
+      then
+        -- disable for .env files
+        return false
+      end
+      return true
+    end,
   },
 }
 
