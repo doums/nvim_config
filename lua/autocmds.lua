@@ -61,14 +61,14 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function(args)
     -- current buffer diagnostics
     vim.keymap.set('n', '<A-q>', function()
-      -- TODO vim.diagnostic.setloclist() should be used here
-      -- but it's not sorting diagnostics by severity
-      -- so we have to do it manually
-      local list = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf))
+      local nss = qf.get_namespaces()
+      local list = vim.diagnostic.toqflist(
+        vim.diagnostic.get(args.buf, { namespace = nss })
+      )
       local sorted = qf.qf_d_sort(list, { lnum = true })
       qf.on_ll_list({
         items = sorted,
-        title = '~',
+        title = '󰨰',
         context = { buf_diagnostics = args.buf },
         quickfixtextfunc = qf.ll_d_format,
       })
@@ -79,11 +79,13 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
       -- TODO vim.diagnostic.setqflist() should be used here
       -- but it's not sorting diagnostics by severity
       -- so we have to do it manually
-      local list = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
+      local nss = qf.get_namespaces()
+      local list =
+        vim.diagnostic.toqflist(vim.diagnostic.get(nil, { namespace = nss }))
       local sorted = qf.qf_d_sort(list, { bufnr = true, lnum = true })
       qf.on_qf_list({
         items = sorted,
-        title = '≈',
+        title = '󱔘 󰨰',
         context = { all_diagnostics = true },
         quickfixtextfunc = qf.qf_d_format,
       })
@@ -102,7 +104,9 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 
     -- if qflist is listing all diagnostics, do update
     if qflist.context.all_diagnostics then
-      local d = vim.diagnostic.toqflist(vim.diagnostic.get(nil))
+      local nss = qf.get_namespaces()
+      local d =
+        vim.diagnostic.toqflist(vim.diagnostic.get(nil, { namespace = nss }))
       local items = qf.qf_d_sort(d, { bufnr = true, lnum = true })
       vim.fn.setqflist({}, 'r', { items = items })
     end
@@ -130,10 +134,12 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
       return win and win.context.buf_diagnostics
     end, loclists)
 
+    local nss = qf.get_namespaces()
     -- update diagnostic lists
     for _, ll in ipairs(loclists) do
-      local d =
-        vim.diagnostic.toqflist(vim.diagnostic.get(ll.context.buf_diagnostics))
+      local d = vim.diagnostic.toqflist(
+        vim.diagnostic.get(ll.context.buf_diagnostics, { namespace = nss })
+      )
 
       vim.fn.setloclist(
         ll.winid,

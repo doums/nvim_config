@@ -167,20 +167,29 @@ end
 
 function M.on_qf_list(options)
   vim.fn.setqflist({}, ' ', options)
-  if #options.items > 1 then
-    vim.cmd('botright copen 5')
+  if #options.items > 0 then
+    vim.cmd('copen 5')
   end
-  vim.cmd('cfirst')
 end
 
-function M.on_ll_list(options, jump_on_first)
+function M.on_ll_list(options)
   vim.fn.setloclist(0, {}, ' ', options)
-  if #options.items > 1 then
+  if #options.items > 0 then
     vim.cmd('lopen 5')
   end
-  if jump_on_first then
-    vim.cmd('lfirst')
-  end
+end
+
+-- filter out cspell namespace
+function M.get_namespaces()
+  return vim
+    .iter(pairs(vim.diagnostic.get_namespaces()))
+    :filter(function(_, ns)
+      return ns.name ~= 'cspell'
+    end)
+    :map(function(ns)
+      return ns
+    end)
+    :totable()
 end
 
 return M
