@@ -102,6 +102,9 @@ P.config = function()
         winhighlight = 'NormalFloat:OilFloat,FloatBorder:OilFloat',
       },
     },
+    confirmation = {
+      border = false,
+    },
     progress = {
       border = false,
     },
