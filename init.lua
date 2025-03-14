@@ -6,6 +6,7 @@
 
 _G.os_name = jit.os:lower()
 _G.copilot = 'OFF'
+_G.lt_lang = 'en-US'
 
 -- enables the experimental Lua module loader
 vim.loader.enable()

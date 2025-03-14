@@ -160,5 +160,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- TODO disable semantic highlighting
     client.server_capabilities.semanticTokensProvider = nil
+
+    if client.name == 'ltex_plus' then
+      vim.api.nvim_buf_create_user_command(args.buf, 'Ltool', function(a)
+        local lang = a.fargs[1] == 'en' and 'en-US' or 'fr-FR'
+        if _G.lt_lang == lang then
+          vim.notify('lang is already set to ' .. lang, vim.log.levels.WARN)
+          return
+        end
+        _G.lt_lang = lang
+        vim.lsp.stop_client(client.id, true)
+        vim.notify('✓ lang set to ' .. lang)
+        -- TODO this hack is required to force reload the server config
+        package.loaded['lsp.servers.ltex_ls'] = nil
+        require('lsp.servers.ltex_ls')
+      end, {
+        nargs = 1,
+        complete = function()
+          return { 'en', 'fr' }
+        end,
+      })
+    end
   end,
 })

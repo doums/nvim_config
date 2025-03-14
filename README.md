@@ -1,22 +1,23 @@
-## nvim distro
+## nvim config
 
-My personal [neovim](https://neovim.io/) distribution
+My personal [Neovim](https://neovim.io/) distribution
 
 #### System dependencies
 
-git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm
+git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm, java
 
 #### LSP
 
-- rust-analyzer (https://rust-analyzer.github.io/manual.html#rustup)
-- shellcheck, shell script static analysis tool (AUR shellcheck-bin)
-- TypeScript Language Server (npm package - typescript-language-server)
-- lua-language-server (Arch package)
+- `rust-analyzer` (https://rust-analyzer.github.io/manual.html#rustup)
+- zls (Arch package)
+- `lua-language-server` (Arch package)
 - StyLua, code formatter for Lua (Arch package)
-- ESLint and Prettier (npm packages - eslint prettier)
-- clangd, language server for C/C++ (Arch package)
-- Tailwind CSS (npm package - tailwindcss)
-- ltex-ls (from releases https://github.com/valentjn/ltex-ls/releases, requires JVM → openJDK)
-- cspell (npm package)
-- shfmt (Arch package)
-- gopls (Arch package)
+- `shellcheck` (AUR `shellcheck-bin`)
+- `shfmt` (Arch package)
+- `typescript-language-server` (npm package)
+- `eslint` `prettier` (npm packages)
+- `@tailwindcss/language-server` (npm package)
+- ltex-ls+ (AUR `ltex-ls-plus-bin`)
+- `cspell` (npm package)
+- `clangd` C/C++ (Arch package)
+- `gopls` (Arch package)
