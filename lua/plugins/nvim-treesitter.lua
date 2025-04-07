@@ -30,7 +30,7 @@ P.config = function()
     install.prefer_git = false
   end
 
----@diagnostic disable-next-line: missing-fields
+  ---@diagnostic disable-next-line: missing-fields
   setup({
     ensure_installed = {
       'c',

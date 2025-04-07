@@ -21,16 +21,23 @@ end)
 map('', '<C-k>', function()
   scroll('up')
 end)
-map({'n', 'v'}, '<Up>', '<C-y>')
-map({'n', 'v'}, '<Down>', '<C-e>')
+map({ 'n', 'v' }, '<Up>', '<C-y>')
+map({ 'n', 'v' }, '<Down>', '<C-e>')
 -- move through wrapped line
 map('', 'j', 'gj', { silent = true })
 map('', 'k', 'gk', { silent = true })
 -- goto start and end of line
 map('', '<space>l', '$')
 map('', '<space>h', '0')
+-- visually de/indent
+map('v', '>', function()
+  return '>gv'
+end, { expr = true })
+map('v', '<', function()
+  return '<gv'
+end, { expr = true })
 -- past prev register
-map({'n', 'v'}, '<C-p>', '"0p')
+map({ 'n', 'v' }, '<C-p>', '"0p')
 -- insert mode
 map('i', '<A-BS>', '<C-w>')
 map('i', '<M-Left>', '<S-Left>')

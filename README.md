@@ -1,6 +1,7 @@
 ## nvim config
 
-My personal [Neovim](https://neovim.io/) distribution
+My personal [Neovim](https://neovim.io/) distribution \
+*0.12*
 
 #### System dependencies
 
