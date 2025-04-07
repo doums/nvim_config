@@ -62,9 +62,12 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     -- current buffer diagnostics
     vim.keymap.set('n', '<A-q>', function()
       local nss = qf.get_namespaces()
-      local list = vim.diagnostic.toqflist(
-        vim.diagnostic.get(args.buf, { namespace = nss })
-      )
+      local diags = vim.diagnostic.get(args.buf, { namespace = nss })
+      if #diags == 0 then
+        vim.notify('✓ no diagnostics', vim.log.levels.INFO)
+        return
+      end
+      local list = vim.diagnostic.toqflist(diags)
       local sorted = qf.qf_d_sort(list, { lnum = true })
       qf.on_ll_list({
         items = sorted,
@@ -80,8 +83,12 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
       -- but it's not sorting diagnostics by severity
       -- so we have to do it manually
       local nss = qf.get_namespaces()
-      local list =
-        vim.diagnostic.toqflist(vim.diagnostic.get(nil, { namespace = nss }))
+      local diags = vim.diagnostic.get(nil, { namespace = nss })
+      if #diags == 0 then
+        vim.notify('✓ no diagnostics', vim.log.levels.INFO)
+        return
+      end
+      local list = vim.diagnostic.toqflist(diags)
       local sorted = qf.qf_d_sort(list, { bufnr = true, lnum = true })
       qf.on_qf_list({
         items = sorted,

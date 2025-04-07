@@ -167,14 +167,18 @@ end
 
 function M.on_qf_list(options)
   vim.fn.setqflist({}, ' ', options)
-  if #options.items > 0 then
-    vim.cmd('copen 5')
+  if #options.items == 1 then
+    vim.cmd('cfirst')
+  elseif #options.items > 1 then
+    vim.cmd('botright copen 5')
   end
 end
 
 function M.on_ll_list(options)
   vim.fn.setloclist(0, {}, ' ', options)
-  if #options.items > 0 then
+  if #options.items == 1 then
+    vim.cmd('lfirst')
+  elseif #options.items > 1 then
     vim.cmd('lopen 5')
   end
 end
