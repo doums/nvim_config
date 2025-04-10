@@ -4,32 +4,36 @@
 
 -- lua-ls
 -- https://github.com/LuaLS/lua-language-server
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 
-local runtime_path = vim.tbl_extend(
-  'keep',
-  vim.split(package.path, ';'),
-  { '?/init.lua', '?.lua', 'lua/?.lua', 'lua/?/init.lua' }
-)
-require('lspconfig').lua_ls.setup({ -- Lua
-  on_attach = function(client)
+require('lspconfig').lua_ls.setup({
+  on_init = function(client)
     -- use guard.nvim to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      local pcheck = vim.loop.fs_stat(path .. '/.luarc.json')
+        or vim.loop.fs_stat(path .. '/.luarc.jsonc')
+      if path ~= vim.fn.stdpath('config') and pcheck then
+        return
+      end
+    end
+    client.config.settings.Lua =
+      vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        runtime = { version = 'LuaJIT' },
+        -- Make the server aware of Neovim runtime files
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            '${3rd}/luv/library',
+          },
+        },
+      })
   end,
-  capabilities = require('lsp.common').capabilities,
   settings = {
     Lua = {
-      runtime = { version = 'LuaJIT', path = runtime_path },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-        -- Disable that prompt about `luassert` on server start
-        checkThirdParty = false,
-      },
       telemetry = { enable = false },
     },
   },

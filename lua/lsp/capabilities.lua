@@ -3,8 +3,9 @@
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 -- server capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-require('cmp_nvim_lsp').default_capabilities(capabilities)
+local default = vim.lsp.protocol.make_client_capabilities()
+local cmp = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = vim.tbl_deep_extend('force', default, cmp)
 
 -- fix a warning "multiple different client offset_encodings detected"
 -- see https://github.com/neovim/nvim-lspconfig/issues/2184
@@ -16,6 +17,6 @@ capabilities = vim.tbl_deep_extend('force', capabilities, {
 })
 
 local M = {
-  capabilities = capabilities,
+  default = capabilities,
 }
 return M

@@ -5,7 +5,6 @@
 -- LSP config for Rust - rust-analyzer
 
 require('lspconfig').rust_analyzer.setup({
-  capabilities = require('lsp.common').capabilities,
   settings = {
     ['rust-analyzer'] = { checkOnSave = { command = 'clippy' } },
   },

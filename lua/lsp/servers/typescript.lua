@@ -10,5 +10,4 @@ require('lspconfig').ts_ls.setup({ -- TypeScript
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
-  capabilities = require('lsp.common').capabilities,
 })

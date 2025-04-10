@@ -6,6 +6,11 @@
 
 local qf = require('tools.qf')
 
+-- set the default capabilities for all clients
+vim.lsp.config('*', {
+  capabilities = require('lsp.capabilities').default,
+})
+
 local signature_help_cfg = {
   bind = true,
   doc_lines = 2,

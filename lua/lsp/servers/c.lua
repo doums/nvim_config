@@ -4,6 +4,4 @@
 
 -- clangd - C/C++
 
-require('lspconfig').clangd.setup({
-  capabilities = require('lsp.common').capabilities,
-})
+require('lspconfig').clangd.setup({})

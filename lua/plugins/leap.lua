@@ -9,6 +9,15 @@ local P = {
 P.opts = {
   safe_labels = 'fsnutbgFLNHGMUTZ',
   labels = 'fsnghvbwydqzcxturiaoe',
+  substitute_chars = { ['\r'] = '¬' },
+  equivalence_classes = {
+    ' \t\r\n',
+    'eéè',
+    'aàâ',
+    'iî',
+    'oô',
+    'uùû',
+  },
 }
 
 P.init = function()
