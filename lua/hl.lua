@@ -17,6 +17,9 @@ function M.hl()
   hl('Cursor', '#111111', cursor, { 'bold' })
   hl('Caret', p.bg, p.cursor, 'bold')
 
+  -- blink.cmp
+  hl('BlinkCmpSource', p.comment)
+
   -- oterm.nvim
   hl('otermWin', '#FFFFFF', '#1C1C1C')
   hl('otermBorder', '#FFFFFF', '#1C1C1C')
@@ -31,14 +34,6 @@ function M.hl()
   -- copilot.lua
   hl('CopilotSuggestion', '#42a595', nil, 'italic')
   li('CopilotAnnotation', 'CopilotSuggestion')
-
-  -- nvim-cmp
-  li('CmpItemMenu', 'Fg')
-  li('CmpItemAbbr', 'Fg')
-  li('CmpItemKind', 'Fg')
-  hl('CmpItemAbbrDeprecated', nil, nil, { 'strikethrough' })
-  hl('CmpItemAbbrMatch', p.menu_hl, nil, 'bold')
-  li('CmpItemAbbrMatchFuzzy', 'CmpItemAbbrMatch')
 
   -- nvim-tree.lua
   li('NvimTreeNormal', 'Fg')
@@ -99,16 +94,19 @@ function M.hl()
   li('TelescopeMultiSelection', 'Todo')
 
   -- qflist & loclist
+  li('qfText', 'Fg')
   li('qfLineNr', 'Number')
   li('qfFileName', 'Debug')
   hl('qfTitle', p.fg, p.ui_frame_bg, 'bold')
   hl('QuickFixLine', nil)
+  li('qfSeparator1', 'NonText')
+  li('qfSeparator2', 'NonText')
 
   -- monark.nvim
   hl('monarkLeap', leap_primary, nil, 'bold')
 
   -- dmap.nvim
-  hl('dmapWin', nil, _G.terminal_bg)
+  hl('dmapWin', nil, _G._pdcfg.terminal_bg)
 end
 
 return M

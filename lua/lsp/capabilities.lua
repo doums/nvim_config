@@ -4,8 +4,9 @@
 
 -- server capabilities
 local default = vim.lsp.protocol.make_client_capabilities()
-local cmp = require('cmp_nvim_lsp').default_capabilities()
-local capabilities = vim.tbl_deep_extend('force', default, cmp)
+-- https://cmp.saghen.dev/installation#merging-lsp-capabilities
+local blink = require('blink.cmp').get_lsp_capabilities({}, false)
+local capabilities = vim.tbl_deep_extend('force', default, blink)
 
 -- fix a warning "multiple different client offset_encodings detected"
 -- see https://github.com/neovim/nvim-lspconfig/issues/2184

@@ -10,7 +10,7 @@ local P = {
     { '<F2>', nil, desc = 'Open gitui' },
     { '<F5>', nil, desc = 'Open nnn' },
   },
-  dev = true,
+  -- dev = true,
 }
 
 P.config = function()

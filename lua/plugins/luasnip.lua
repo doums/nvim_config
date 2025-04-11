@@ -4,6 +4,7 @@
 
 local P = {
   'L3MON4D3/LuaSnip',
+  version = 'v2.*',
   ft = { 'typescript', 'typescriptreact', 'lua', 'rust' },
 }
 
