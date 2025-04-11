@@ -78,6 +78,7 @@ o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
 o.grepformat = '%f:%l:%c:%m'
 o.mousemodel = 'extend'
 o.conceallevel = 0
+o.winborder = 'none'
 vim.opt.complete:append({ 'i' })
 vim.opt.formatoptions:append('lv')
 vim.opt.listchars:append({ conceal = '•' })

@@ -9,7 +9,7 @@ local P = {
   cmd = 'Copilot',
   keys = {
     {
-      '<M-p>',
+      '<F7>',
       function()
         if _G.copilot == 'ON' then
           require('copilot.panel').open()
@@ -70,12 +70,12 @@ P.opts = {
     auto_trigger = true,
     debounce = 75,
     keymap = {
-      accept = '<M-CR>',
-      accept_word = false,
-      accept_line = false,
+      accept = '<M-Tab>',
+      accept_word = '<M-k>',
+      accept_line = '<M-l>',
       next = '<M-]>',
       prev = '<M-[>',
-      dismiss = '<M-u>',
+      dismiss = '<M-c>',
     },
   },
   filetypes = {

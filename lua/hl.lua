@@ -32,14 +32,6 @@ function M.hl()
   hl('CopilotSuggestion', '#42a595', nil, 'italic')
   li('CopilotAnnotation', 'CopilotSuggestion')
 
-  -- nvim-cmp
-  li('CmpItemMenu', 'Fg')
-  li('CmpItemAbbr', 'Fg')
-  li('CmpItemKind', 'Fg')
-  hl('CmpItemAbbrDeprecated', nil, nil, { 'strikethrough' })
-  hl('CmpItemAbbrMatch', p.menu_hl, nil, 'bold')
-  li('CmpItemAbbrMatchFuzzy', 'CmpItemAbbrMatch')
-
   -- nvim-tree.lua
   li('NvimTreeNormal', 'Fg')
   hl('NvimTreeModifiedIcon', '#fde047')
