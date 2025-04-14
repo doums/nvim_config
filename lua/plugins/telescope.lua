@@ -6,13 +6,10 @@ local P = {
   'nvim-telescope/telescope.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-smart-history.nvim',
-    'kkharji/sqlite.lua',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 && cmake --build build --config Release',
     },
-    -- 'nvim-lua/popup.nvim',
   },
   keys = {
     { '<C-f>', nil }, -- defined in config
@@ -27,6 +24,7 @@ local P = {
 
 P.config = function()
   local builtin = require('telescope.builtin')
+  local actions = require('telescope.actions')
 
   require('telescope').setup({
     defaults = {
@@ -58,16 +56,17 @@ P.config = function()
           ['<esc>'] = 'close', -- <Esc> quit in insert mode
           ['<C-Down>'] = 'cycle_history_next',
           ['<C-Up>'] = 'cycle_history_prev',
+          ['<c-q>'] = function(prompt_bufnr)
+            actions.smart_send_to_qflist(prompt_bufnr)
+            vim.cmd('botright copen 5')
+          end,
         },
       },
       prompt_prefix = '> ',
       selection_caret = '  ',
       multi_icon = '❱',
       borderchars = { '━', '┃', '━', '┃', '┏', '┓', '┛', '┗' },
-      history = {
-        path = vim.fn.stdpath('data') .. '/db/telescope_history.sqlite3',
-        limit = 100,
-      },
+      history = { limit = 100 },
     },
     pickers = {
       buffers = {
@@ -82,7 +81,6 @@ P.config = function()
 
   -- extensions
   require('telescope').load_extension('fzf')
-  require('telescope').load_extension('smart_history')
 
   local dropdown = function(opts)
     opts = opts or {}
