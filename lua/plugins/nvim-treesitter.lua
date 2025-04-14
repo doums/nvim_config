@@ -22,18 +22,19 @@ local P = {
 
 P.config = function()
   local install = require('nvim-treesitter.install')
-  local setup = require('nvim-treesitter.configs').setup
+  local config = require('nvim-treesitter.configs')
 
-  if _G.os_name == 'windows' then
+  if _G._pdcfg.os == 'windows' then
     -- see https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support
     install.compilers = { 'zig' }
     install.prefer_git = false
   end
 
   ---@diagnostic disable-next-line: missing-fields
-  setup({
+  config.setup({
     ensure_installed = {
       'c',
+      'zig',
       'cpp',
       'rust',
       'yaml',
@@ -55,7 +56,7 @@ P.config = function()
     },
     auto_install = false,
     -- TODO on Windows async install is not working for some reason
-    sync_install = _G.os_name == 'windows',
+    sync_install = _G._pdcfg == 'windows',
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = {

@@ -30,7 +30,7 @@ P.opts = {
       gs.nav_hunk('prev')
     end, opts)
   end,
-  preview_config = { border = { '', '', '', ' ', '', '', '', ' ' } },
+  preview_config = { border = _G._pdcfg.win_border },
 }
 
 return P

@@ -79,3 +79,6 @@ map('n', '<A-Left>', ':vertical resize -4<CR>', { silent = true })
 map('t', '<Leader>n', '<C-\\><C-N>')
 -- `q` is used for leap.nvim backward motions
 map('n', '<C-q>', 'q')
+-- inspect hl data at cursor
+map('n', 'zS', vim.show_pos)
+

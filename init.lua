@@ -4,9 +4,13 @@
 
 -- pierreD
 
-_G.os_name = jit.os:lower()
-_G.copilot = 'OFF'
-_G.lt_lang = 'en-US'
+_G._pdcfg = {
+  os = jit.os:lower(),
+  copilot = 'OFF',
+  lt_lang = 'en-US',
+  win_border = { '', '', '', ' ', '', '', '', ' ' },
+  terminal_bg = '#1E1F22',
+}
 
 -- enables the experimental Lua module loader
 vim.loader.enable()
@@ -98,9 +102,6 @@ vim.g.editorconfig = false
 -- load custom filetypes
 require('filetypes.dotenv')
 require('filetypes.pkgbuild')
-
--- bg color used for terminal windows
-_G.terminal_bg = '#1E1F22'
 
 -- init directories
 require('fs').init()

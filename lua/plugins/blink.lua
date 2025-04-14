@@ -114,7 +114,7 @@ P.opts = {
       auto_show_delay_ms = 500,
       window = {
         max_width = 66,
-        border = { '', '', '', ' ', '', '', '', ' ' },
+        border = _G._pdcfg.win_border,
       },
     },
   },
