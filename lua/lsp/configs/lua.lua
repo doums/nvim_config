@@ -6,15 +6,17 @@
 -- https://github.com/LuaLS/lua-language-server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 
-require('lspconfig').lua_ls.setup({
+return {
   on_init = function(client)
     -- use guard.nvim to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+    -- disable semantic tokens highlight
+    client.server_capabilities.semanticTokensProvider = nil
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
-      local pcheck = vim.loop.fs_stat(path .. '/.luarc.json')
-        or vim.loop.fs_stat(path .. '/.luarc.jsonc')
+      local pcheck = vim.uv.fs_stat(path .. '/.luarc.json')
+        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
       if path ~= vim.fn.stdpath('config') and pcheck then
         return
       end
@@ -37,4 +39,4 @@ require('lspconfig').lua_ls.setup({
       telemetry = { enable = false },
     },
   },
-})
+}

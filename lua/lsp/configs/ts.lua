@@ -2,12 +2,13 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- tsserver - TypeScript
+-- typescript-language-server - TypeScript
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
 
-require('lspconfig').ts_ls.setup({ -- TypeScript
+return {
   on_attach = function(client)
     -- use conform to handle formatting (Prettier)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
-})
+}

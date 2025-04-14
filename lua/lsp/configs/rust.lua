@@ -2,10 +2,10 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- LSP config for Rust - rust-analyzer
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#rust_analyzer
 
-require('lspconfig').rust_analyzer.setup({
+return {
   settings = {
     ['rust-analyzer'] = { checkOnSave = { command = 'clippy' } },
   },
-})
+}

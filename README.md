@@ -1,6 +1,6 @@
-## nvim config
+## nvim
 
-My personal [Neovim](https://neovim.io/) distribution \
+My **3**kloc nvim config \
 *0.12*
 
 #### System dependencies

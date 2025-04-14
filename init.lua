@@ -114,5 +114,8 @@ require('lazy').setup('plugins', {
   },
 })
 
+-- LSP 󰣪
+require('lsp').setup()
+
 -- colorscheme
 vim.cmd.colorscheme('dark')

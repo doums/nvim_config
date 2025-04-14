@@ -2,7 +2,9 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-require('lspconfig').tailwindcss.setup({
+-- TODO migrate to vim.lsp.config
+-- https://github.com/neovim/nvim-lspconfig/issues/3705
+return {
   filetypes = {
     'html',
     'css',
@@ -12,4 +14,4 @@ require('lspconfig').tailwindcss.setup({
     'typescriptreact',
     'svelte',
   },
-})
+}
