@@ -87,7 +87,7 @@ vim.opt.complete:append({ 'i' })
 vim.opt.formatoptions:append('lv')
 vim.opt.listchars:append({ conceal = '•' })
 
--- load core keymaps
+-- core mapping
 require('keymaps')
 
 -- load autocmds
@@ -102,9 +102,6 @@ vim.g.editorconfig = false
 -- load custom filetypes
 require('filetypes.dotenv')
 require('filetypes.pkgbuild')
-
--- init directories
-require('fs').init()
 
 -- load plugins ⚡
 require('lazy').setup('plugins', {
