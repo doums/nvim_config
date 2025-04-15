@@ -6,7 +6,7 @@
 
 _G._pdcfg = {
   os = jit.os:lower(),
-  copilot = 'OFF',
+  copilot = false,
   lt_lang = 'en-US',
   win_border = { '', '', '', ' ', '', '', '', ' ' },
   terminal_bg = '#1E1F22',

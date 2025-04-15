@@ -15,6 +15,7 @@ git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm, java
 - StyLua, code formatter for Lua (Arch package)
 - `shellcheck` (AUR `shellcheck-bin`)
 - `shfmt` (Arch package)
+- `bash-language-server` (npm package)
 - `typescript-language-server` (npm package)
 - `eslint` `prettier` (npm packages)
 - `@tailwindcss/language-server` (npm package)

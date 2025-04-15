@@ -92,6 +92,7 @@ function M.hl()
   li('TelescopePromptPrefix', 'Todo')
   li('TelescopeSelectionCaret', 'Todo')
   li('TelescopeMultiSelection', 'Todo')
+  hl('TelescopeBorder', '#2C2D2F')
 
   -- qflist & loclist
   li('qfText', 'Fg')

@@ -8,7 +8,6 @@ local P = {
 
 local langs = {
   lua = {},
-  sh = { 'shellcheck' },
   typescript = { 'eslint' },
   typescriptreact = { 'eslint' },
   javascript = { 'eslint' },

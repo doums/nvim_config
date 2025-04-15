@@ -11,7 +11,7 @@ local P = {
     {
       '<F7>',
       function()
-        if _G._pdcfg.copilot == 'ON' then
+        if _G._pdcfg.copilot then
           require('copilot.panel').open()
         else
           vim.notify('copilot is off', vim.log.levels.WARN)
@@ -22,7 +22,7 @@ local P = {
     {
       '<F3>',
       function()
-        _G._pdcfg.copilot = 'ON'
+        _G._pdcfg.copilot = true
         vim.cmd('Copilot enable')
       end,
       desc = 'Enable Copilot',
@@ -36,7 +36,7 @@ local P = {
           vim.cmd('Copilot disable')
         end
         pcall(disable)
-        _G._pdcfg.copilot = 'OFF'
+        _G._pdcfg.copilot = false
         vim.cmd('Copilot status')
       end,
       desc = 'Disable Copilot',
@@ -82,7 +82,7 @@ P.opts = {
     markdown = true,
   },
   should_attach = function(_, bufname)
-    if _G._pdcfg.copilot == 'OFF' then
+    if not _G._pdcfg.copilot then
       return false
     end
     if string.match(bufname, '^%.env.*') then

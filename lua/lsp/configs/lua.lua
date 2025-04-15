@@ -8,7 +8,7 @@
 
 return {
   on_init = function(client)
-    -- use guard.nvim to handle formatting (stylua)
+    -- use conform.nvim to handle formatting (stylua)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
     -- disable semantic tokens highlight
