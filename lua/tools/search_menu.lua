@@ -2,8 +2,6 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Menu wrapping Telescope find_files and live_grep pickers
-
 local M = {}
 
 local _fd_cmd = { 'fd', '-t', 'f', '--strip-cwd-prefix' }
@@ -101,9 +99,11 @@ function M.search(args)
 
   local search_fn
   if cmd == 'rg' then
-    search_fn = require('telescope.builtin').live_grep
+    -- TODO call snacks grep
+    search_fn = function(_) end
   else
-    search_fn = require('telescope.builtin').find_files
+    -- TODO call snacks find files
+    search_fn = function(_) end
   end
 
   vim.ui.input(

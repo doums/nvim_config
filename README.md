@@ -5,7 +5,8 @@ My **3**kloc nvim config \
 
 #### System dependencies
 
-git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm, java
+git, gitui, CMake, zig, ripgrep, fd, fzf, trash, node, npm, java,
+imagemagick
 
 #### LSP
 

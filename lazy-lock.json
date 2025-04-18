@@ -8,9 +8,8 @@
   "gitsigns.nvim": { "branch": "main", "commit": "17ab794b6fce6fce768430ebc925347e349e1d60" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "leap.nvim": { "branch": "main", "commit": "346a16ef942635a8ca5ff92e603d07e7e8be6cbe" },
-  "lsp_signature.nvim": { "branch": "master", "commit": "b58cca003d1d3311213d6db0352f58d8e57bfff0" },
+  "lsp_signature.nvim": { "branch": "master", "commit": "15bb33cdb47e85278e168cad11acb1b6fa9c6488" },
   "lswip.nvim": { "branch": "main", "commit": "afcacc61b1a414147741aed1b5e322b8ef7fd430" },
-  "monark.nvim": { "branch": "main", "commit": "5ac1dcfdd85501a127ecae8d9b96666c1a483e89" },
   "nvim-autopairs": { "branch": "master", "commit": "2a406cdd8c373ae7fe378a9e062a5424472bd8d8" },
   "nvim-lint": { "branch": "master", "commit": "e7b4ffa6ab763af012e38b21af2c9159f10d2d33" },
   "nvim-lspconfig": { "branch": "master", "commit": "e39da6a820d2a700904117d29f0dd476d64262cf" },
@@ -24,9 +23,8 @@
   "ponton.nvim": { "branch": "main", "commit": "b165b1bd53a9fffe9c6208689c864d8b5ea316ed" },
   "rg.nvim": { "branch": "main", "commit": "b6bdbdff8cb38412d0f8efb105e899cc72cc3a9a" },
   "sae": { "branch": "master", "commit": "a11610164ec644269a16bab13abb0168ead80322" },
+  "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "suit.nvim": { "branch": "main", "commit": "c49914496e63f4ec9c5b9be8812792a7cb78bbfd" },
-  "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
-  "telescope.nvim": { "branch": "master", "commit": "a4ed82509cecc56df1c7138920a1aeaf246c0ac5" },
   "tenaille.nvim": { "branch": "main", "commit": "cc2a7bc3493ac963a4194567a566bd8791c65301" },
   "vassal.nvim": { "branch": "main", "commit": "0ad365daf3976bf852d6dd75dbcdb71b046bf69c" }
 }

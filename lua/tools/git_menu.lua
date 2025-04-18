@@ -9,7 +9,8 @@ local M = {}
 local gs = require('gitsigns')
 
 local git_static_actions = {
-  ['Buffer commits'] = require('telescope.builtin').git_bcommits,
+  ['Log'] = Snacks.picker.git_log,
+  ['Log ~'] = Snacks.picker.git_log_file,
   ['Diff'] = gs.diffthis,
   ['Diff ~'] = function()
     gs.diffthis('~')

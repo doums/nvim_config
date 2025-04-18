@@ -18,7 +18,7 @@ P.config = function()
   local ponton_cdt = require('ponton.condition')
   local main_cdt = {
     ponton_cdt.filetype_not,
-    { 'NvimTree', 'TelescopePrompt' },
+    { 'NvimTree', 'snacks_picker_input' },
   }
 
   require('ponton').setup({

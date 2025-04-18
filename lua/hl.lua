@@ -50,7 +50,7 @@ function M.hl()
   hl('NvimTreeGitFileMergeHL', '#c4b5fd')
   hl('NvimTreeGitFileDeletedHL', '#fca5a5')
   li('NvimTreeGitFileDirtyHL', 'NvimTreeGitDeleted')
-  hl('NvimTreeWindowPicker', '#FFFFFF', p.ui_frame_bg, 'bold')
+  hl('NvimTreeWindowPicker', blanc, p.ui_frame_bg, 'bold')
   hl('NvimTreeDiagnosticErrorIcon', p.error_stripe, nil, 'bold')
   li('NvimTreeWinSeparator', 'WinSeparator')
   li('NvimTreeLiveFilterPrefix', 'Todo')
@@ -86,13 +86,19 @@ function M.hl()
   -- suit.nvim
   hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })
 
-  -- telescope.nvim
-  li('TelescopeNormal', 'Fg')
-  li('TelescopeSelection', 'Visual')
-  li('TelescopePromptPrefix', 'Todo')
-  li('TelescopeSelectionCaret', 'Todo')
-  li('TelescopeMultiSelection', 'Todo')
-  hl('TelescopeBorder', '#2C2D2F')
+  -- snacks picker
+  hl('SnacksPicker', 'Fg')
+  hl('SnacksPickerBorder', p.ui_border)
+  hl('SnacksPickerMatch', paille, nil, 'bold')
+  hl('SnacksPickerSearch', paille, p.search, 'bold')
+  hl('SnacksPickerSpinner', p.todo)
+  hl('SnacksPickerSelected', paille)
+  hl('SnacksPickerPrompt', p.keyword, nil, { 'bold', 'italic' })
+  li('SnacksPickerDelim', 'NonText')
+  li('SnacksPickerRow', 'Number')
+  li('SnacksPickerCol', 'NonText')
+  li('SnacksPickerTree', 'NonText')
+  hl('SnacksPickerToggle', paille, nil, { bold = false })
 
   -- qflist & loclist
   li('qfText', 'Fg')
@@ -104,7 +110,7 @@ function M.hl()
   li('qfSeparator2', 'NonText')
 
   -- monark.nvim
-  hl('monarkLeap', leap_primary, nil, 'bold')
+  hl('monarkLeap', paille, nil, 'bold')
 
   -- dmap.nvim
   hl('dmapWin', nil, _G._pdcfg.terminal_bg)

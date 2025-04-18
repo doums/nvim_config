@@ -8,7 +8,7 @@ local P = {
 }
 
 P.opts = {
-  disable_filetype = { 'TelescopePrompt', 'spectre_panel', 'suitui' },
+  disable_filetype = { 'snacks_picker_input', 'spectre_panel', 'suitui' },
 }
 
 return P
