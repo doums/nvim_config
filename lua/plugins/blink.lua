@@ -127,7 +127,18 @@ P.opts = {
       'sort_text',
     },
   },
-  signature = { enabled = false },
+  signature = {
+    enabled = true,
+    window = {
+      min_width = 1,
+      max_width = 66,
+      max_height = 4,
+      border = _G._pdcfg.win_border,
+      scrollbar = false,
+      treesitter_highlighting = false,
+      show_documentation = false,
+    },
+  },
   cmdline = {
     -- https://cmp.saghen.dev/modes/cmdline.html
     keymap = {

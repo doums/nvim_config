@@ -4,6 +4,10 @@
 
 local P = {
   'ggandor/leap.nvim',
+  dependencies = {
+    'doums/monark.nvim',
+    opts = {},
+  },
 }
 
 P.opts = {
@@ -23,7 +27,6 @@ P.opts = {
 P.init = function()
   vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward-to)')
   vim.keymap.set({ 'n', 'x', 'o' }, 'q', '<Plug>(leap-backward-to)')
-  require('leap').add_default_mappings()
 end
 
 return P

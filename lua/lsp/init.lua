@@ -8,9 +8,10 @@ local M = {}
 -- k: server name as defined by lspconfig
 -- v: server config filename `lua/lsp/configs/<filename>.lua`
 --    or `false` when no custom config is needed
--- TODO add zls and tailwind once migrated to vim.lsp.config
+-- TODO add tailwind once migrated to vim.lsp.config
 local servers = {
   clangd = false,
+  zls = false,
   lua_ls = 'lua',
   rust_analyzer = 'rust',
   ltex_plus = 'ltex_ls',

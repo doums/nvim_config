@@ -69,7 +69,6 @@ o.signcolumn = 'yes:2'
 o.cmdheight = 2
 o.mouse = 'a'
 o.laststatus = 3
-o.guicursor = 'a:block-Cursor,c:hor20-Cursor'
 o.spelllang = 'en_us'
 o.spelloptions = 'camel'
 o.colorcolumn = '66'
@@ -86,6 +85,12 @@ o.winborder = 'none'
 vim.opt.complete:append({ 'i' })
 vim.opt.formatoptions:append('lv')
 vim.opt.listchars:append({ conceal = '•' })
+vim.opt.guicursor = {
+  'a:block-Cursor',
+  'i-c-ci:hor20',
+  'r-cr:hor20-rCursor',
+  'o:block-oCursor',
+}
 
 -- core mapping
 require('keymaps')
@@ -93,9 +98,7 @@ require('keymaps')
 -- load autocmds
 require('autocmds')
 
--- Miscellaneous
--- nvim as man pager
-vim.cmd.runtime('ftplugin/man.vim')
+-- misc
 -- disable EditorConfig support
 vim.g.editorconfig = false
 

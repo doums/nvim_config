@@ -9,11 +9,13 @@ local M = {}
 function M.hl(name, fg, bg, style, sp)
   local hl_map = { fg = fg, bg = bg, sp = sp }
   if type(style) == 'string' then
-    hl_map[style] = 1
+    hl_map[style] = true
   elseif vim.islist(style) then
-    for _, v in ipairs(style) do
-      hl_map[v] = 1
-    end
+    vim.iter(style):each(function(p)
+      hl_map[p] = true
+    end)
+  elseif type(style) == 'table' then
+    hl_map = vim.tbl_extend('force', hl_map, style)
   end
   vim.api.nvim_set_hl(0, name, hl_map)
 end

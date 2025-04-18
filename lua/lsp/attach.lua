@@ -6,21 +6,6 @@ local M = {}
 
 local qf = require('tools.qf')
 
-local signature_help_cfg = {
-  bind = true,
-  doc_lines = 2,
-  floating_window = false,
-  hint_enable = true,
-  hint_prefix = '→ ',
-  hint_scheme = 'LspInlayHint',
-  hi_parameter = 'Search',
-  max_height = 4,
-  max_width = 80,
-  handler_opts = { border = 'none' },
-  padding = ' ',
-  toggle_key = '<C-q>',
-}
-
 local notified_clients = {}
 
 function M.setup()
@@ -106,8 +91,6 @@ function M.setup()
           vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = args.buf })
         end, bufopt)
       end
-
-      require('lsp_signature').on_attach(signature_help_cfg, args.buf)
 
       -- use LSP for folding
       if client:supports_method('textDocument/foldingRange') then

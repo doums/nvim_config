@@ -4,12 +4,6 @@
 
 local P = {
   'neovim/nvim-lspconfig',
-  dependencies = {
-    {
-      'ray-x/lsp_signature.nvim',
-      event = 'LspAttach',
-    },
-  },
 }
 
 return P

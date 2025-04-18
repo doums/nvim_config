@@ -13,22 +13,38 @@ local cursor = '#CA7911'
 function M.hl()
   local p = require('dark').p
 
+  local paille = '#fde047'
+  local blanc = '#ffffff'
+  local noir = '#000000'
+
+  -- override
+  hl('FloatBorder', nil, p.menu)
+  li('@boolean.lua', 'Constant')
+
   -- highlight group for guicursor
-  hl('Cursor', '#111111', cursor, { 'bold' })
+  hl('Cursor', '#111111', cursor, 'bold')
+  hl('iCursor', nil, '#69ff00', 'bold')
+  hl('oCursor', nil, '#fdba74', 'bold')
+  hl('rCursor', nil, '#ff0050', 'bold')
   hl('Caret', p.bg, p.cursor, 'bold')
 
   -- blink.cmp
   hl('BlinkCmpSource', p.comment)
+  hl('BlinkCmpSignatureHelp', p.debug, nil, 'italic')
+  hl('BlinkCmpSignatureHelpBorder', p.debug)
+  hl('BlinkCmpSignatureHelpActiveParameter', p.string_special, nil, 'italic')
+
+  -- lsp-signature hint (disabled)
+  -- li('lspSignatureHint', 'BlinkCmpSignatureHelpActiveParameter')
 
   -- oterm.nvim
-  hl('otermWin', '#FFFFFF', '#1C1C1C')
-  hl('otermBorder', '#FFFFFF', '#1C1C1C')
+  hl('otermWin', blanc, '#1C1C1C')
+  hl('otermBorder', blanc, '#1C1C1C')
 
   -- leap.nvim
-  local leap_primary = '#fde047'
   hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })
-  hl('LeapLabelPrimary', '#000000', leap_primary, { 'bold', 'nocombine' })
-  hl('LeapLabelSecondary', '#000000', '#6366f1', 'nocombine')
+  hl('LeapLabelPrimary', noir, paille, { 'bold', 'nocombine' })
+  hl('LeapLabelSecondary', noir, '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
 
   -- copilot.lua

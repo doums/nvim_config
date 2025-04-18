@@ -30,11 +30,14 @@ vim.api.nvim_create_autocmd('CursorHold', {
   end,
 })
 
--- hide column numbers when viewing man pages
 vim.api.nvim_create_autocmd('FileType', {
   group = group_id,
   pattern = 'man',
-  command = 'set nonumber',
+  callback = function(a)
+    -- remap leap Q because it is overriden by nvim's manpage
+    -- mapping
+    vim.keymap.set('n', 'q', '<Plug>(leap-backward-to)', { buffer = a.buf })
+  end,
 })
 
 -- show concealed characters in help files
