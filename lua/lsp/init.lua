@@ -8,7 +8,6 @@ local M = {}
 -- k: server name as defined by lspconfig
 -- v: server config filename `lua/lsp/configs/<filename>.lua`
 --    or `false` when no custom config is needed
--- TODO add tailwind once migrated to vim.lsp.config
 local servers = {
   clangd = false,
   zls = false,
@@ -18,6 +17,7 @@ local servers = {
   bashls = false,
   nushell = false,
   ts_ls = 'ts',
+  tailwindcss = 'tailwind',
 }
 
 function M.setup()
@@ -37,7 +37,7 @@ function M.setup()
       local ok, cfg = pcall(require, 'lsp.configs.' .. config)
       if not ok then
         vim.notify(
-          '✗ failed to load LSP server config: ' .. config,
+          '[LSP] failed to load server config: ' .. config,
           vim.log.levels.ERROR
         )
         return
