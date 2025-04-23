@@ -182,20 +182,6 @@ P.keys = {
     desc = 'Buffers',
   },
   {
-    '<A-s>',
-    function()
-      Snacks.picker.lsp_symbols()
-    end,
-    desc = 'LSP Symbols',
-  },
-  {
-    '<A-S-w>',
-    function()
-      Snacks.picker.lsp_workspace_symbols()
-    end,
-    desc = 'LSP Workspace Symbols',
-  },
-  {
     '<leader>gs',
     function()
       Snacks.picker.git_status()

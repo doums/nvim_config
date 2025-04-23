@@ -6,7 +6,6 @@
 
 _G._pdcfg = {
   os = jit.os:lower(),
-  copilot = false,
   lt_lang = 'en-US',
   win_border = { '', '', '', ' ', '', '', '', ' ' },
   terminal_bg = '#171717',
@@ -35,6 +34,9 @@ vim.g.mapleader = ','
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- init clipboard OSC52
+require('cb').osc52()
 
 -- OPTIONS
 local o = vim.o
@@ -103,10 +105,6 @@ require('autocmds')
 -- disable EditorConfig support
 vim.g.editorconfig = false
 
--- load custom filetypes
-require('filetypes.dotenv')
-require('filetypes.pkgbuild')
-
 -- load plugins ⚡
 require('lazy').setup('plugins', {
   dev = {
@@ -114,9 +112,6 @@ require('lazy').setup('plugins', {
     fallback = true, -- fallback to git when local plugin doesn't exist
   },
 })
-
--- LSP 󰣪
-require('lsp').setup()
 
 -- colorscheme
 vim.cmd.colorscheme('dark')

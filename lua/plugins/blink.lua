@@ -4,56 +4,17 @@
 
 local P = {
   'saghen/blink.cmp',
-  dependencies = {
-    'L3MON4D3/LuaSnip',
-    version = 'v2.*',
-  },
   version = '1.*',
-  event = { 'InsertEnter', 'LspAttach', 'CmdlineEnter' },
+  event = { 'InsertEnter', 'CmdlineEnter' },
 }
 
 local source_shorts = {
-  lsp = 'lsp',
   path = 'path',
-  snippets = 'snip',
   buffer = 'buf',
 }
 
--- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#completionItemKind
-local kind_shorts = {
-  ['Text'] = 'txt',
-  ['Method'] = 'Fn',
-  ['Function'] = 'Fn',
-  ['Constructor'] = 'Ctor',
-  ['Field'] = 'Field',
-  ['Variable'] = 'Var',
-  ['Class'] = 'Class',
-  ['Interface'] = 'Iface',
-  ['Module'] = 'Mod',
-  ['Property'] = 'Prop',
-  ['Unit'] = 'Unit',
-  ['Value'] = 'Val',
-  ['Enum'] = 'Enum',
-  ['Keyword'] = 'KeyW',
-  ['Snippet'] = '~',
-  ['Color'] = 'Color',
-  ['File'] = 'File',
-  ['Reference'] = 'Ref',
-  ['Folder'] = 'Folder',
-  ['EnumMember'] = 'Enum',
-  ['Constant'] = 'Const',
-  ['Struct'] = 'Struct',
-  ['Event'] = 'Event',
-  ['Operator'] = 'Op',
-  ['TypeParameter'] = 'Type',
-}
-
-local function fmt_lsp_sources(ctx)
+local function fmt_sources(ctx)
   return source_shorts[ctx.source_id] or ctx.source_id
-end
-
-local function fmt_lsp_kind(ctx)
-  return kind_shorts[ctx.kind] or ctx.kind
 end
 
 P.opts = {
@@ -76,7 +37,7 @@ P.opts = {
     nerd_font_variant = 'mono',
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
+    default = { 'path', 'buffer' },
     -- path completion relative to cwd
     -- https://cmp.saghen.dev/recipes.html#path-completion-from-cwd-instead-of-current-buffer-s-directory
     providers = {
@@ -99,13 +60,12 @@ P.opts = {
       draw = {
         columns = {
           { 'label', 'label_description', gap = 1 },
-          { 'kind', gap = 1, 'source_id' },
+          { 'source_id' },
         },
         components = {
           label = { width = { fill = true, max = 48 } },
           label_description = { width = { max = 20 } },
-          kind = { text = fmt_lsp_kind },
-          source_id = { text = fmt_lsp_sources },
+          source_id = { text = fmt_sources },
         },
       },
       border = 'none',
@@ -119,7 +79,6 @@ P.opts = {
       },
     },
   },
-  snippets = { preset = 'luasnip' },
   fuzzy = {
     implementation = 'prefer_rust_with_warning',
     sorts = {
@@ -128,18 +87,7 @@ P.opts = {
       'sort_text',
     },
   },
-  signature = {
-    enabled = true,
-    window = {
-      min_width = 1,
-      max_width = 66,
-      max_height = 4,
-      border = _G._pdcfg.win_border,
-      scrollbar = false,
-      treesitter_highlighting = false,
-      show_documentation = false,
-    },
-  },
+  signature = { enabled = false },
   cmdline = {
     -- https://cmp.saghen.dev/modes/cmdline.html
     keymap = {

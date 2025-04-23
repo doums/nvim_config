@@ -34,9 +34,6 @@ function M.hl()
   hl('BlinkCmpSignatureHelpBorder', p.debug)
   hl('BlinkCmpSignatureHelpActiveParameter', p.string_special, nil, 'italic')
 
-  -- lsp-signature hint (disabled)
-  -- li('lspSignatureHint', 'BlinkCmpSignatureHelpActiveParameter')
-
   -- oterm.nvim
   hl('otermWin', blanc, _G._pdcfg.terminal_bg)
   hl('otermBorder', blanc, _G._pdcfg.terminal_bg)
@@ -46,10 +43,6 @@ function M.hl()
   hl('LeapLabelPrimary', noir, paille, { 'bold', 'nocombine' })
   hl('LeapLabelSecondary', noir, '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
-
-  -- copilot.lua
-  hl('CopilotSuggestion', '#42a595', nil, 'italic')
-  li('CopilotAnnotation', 'CopilotSuggestion')
 
   -- nvim-tree.lua
   li('NvimTreeNormal', 'Fg')
@@ -127,9 +120,6 @@ function M.hl()
 
   -- monark.nvim
   hl('monarkLeap', paille, nil, 'bold')
-
-  -- dmap.nvim
-  hl('dmapWin', nil, _G._pdcfg.terminal_bg)
 end
 
 return M

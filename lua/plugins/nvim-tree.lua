@@ -79,18 +79,7 @@ P.config = function()
     trash = {
       cmd = 'trash',
     },
-    diagnostics = {
-      enable = true,
-      severity = {
-        min = vim.diagnostic.severity.ERROR,
-      },
-      icons = {
-        hint = ' ',
-        info = ' ',
-        warning = ' ',
-        error = '╸',
-      },
-    },
+    diagnostics = { enable = false },
     git = {
       enable = true,
     },
@@ -126,14 +115,13 @@ P.config = function()
       highlight_clipboard = 'name',
       icons = {
         symlink_arrow = ' → ',
-        diagnostics_placement = 'after',
         show = {
           git = false,
           folder = true,
           file = true,
           folder_arrow = false,
           modified = true,
-          diagnostics = true,
+          diagnostics = false,
         },
         glyphs = {
           default = '󰧮',
