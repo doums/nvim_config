@@ -47,8 +47,33 @@ P.opts.picker = {
         },
       },
     },
+    nopreview = {
+      layout = {
+        preview = false,
+        backdrop = false,
+        row = -8,
+        width = 0.4,
+        min_width = 66,
+        height = 0.6,
+        max_height = 20,
+        min_height = 6,
+        border = 'bold',
+        box = 'vertical',
+        title = '{title} {live} {flags}',
+        title_pos = 'center',
+        {
+          win = 'input',
+          height = 1,
+          border = { '', '', '', '', '', '━', '', '' },
+        },
+        { win = 'list', border = 'none' },
+      },
+    },
   },
-  layout = function()
+  layout = function(picker)
+    if picker == 'buffers' then
+      return { preset = 'nopreview' }
+    end
     return vim.o.lines >= 20 and 'dropdown'
       or {
         preset = 'dropdown',
@@ -129,11 +154,25 @@ P.keys = {
     desc = 'Find Files',
   },
   {
+    '<C-A-s>',
+    function()
+      require('tools.search_menu').search({ cmd = 'fd' })
+    end,
+    desc = 'fd',
+  },
+  {
     '<C-f>',
     function()
       Snacks.picker.grep({ cmd = 'rg' })
     end,
     desc = 'Grep',
+  },
+  {
+    '<C-A-f>',
+    function()
+      require('tools.search_menu').search({ cmd = 'rg' })
+    end,
+    desc = 'rg',
   },
   {
     '<C-b>',

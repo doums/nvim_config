@@ -4,51 +4,54 @@
 
 local M = {}
 
-local _fd_cmd = { 'fd', '-t', 'f', '--strip-cwd-prefix' }
-local fd_flags = {
-  H = '--hidden',
-  h = '--hidden', -- alias for '--hidden' and globs excluded files
-  I = '--no-ignore',
-  u = '--unrestricted', -- alias for '--hidden --no-ignore'
-  s = '--case-sensitive',
-  i = '--ignore-case',
-  e = '', -- add globs excluded files
+local _flags = {
+  'H', -- hidden files
+  'h', -- alias for hidden and globs excluded files
+  'I', -- ignored files
+  'u', -- hidden and ignored files
+  'S', -- smart case
+  's', -- case sensitive
+  'i', -- ignore case
+  'e', -- add globs excluded files
 }
-local rg_flags = {
-  H = '--hidden',
-  h = '--hidden',
-  I = '--no-ignore',
-  u = { '--hidden', '--no-ignore' },
-  S = '--smart-case',
-  s = '--case-sensitive',
-  i = '--ignore-case',
-  e = '',
+local _case_flags = {
+  sensitive = '--case-sensitive',
+  ignore = '--ignore-case',
+  smart = '--smart-case',
 }
-local cfg = {
-  flag_list = { fd = 'HhIusie', rg = 'HhIuSsie' },
-  flag_map = { fd = fd_flags, rg = rg_flags },
-  excluded_files = {
-    rg = {
-      '.idea',
-      'node_modules',
-      '.git',
-      'target',
-      'package-lock.json',
-      'Cargo.lock',
-    },
-    fd = {
-      '.idea',
-      'node_modules',
-      '.git',
-      'target',
-    },
+local _pickers = {
+  rg = { picker = 'grep', cmd = 'rg' },
+  fd = { picker = 'files', cmd = 'fd' },
+}
+local excluded = {
+  rg = {
+    '.idea',
+    'node_modules',
+    '.git',
+    'target',
+    'package-lock.json',
+    'Cargo.lock',
+  },
+  fd = {
+    '.idea',
+    'node_modules',
+    '.git',
+    'target',
   },
 }
+
+local function check_input(input)
+  vim.iter(input):each(function(f)
+    if not vim.list_contains(_flags, f) then
+      vim.notify(string.format('[%s] unknown flag', f), vim.log.levels.WARN)
+    end
+  end)
+end
 
 local function get_excluded_flags(cmd)
   if cmd == 'rg' then
     return vim
-      .iter(cfg.excluded_files.rg)
+      .iter(excluded.rg)
       :map(function(file)
         return '-g!' .. file
       end)
@@ -56,7 +59,7 @@ local function get_excluded_flags(cmd)
   end
   if cmd == 'fd' then
     return vim
-      .iter(cfg.excluded_files.fd)
+      .iter(excluded.fd)
       :map(function(file)
         return '-E' .. file
       end)
@@ -64,50 +67,87 @@ local function get_excluded_flags(cmd)
   end
 end
 
-local function parse_flags(flags, flag_map, cmd)
-  return vim
-    .iter(flags)
-    :map(function(flag)
-      if not flag_map[flag] then
-        error(flag, 0)
-        return nil
-      end
-      if flag == 'h' then
-        return { flag_map[flag], get_excluded_flags(cmd) }
-      end
-      if flag == 'e' then
-        return get_excluded_flags(cmd)
-      end
-      return flag_map[flag]
-    end)
-    :flatten(2)
-    :totable()
+local function get_case_flag(flags, cmd)
+  if vim.iter(flags):any(function(f)
+    return f == 's'
+  end) then
+    return _case_flags.sensitive
+  end
+  if vim.iter(flags):any(function(f)
+    return f == 'i'
+  end) then
+    return _case_flags.ignore
+  end
+  -- for `fd` smart case is the default
+  if cmd == 'fd' then
+    return nil
+  end
+  if vim.iter(flags):any(function(f)
+    return f == 'S'
+  end) then
+    return _case_flags.smart
+  end
+  return nil
+end
+
+local function parse_flags(flags, cmd)
+  local additional = {}
+  local hidden = vim.iter(flags):any(function(f)
+    return f == 'H' or f == 'h' or f == 'u'
+  end)
+  local ignored = vim.iter(flags):any(function(f)
+    return f == 'I' or f == 'u'
+  end)
+  if vim.iter(flags):any(function(f)
+    return f == 'e' or f == 'h'
+  end) then
+    table.insert(additional, get_excluded_flags(cmd))
+  end
+  local case_flag = get_case_flag(flags, cmd)
+  if case_flag then
+    table.insert(additional, case_flag)
+  end
+  additional = vim.iter(additional):flatten():totable()
+
+  return {
+    hidden = hidden,
+    ignored = ignored,
+    args = additional,
+  }
+end
+
+local function pick(opts, cmd)
+  local picker = _pickers[cmd]
+  opts = vim.tbl_extend(
+    'error',
+    -- set live mode to enable additional args to be used by the
+    -- picker
+    { cmd = picker.cmd, title = picker.cmd, live = true },
+    opts
+  )
+  print(
+    string.format(
+      '→ [%s] H:%s I:%s %s',
+      cmd,
+      opts.hidden,
+      opts.ignored,
+      vim.iter(opts.args):join(' ')
+    )
+  )
+  Snacks.picker[picker.picker](opts)
 end
 
 function M.search(args)
-  args = args or { cmd = 'rg', picker_opts = {} }
+  args = args or { cmd = 'rg' }
   local cmd = args.cmd
-  local picker_opts = args.picker_opts
 
   if not cmd or (cmd ~= 'rg' and cmd ~= 'fd') then
-    vim.notify(
-      ' ✕ wrong command, expected one of `rg` or `fd`',
-      vim.log.levels.ERROR
-    )
+    vim.notify('wrong cmd, expected one of `rg` | `fd`', vim.log.levels.ERROR)
     return
   end
 
-  local search_fn
-  if cmd == 'rg' then
-    -- TODO call snacks grep
-    search_fn = function(_) end
-  else
-    -- TODO call snacks find files
-    search_fn = function(_) end
-  end
-
   vim.ui.input(
-    { prompt = string.format('%s (%s)', cmd, cfg.flag_list[cmd]) },
+    { prompt = string.format('%s (%s)', cmd, vim.iter(_flags):join('')) },
     function(input)
       local s, trimed = pcall(vim.trim, input)
       if s then
@@ -116,36 +156,10 @@ function M.search(args)
       if not input then
         return
       end
-      if input == '' then
-        search_fn(vim.tbl_extend('force', picker_opts, {
-          find_command = cmd == 'fd' and _fd_cmd or nil,
-          prompt_prefix = cmd .. '> ',
-        }))
-        return
-      end
-      local input_flags = vim.split(input, '')
-      local s, p_flags = pcall(parse_flags, input_flags, cfg.flag_map[cmd], cmd)
-      if not s then
-        vim.notify(
-          string.format(
-            ' ✕ unknown flags "%s", expected [%s]',
-            p_flags,
-            cfg.flag_list[cmd]
-          ),
-          vim.log.levels.ERROR
-        )
-        return nil
-      end
-      print(' flags → ' .. vim.iter(p_flags):join(' '))
-      local opts = {
-        prompt_prefix = string.format('%s %s> ', cmd, input),
-      }
-      if cmd == 'fd' then
-        opts.find_command = vim.list_extend(vim.deepcopy(_fd_cmd), p_flags)
-      else
-        opts.additional_args = p_flags
-      end
-      search_fn(vim.tbl_extend('force', picker_opts, opts))
+      local flags = vim.split(input, '')
+      check_input(flags)
+      local res = parse_flags(flags, cmd)
+      pick(res, cmd)
     end
   )
 end

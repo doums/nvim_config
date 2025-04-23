@@ -102,7 +102,8 @@ P.opts = {
           { 'kind', gap = 1, 'source_id' },
         },
         components = {
-          label = { width = { fill = true, max = 52 } },
+          label = { width = { fill = true, max = 48 } },
+          label_description = { width = { max = 20 } },
           kind = { text = fmt_lsp_kind },
           source_id = { text = fmt_lsp_sources },
         },
