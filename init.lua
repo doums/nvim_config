@@ -9,7 +9,7 @@ _G._pdcfg = {
   copilot = false,
   lt_lang = 'en-US',
   win_border = { '', '', '', ' ', '', '', '', ' ' },
-  terminal_bg = '#1E1F22',
+  terminal_bg = '#171717',
 }
 
 -- enables the experimental Lua module loader
@@ -82,12 +82,13 @@ o.grepformat = '%f:%l:%c:%m'
 o.mousemodel = 'extend'
 o.conceallevel = 0
 o.winborder = 'none'
+o.sidescroll = 2
 vim.opt.complete:append({ 'i' })
 vim.opt.formatoptions:append('lv')
-vim.opt.listchars:append({ conceal = '•' })
+vim.opt.listchars:append({ conceal = '•', precedes = '<', extends = '>' })
 vim.opt.guicursor = {
   'a:block-Cursor',
-  'i-c-ci:hor20',
+  'i-c-ci-t:hor20',
   'r-cr:hor20-rCursor',
   'o:block-oCursor',
 }

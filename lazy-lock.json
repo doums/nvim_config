@@ -5,7 +5,7 @@
   "conform.nvim": { "branch": "master", "commit": "372fc521f8421b7830ea6db4d6ea3bae1c77548c" },
   "copilot.lua": { "branch": "master", "commit": "dc579f98536029610cfa32c6bad86c0d24363679" },
   "crates.nvim": { "branch": "main", "commit": "73d2c590c74a0c582144987a4decb4a642755859" },
-  "dark.nvim": { "branch": "main", "commit": "1ba0ed0a038ca8b1667dc0a16c16bcb86a31faf5" },
+  "dark.nvim": { "branch": "main", "commit": "812d43389d63a9e9d160258d04fa392daef593c2" },
   "gitsigns.nvim": { "branch": "main", "commit": "7b8bb9fe2f227c5c5d35e0dfbcafabfc0b20e19e" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "leap.nvim": { "branch": "main", "commit": "2b68ddc0802bd295e64c9e2e75f18f755e50dbcc" },
@@ -25,7 +25,7 @@
   "rg.nvim": { "branch": "main", "commit": "b6bdbdff8cb38412d0f8efb105e899cc72cc3a9a" },
   "sae": { "branch": "master", "commit": "a11610164ec644269a16bab13abb0168ead80322" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
-  "suit.nvim": { "branch": "main", "commit": "c49914496e63f4ec9c5b9be8812792a7cb78bbfd" },
+  "suit.nvim": { "branch": "main", "commit": "81ce4cc32a5f793b87e979935b1f8d4a74496a95" },
   "tenaille.nvim": { "branch": "main", "commit": "cc2a7bc3493ac963a4194567a566bd8791c65301" },
   "vassal.nvim": { "branch": "main", "commit": "0ad365daf3976bf852d6dd75dbcdb71b046bf69c" }
 }

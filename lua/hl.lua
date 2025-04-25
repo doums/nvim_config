@@ -38,8 +38,8 @@ function M.hl()
   -- li('lspSignatureHint', 'BlinkCmpSignatureHelpActiveParameter')
 
   -- oterm.nvim
-  hl('otermWin', blanc, '#1C1C1C')
-  hl('otermBorder', blanc, '#1C1C1C')
+  hl('otermWin', blanc, _G._pdcfg.terminal_bg)
+  hl('otermBorder', blanc, _G._pdcfg.terminal_bg)
 
   -- leap.nvim
   hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })

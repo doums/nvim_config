@@ -22,7 +22,7 @@ local git_static_actions = {
   ['Stage buffer'] = gs.stage_buffer,
   ['Rollback'] = function()
     vim.ui.select({ 'OK', 'Cancel' }, {
-      prompt = 'Rollback:',
+      prompt = 'Rollback',
     }, function(choice)
       if choice == 'OK' then
         gs.reset_buffer()
@@ -37,7 +37,7 @@ function M.open()
   local items = vim.tbl_keys(git_actions)
   table.sort(items)
   vim.ui.select(items, {
-    prompt = 'git:',
+    prompt = 'git',
   }, function(choice)
     if choice then
       git_actions[choice]()

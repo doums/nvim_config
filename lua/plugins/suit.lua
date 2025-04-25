@@ -11,11 +11,13 @@ local P = {
 P.opts = {
   input = {
     default_prompt = '↓',
-    border = _G._pdcfg.win_border,
+    border = { ' ', ' ', ' ', ' ', '', '', '', ' ' },
+    max_width = 40,
   },
   select = {
     default_prompt = '≡',
-    border = _G._pdcfg.win_border,
+    border = { ' ', ' ', ' ', ' ', '', '', '', ' ' },
+    max_width = 30,
   },
 }
 

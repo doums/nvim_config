@@ -34,7 +34,7 @@ function M.open()
   local lsp_items = vim.tbl_keys(actions)
   table.sort(lsp_items)
   vim.ui.select(lsp_items, {
-    prompt = 'LSP:',
+    prompt = 'LSP',
   }, function(choice)
     if choice then
       actions[choice]()
