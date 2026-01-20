@@ -24,7 +24,7 @@ return {
       end
       _G._pdcfg.lt_lang = lang
       -- reload the server (see :h lsp-faq)
-      vim.lsp.stop_client(client.id)
+      vim.cmd('lsp stop ltex_plus')
       vim.lsp.config.ltex_plus.settings.ltex.language = lang
       -- some delay is needed for the server to close properly
       -- before restarting it

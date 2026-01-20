@@ -16,17 +16,21 @@ P.opts = {
   substitute_chars = { ['\r'] = '¬' },
   equivalence_classes = {
     ' \t\r\n',
-    'eéè',
+    'eéèê',
     'aàâ',
-    'iî',
+    'iîï',
     'oô',
     'uùû',
   },
 }
 
 P.init = function()
-  vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward-to)')
-  vim.keymap.set({ 'n', 'x', 'o' }, 'q', '<Plug>(leap-backward-to)')
+  local l = require('leap')
+  vim.keymap.set({ 'n' }, 'f', '<Plug>(leap-forward)')
+  vim.keymap.set({ 'x', 'o' }, 'f', function()
+    l.leap({ offset = 1, inclusive = true })
+  end)
+  vim.keymap.set({ 'n', 'x', 'o' }, 'q', '<Plug>(leap-backward)')
 end
 
 return P

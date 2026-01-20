@@ -42,7 +42,8 @@ function M.hl()
   hl('otermBorder', blanc, _G._pdcfg.terminal_bg)
 
   -- leap.nvim
-  hl('LeapMatch', '#F49810', nil, { 'underline', 'nocombine' })
+  hl('LeapLabel', '#fdd60a', '#0a0a0a', { 'bold', 'nocombine' })
+  hl('LeapMatch', '#fdd60a', nil, { 'underline', 'nocombine' })
   hl('LeapLabelPrimary', noir, paille, { 'bold', 'nocombine' })
   hl('LeapLabelSecondary', noir, '#6366f1', 'nocombine')
   -- hl('LeapBackdrop', '#80807F', nil, 'nocombine')
