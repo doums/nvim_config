@@ -1,7 +1,3 @@
--- This Source Code Form is subject to the terms of the Mozilla Public
--- License, v. 2.0. If a copy of the MPL was not distributed with this
--- file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 -- lua-ls
 -- https://github.com/LuaLS/lua-language-server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
