@@ -2,20 +2,11 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Snippets for Rust
-
-local ls = require('luasnip')
-local s = ls.snippet
-local fmt = require('luasnip.extras.fmt').fmt
-local fmta = require('luasnip.extras.fmt').fmta
-local i = ls.insert_node
-
 local M = {
   s(
     {
       trig = 'mpl',
-      name = 'MPL Header',
-      dscr = 'Mozilla Public License v2.O Header',
+      desc = 'MPL Header',
     },
     fmt(
       [[
@@ -30,14 +21,14 @@ local M = {
   s('prtd', fmta([[println!("{:#?}", <>);]], i(0))),
   s('fmt', fmta([[format!("{}", <>)]], i(0))),
   s(
-    { trig = 'cs', name = 'closure' },
+    { trig = 'cs', desc = 'closure' },
     fmta([[|<>| {<>}]], {
       i(1),
       i(0),
     }, {})
   ),
   s(
-    { trig = 'fn', name = 'function declaration' },
+    { trig = 'fn', desc = 'Function declaration' },
     fmta(
       [[
     fn <>(<>) ->> <> {
@@ -54,7 +45,7 @@ local M = {
     )
   ),
   s(
-    { trig = 'fn', name = 'function declaration' },
+    { trig = 'fn', desc = 'Function declaration' },
     fmta(
       [[
     fn <>(<>) ->> <> {
@@ -71,7 +62,7 @@ local M = {
     )
   ),
   s(
-    { trig = 'fnp', name = 'public function declaration' },
+    { trig = 'fnp', desc = 'Public function declaration' },
     fmta(
       [[
     pub fn <>(<>) ->> <> {

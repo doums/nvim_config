@@ -2,16 +2,7 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Snippets for TypeScript React (*.tsx)
-
-local ls = require('luasnip')
-local s = ls.snippet
-local fmt = require('luasnip.extras.fmt').fmt
-local fmta = require('luasnip.extras.fmt').fmta
-local f = ls.function_node
-local i = ls.insert_node
-local filename = require('snippets.util').filename
-local copy = require('snippets.util').copy
+---@diagnostic disable: undefined-global
 
 local M = {
   s(
@@ -35,8 +26,7 @@ local M = {
         i(2, 'type'),
         copy(1),
         i(0),
-      },
-      { dedent = true }
+      }
     )
   ),
   s(
@@ -61,8 +51,7 @@ local M = {
       {
         i(0),
         i(1),
-      },
-      { dedent = true }
+      }
     )
   ),
   s(
@@ -84,8 +73,7 @@ local M = {
         i(1),
         i(0),
         i(2),
-      },
-      { dedent = true }
+      }
     )
   ),
 }

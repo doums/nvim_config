@@ -61,16 +61,36 @@ P.opts = {
     -- https://cmp.saghen.dev/configuration/keymap.html#default
     preset = 'none',
     ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-    ['<C-e>'] = { 'cancel' },
+    ['<C-e>'] = { 'cancel', 'fallback' },
     ['<CR>'] = { 'select_and_accept', 'fallback' },
     ['<C-y>'] = { 'accept', 'fallback' },
-    ['<Tab>'] = { 'select_next', 'fallback' },
-    ['<S-Tab>'] = { 'select_prev', 'fallback' },
+    ['<Tab>'] = {
+      -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
+      function(cmp)
+        if cmp.snippet_active() then
+          return cmp.snippet_forward()
+        else
+          return cmp.select_next()
+        end
+      end,
+      'fallback',
+    },
+    ['<S-Tab>'] = {
+      function(cmp)
+        if cmp.snippet_active() then
+          return cmp.snippet_backward()
+        else
+          return cmp.select_prev()
+        end
+      end,
+      'fallback',
+    },
     ['<Up>'] = { 'select_prev', 'fallback' },
     ['<Down>'] = { 'select_next', 'fallback' },
     ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
     ['<C-p>'] = { 'scroll_documentation_up', 'fallback' },
     ['<C-o>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
   },
   appearance = {
     nerd_font_variant = 'mono',
@@ -92,7 +112,15 @@ P.opts = {
   completion = {
     -- 'balth_|_azar' - prefix: will match 'balth_' - full: match 'balth__azar'
     keyword = { range = 'full' },
-    list = { selection = { preselect = true, auto_insert = true } },
+    list = {
+      selection = {
+        -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
+        preselect = function(ctx)
+          return not require('blink.cmp').snippet_active({ direction = 1 })
+        end,
+        auto_insert = true,
+      },
+    },
     accept = { auto_brackets = { enabled = true } },
     menu = {
       auto_show = true,
@@ -107,6 +135,7 @@ P.opts = {
           kind = { text = fmt_lsp_kind },
           source_id = { text = fmt_lsp_sources },
         },
+        snippet_indicator = '', -- `~` is already shown as 'kind'
       },
       border = 'none',
     },
@@ -149,9 +178,10 @@ P.opts = {
       ['<C-space>'] = { 'show', 'fallback' },
       ['<Down>'] = { 'select_next', 'fallback' },
       ['<Up>'] = { 'select_prev', 'fallback' },
-      ['<C-y>'] = { 'select_and_accept' },
-      ['<C-CR>'] = { 'select_and_accept' },
-      ['<C-e>'] = { 'cancel' },
+      ['<CR>'] = { 'select_and_accept', 'fallback' },
+      ['<C-y>'] = { 'accept_and_enter' },
+      ['<C-e>'] = { 'cancel', 'fallback' },
+      ['<Esc>'] = { 'cancel', 'fallback' },
     },
     completion = {
       menu = {

@@ -2,13 +2,6 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Snippets for TypeScript
-
-local ls = require('luasnip')
-local s = ls.snippet
-local fmta = require('luasnip.extras.fmt').fmta
-local i = ls.insert_node
-
 local M = {
   s('log', fmta('console.log(<>);', i(0))),
   s('if', fmta('if (<>) {\n\t<>\n}', { i(1), i(0) })),

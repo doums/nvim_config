@@ -2,20 +2,11 @@
 -- License, v. 2.0. If a copy of the MPL was not distributed with this
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
--- Snippets for Lua
-
-local ls = require('luasnip')
-local s = ls.snippet
-local fmt = require('luasnip.extras.fmt').fmt
-local fmta = require('luasnip.extras.fmt').fmta
-local i = ls.insert_node
-
 local M = {
   s(
     {
       trig = 'mpl',
-      name = 'MPL Header',
-      dscr = 'Mozilla Public License v2.O Header',
+      desc = 'MPL Header',
     },
     fmt(
       [[
@@ -30,8 +21,7 @@ local M = {
   s(
     {
       trig = 'mod',
-      name = 'Lua module',
-      dscr = 'Declare a new Lua module',
+      desc = 'Lua module setup',
     },
     fmta(
       [[
@@ -49,11 +39,11 @@ local M = {
     )
   ),
   s('prt', fmt([[print({})]], i(0))),
-  s('prty', fmt([[vim.print({})]], i(0))),
+  s('vprt', fmt([[vim.print({})]], i(0))),
   s('fmt', fmt([[string.format('%s', {})]], i(0))),
-  s('re', fmt([[local {} = require('{}')]], { i(0), i(1) })),
+  s('req', fmt([[local {} = require('{}')]], { i(0), i(1) })),
   s(
-    { trig = 'lfn', name = 'Local function declaration' },
+    { trig = 'lfn', desc = 'Local function declaration' },
     fmta(
       [[
     local function <>(<>)
@@ -64,12 +54,11 @@ local M = {
         i(1),
         i(2),
         i(0),
-      },
-      { dedent = true }
+      }
     )
   ),
   s(
-    { trig = 'fn', name = 'Function declaration' },
+    { trig = 'fn', desc = 'Function declaration' },
     fmta(
       [[
     function <>(<>)
@@ -80,12 +69,11 @@ local M = {
         i(1),
         i(2),
         i(0),
-      },
-      { dedent = true }
+      }
     )
   ),
   s(
-    { trig = 'ifn', name = 'Inline function declaration' },
+    { trig = 'ifn', desc = 'Inline function declaration' },
     fmta(
       [[
     function (<>)
@@ -95,8 +83,7 @@ local M = {
       {
         i(1),
         i(0),
-      },
-      { dedent = true }
+      }
     )
   ),
 }
