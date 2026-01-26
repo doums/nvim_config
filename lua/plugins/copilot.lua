@@ -46,9 +46,10 @@ local P = {
 }
 
 P.opts = {
+  copilot_model = '',
   panel = {
     enabled = true,
-    auto_refresh = true,
+    auto_refresh = false,
     keymap = {
       jump_prev = '<C-k>',
       jump_next = '<C-j>',
@@ -64,7 +65,7 @@ P.opts = {
   suggestion = {
     enabled = true,
     auto_trigger = true,
-    debounce = 75,
+    debounce = 15,
     keymap = {
       accept = '<M-Tab>',
       accept_word = '<M-m>',
