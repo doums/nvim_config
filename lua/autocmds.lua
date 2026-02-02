@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd('FileType', {
   group = group_id,
   pattern = 'man',
   callback = function(a)
-    -- remap leap Q because it is overriden by nvim's manpage
+    -- remap leap Q because it is overridden by nvim's manpage
     -- mapping
     vim.keymap.set('n', 'q', '<Plug>(leap-backward-to)', { buffer = a.buf })
   end,

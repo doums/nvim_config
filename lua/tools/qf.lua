@@ -179,13 +179,13 @@ function M.on_ll_list(options)
   end
 end
 
--- filter out cspell namespace
 function M.get_namespaces()
   return vim
     .iter(pairs(vim.diagnostic.get_namespaces()))
-    :filter(function(_, ns)
-      return ns.name ~= 'cspell'
-    end)
+    -- filter out unwanted namespace
+    -- :filter(function(_, ns)
+    --   return ns.name ~= 'sometool'
+    -- end)
     :map(function(ns)
       return ns
     end)

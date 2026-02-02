@@ -14,6 +14,7 @@ local servers = {
   nushell = false,
   ts_ls = 'ts',
   tailwindcss = 'tailwind',
+  typos_lsp = 'typos_lsp',
 }
 
 function M.setup()

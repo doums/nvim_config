@@ -21,6 +21,6 @@ imagemagick
 - `eslint` `prettier` (npm packages)
 - `@tailwindcss/language-server` (npm package)
 - ltex-ls+ (AUR `ltex-ls-plus-bin`)
-- `cspell` (npm package)
 - `clangd` C/C++ (Arch package)
 - `gopls` (Arch package)
+- `typos-lsp` (Arch package)

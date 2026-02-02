@@ -21,13 +21,6 @@ local langs = {
 }
 
 P.config = function()
-  require('lint').linters.cspell = require('linters.cspell')
-
-  -- add cspell to all defined languages
-  vim.iter(langs):each(function(_, config)
-    table.insert(config, 'cspell')
-  end)
-
   require('lint').linters_by_ft = langs
 
   vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
