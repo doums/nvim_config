@@ -12,6 +12,7 @@ function M.hl()
   local paille = '#fde047'
   local blanc = '#ffffff'
   local noir = '#000000'
+  local ombre = '#2c2d2f'
 
   -- override
   hl('FloatBorder', nil, p.menu)
@@ -53,6 +54,7 @@ function M.hl()
   hl('NvimTreeModifiedIcon', '#fde047')
   li('NvimTreeRootFolder', 'Comment')
   li('NvimTreeExecFile', 'Todo')
+  hl('NvimTreeHiddenDisplay', p.todo, nil, { 'bold' })
   li('NvimTreeSpecialFile', 'Keyword')
   li('NvimTreeFolderIcon', 'Comment')
   li('NvimTreeImageFile', 'Fg')
@@ -80,8 +82,9 @@ function M.hl()
   hl('OilCopy', p.info_effect, nil, { 'bold', 'italic' })
   li('OilChange', 'OilMove')
   li('OilRestore', 'OilCopy')
-  hl('OilFloat', p.fg, '#161616')
-  hl('OilFloatTitle', p.todo, '#161616', { 'bold', 'italic' })
+  hl('OilFloat', p.fg)
+  hl('OilFloatTitle', p.todo, nil, { 'bold', 'italic' })
+  hl('OilFloatBorder', ombre)
 
   -- gitsigns.nvim
   li('GitSignsAdd', 'GitAddSign')
@@ -98,6 +101,13 @@ function M.hl()
 
   -- suit.nvim
   hl('suitPrompt', p.todo, p.menu, { 'bold', 'italic' })
+
+  -- snacks prompt
+  hl('SnacksInputNormal', p.fg, p.menu)
+  hl('SnacksInputTitle', p.todo, p.menu, { 'bold', 'italic' })
+  hl('SnacksInputBorder', p.menu, p.menu)
+  hl('SnacksInputIcon', p.todo, p.menu, 'bold')
+  hl('SnacksInputIcon', p.todo, p.menu, 'bold')
 
   -- snacks picker
   hl('SnacksPicker', 'Fg')

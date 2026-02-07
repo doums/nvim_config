@@ -46,6 +46,13 @@ local P = {
 }
 
 P.opts = {
+  server_opts_overrides = {
+    settings = {
+      telemetry = {
+        telemetryLevel = 'off',
+      },
+    },
+  },
   copilot_model = '',
   panel = {
     enabled = true,
@@ -54,7 +61,7 @@ P.opts = {
       jump_prev = '<C-k>',
       jump_next = '<C-j>',
       accept = '<CR>',
-      refresh = '<M-r>',
+      refresh = 'gr',
       open = '<M-CR>',
     },
     layout = {
@@ -80,6 +87,9 @@ P.opts = {
   },
   should_attach = function(_, bufname)
     if not _G._pdcfg.copilot then
+      return false
+    end
+    if string.match(vim.bo.filetype, '^opencode_') then
       return false
     end
     if string.match(bufname, '^%.env.*') then

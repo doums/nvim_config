@@ -1,20 +1,19 @@
 local P = {
   'stevearc/oil.nvim',
+  lazy = false,
 }
 
 P.config = function()
   local detailed = false
+  local float_style =
+    'NormalFloat:OilFloat,FloatBorder:OilFloatBorder,FloatTitle:OilFloatTitle'
   local type_column = {
     'type',
     highlight = 'NonText',
     icons = {
       directory = '󰉋',
-      file = '≡',
-      link = '⟷',
-      char = '⍆',
-      block = '∎',
-      socket = '⍆',
-      fifo = '⥊',
+      file = '󰧮',
+      link = '󰌷',
       add_padding = false,
     },
   }
@@ -75,15 +74,13 @@ P.config = function()
       concealcursor = 'nvic',
     },
     float = {
-      -- Padding around the floating window
-      padding = 2,
       max_width = 66,
       max_height = 20,
-      border = { ' ', ' ', ' ', ' ', '', '', '', ' ' },
+      border = 'bold',
       win_options = {
         winblend = 0,
         colorcolumn = '',
-        winhighlight = 'NormalFloat:OilFloat,FloatBorder:OilFloat,FloatTitle:OilFloatTitle',
+        winhighlight = float_style,
       },
     },
     preview_win = {
@@ -91,20 +88,32 @@ P.config = function()
       min_width = { 20, 0.1 },
       max_height = 20,
       min_height = { 5, 0.1 },
-      border = _G._pdcfg.win_border,
+      border = 'bold',
       win_options = {
+        pagging = 0,
         winblend = 0,
         colorcolumn = '',
-        winhighlight = 'NormalFloat:OilFloat,FloatBorder:OilFloat',
+        winhighlight = float_style,
       },
     },
     confirmation = {
-      border = false,
+      border = 'bold',
+      max_width = { 66, 0.9 },
+      min_width = { 20, 0.1 },
+      win_options = {
+        winhighlight = float_style,
+        -- if wrapping it breaks the display!
+        wrap = false,
+      },
     },
     progress = {
-      border = false,
+      border = 'bold',
+      win_options = {
+        winhighlight = float_style,
+      },
     },
     keymaps_help = {
+      -- this is the only supported option!
       border = false,
     },
   })

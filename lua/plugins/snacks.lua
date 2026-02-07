@@ -1,13 +1,55 @@
 local P = {
   'folke/snacks.nvim',
   priority = 1000,
+  -- dev = true,
   lazy = false,
   opts = { picker = {}, image = { enabled = true } },
 }
 
+P.opts.input = {
+  icon = '',
+  prompt_pos = 'title',
+  win = {
+    title_pos = 'left',
+    border = { ' ', ' ', ' ', '', '', '', '', '' },
+    relative = 'cursor',
+    row = 1,
+    col = 0,
+    b = {
+      completion = false, -- disable blink completions in input
+    },
+  },
+  expand = true,
+}
+
 P.opts.picker = {
   prompt = '> ',
+  sources = {
+    select = {
+      show_idx = false,
+    },
+  },
   layouts = {
+    select = {
+      layout = {
+        backdrop = false,
+        hidden = 'input',
+        width = 0.2,
+        min_width = 2,
+        max_width = 66,
+        height = 0.4,
+        min_height = 2,
+        relative = 'cursor',
+        row = 1,
+        col = 0,
+        box = 'vertical',
+        border = 'bold',
+        title = '{title}',
+        title_pos = 'left',
+        { win = 'list' },
+        { win = 'preview', title = '{preview}', height = 0.3, border = 'none' },
+      },
+    },
     -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#dropdown
     dropdown = {
       layout = {
@@ -87,7 +129,7 @@ P.opts.picker = {
     file = { git_status_hl = false },
     selected = { unselected = false },
   },
-  ui_select = false,
+  ui_select = true,
   win = {
     -- input window
     input = {
@@ -106,8 +148,7 @@ P.opts.picker = {
         ['<c-s-k>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
         ['<c-s-j>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
         ['<a-CR>'] = { 'focus_list', mode = { 'i', 'n' } },
-        -- alt+shift+,
-        ['<s->>'] = { 'toggle_help_input', mode = { 'i', 'n' } },
+        ['<c-,>'] = { 'toggle_help_input', mode = { 'i', 'n' } },
       },
     },
     list = {
@@ -204,6 +245,13 @@ P.keys = {
       Snacks.picker.git_diff()
     end,
     desc = 'Git Diff (Hunks)',
+  },
+  {
+    '<leader>sk',
+    function()
+      Snacks.picker.keymaps()
+    end,
+    desc = 'Keymaps',
   },
 }
 
