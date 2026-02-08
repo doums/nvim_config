@@ -253,6 +253,13 @@ P.keys = {
     end,
     desc = 'Keymaps',
   },
+  {
+    '<leader>sh',
+    function()
+      Snacks.picker.highlights()
+    end,
+    desc = 'Highlights',
+  },
 }
 
 return P

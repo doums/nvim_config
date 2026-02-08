@@ -5,7 +5,7 @@ local P = {
   cmd = 'Copilot',
   keys = {
     {
-      '<F7>',
+      '<Leader>cp',
       function()
         if _G._pdcfg.copilot then
           require('copilot.panel').open()
@@ -36,11 +36,6 @@ local P = {
         vim.cmd('Copilot status')
       end,
       desc = 'Disable Copilot',
-    },
-    {
-      '<F6>',
-      '<cmd>Copilot status<CR>',
-      desc = 'Get Copilot state',
     },
   },
 }
