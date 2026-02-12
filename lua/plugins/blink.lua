@@ -61,24 +61,17 @@ P.opts = {
     ['<CR>'] = { 'select_and_accept', 'fallback' },
     ['<C-y>'] = { 'accept', 'fallback' },
     ['<Tab>'] = {
-      -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
       function(cmp)
-        if cmp.snippet_active() then
-          return cmp.snippet_forward()
-        else
-          return cmp.select_next()
-        end
+        return cmp.select_next()
       end,
+      'snippet_forward',
       'fallback',
     },
     ['<S-Tab>'] = {
       function(cmp)
-        if cmp.snippet_active() then
-          return cmp.snippet_backward()
-        else
-          return cmp.select_prev()
-        end
+        return cmp.select_prev()
       end,
+      'snippet_backward',
       'fallback',
     },
     ['<Up>'] = { 'select_prev', 'fallback' },
@@ -110,10 +103,7 @@ P.opts = {
     keyword = { range = 'full' },
     list = {
       selection = {
-        -- https://cmp.saghen.dev/configuration/keymap.html#super-tab
-        preselect = function(ctx)
-          return not require('blink.cmp').snippet_active({ direction = 1 })
-        end,
+        preselect = true,
         auto_insert = true,
       },
     },
