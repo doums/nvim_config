@@ -6,7 +6,7 @@ local M = {}
 --    or `false` when no custom config is needed
 local servers = {
   clangd = false,
-  zls = false,
+  zls = 'zls',
   lua_ls = 'lua',
   rust_analyzer = 'rust',
   ltex_plus = 'ltex_ls',
